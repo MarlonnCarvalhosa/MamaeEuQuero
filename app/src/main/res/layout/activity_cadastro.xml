@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f56b46"
+    tools:context=".CadastroActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_marginTop="10dp"
+                android:layout_width="170dp"
+                android:layout_height="170dp"
+                android:layout_marginLeft="125dp"
+                android:src="@drawable/logolight"
+                android:padding="4dp"
+                />
+
+            <EditText
+                android:layout_width="395dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:ems="10"
+                android:padding="16dp"
+                android:drawablePadding="16dp"
+                android:hint="Nome Completo"
+                android:textColorHint="#f56b46"
+                android:textColor="#f56b46"
+                android:maxLines="1"
+                android:inputType="text"
+                android:background="@drawable/bkgrd_redlogin1"
+                android:id="@+id/editText_cadastro_nome"
+                android:layout_marginTop="20dp" />
+
+            <EditText
+                android:layout_width="395dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:ems="10"
+                android:padding="16dp"
+                android:drawablePadding="16dp"
+                android:hint="Data Nascimento"
+                android:textColorHint="#f56b46"
+                android:textColor="#f56b46"
+                android:maxLines="1"
+                android:inputType="date"
+                android:background="@drawable/bkgrd_redlogin1"
+                android:id="@+id/editText_cadastro_data_nascimento"
+                android:layout_marginTop="5dp" />
+
+            <EditText
+                android:layout_width="395dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:ems="10"
+                android:padding="16dp"
+                android:drawablePadding="16dp"
+                android:hint="Numero Celular"
+                android:textColorHint="#f56b46"
+                android:textColor="#f56b46"
+                android:maxLines="1"
+                android:inputType="phone"
+                android:background="@drawable/bkgrd_redlogin1"
+                android:id="@+id/editText_cadastro_numero_celular"
+                android:layout_marginTop="5dp" />
+
+            <EditText
+                android:id="@+id/editText_cadastro_email"
+                android:layout_width="395dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/bkgrd_redlogin1"
+                android:drawablePadding="16dp"
+                android:ems="10"
+                android:hint="E-mail"
+                android:inputType="textEmailAddress"
+                android:maxLines="1"
+                android:padding="16dp"
+                android:textColor="#f56b46"
+                android:textColorHint="#f56b46" />
+
+
+            <EditText
+                android:layout_width="395dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:ems="10"
+                android:padding="16dp"
+                android:drawablePadding="16dp"
+                android:hint="Senha"
+                android:textColorHint="#f56b46"
+                android:textColor="#f56b46"
+                android:maxLines="1"
+                android:inputType="textPassword"
+                android:background="@drawable/bkgrd_redlogin1"
+                android:id="@+id/editText_cadastro_senha"
+                android:layout_marginTop="5dp" />
+
+            <EditText
+                android:layout_width="395dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:ems="10"
+                android:padding="16dp"
+                android:drawablePadding="16dp"
+                android:hint="Confirmar Senha"
+                android:textColorHint="#f56b46"
+                android:textColor="#f56b46"
+                android:maxLines="1"
+                android:inputType="textPassword"
+                android:background="@drawable/bkgrd_redlogin1"
+                android:id="@+id/editText_cadastro_confirmar_senha"
+                android:layout_marginTop="5dp" />
+
+            <Button
+                android:layout_marginTop="10dp"
+                android:layout_width="370dp"
+                android:layout_height="wrap_content"
+                android:text="Finalizar"
+                android:clickable="true"
+                android:textColor="#f56b46"
+                android:padding="16dp"
+                android:textSize="18sp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="16dp"
+                android:textAllCaps="false"
+                android:background="@drawable/bkgd_red_2"
+                android:onClick="finalizar"/>
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="16dp"
+    android:paddingTop="16dp"
+    android:paddingRight="24dp"
+    android:paddingLeft="24dp"
+    android:background="#f56b46">
+
+
+            <ImageView
+                android:layout_marginTop="25dp"
+                android:layout_width="200dp"
+                android:layout_height="180dp"
+                android:layout_marginLeft="87dp"
+                android:src="@drawable/logolight"
+                android:padding="4dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mamae Eu Quero"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="#fff"
+                android:layout_gravity="center_horizontal"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:paddingTop="2dp"
+                android:paddingBottom="16dp" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:padding="16dp"
+                android:drawablePadding="16dp"
+                android:hint="Email"
+                android:textColorHint="#f56b46"
+                android:maxLines="1"
+                android:inputType="textEmailAddress"
+                android:background="@drawable/bkgrd_redlogin1"
+                android:id="@+id/editText_email"
+                android:layout_marginTop="10dp"
+                android:drawableRight="@drawable/ic_person_outline_red_400_24dp" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:padding="16dp"
+                android:hint="Senha"
+                android:textColorHint="#f56b46"
+                android:maxLines="1"
+                android:id="@+id/editText_senha"
+                android:inputType="textPassword"
+                android:drawableRight="@drawable/ic_lock_red_400_24dp"
+                android:background="@drawable/bkgrd_redlogin1"
+                android:layout_marginTop="5dp"
+                android:drawablePadding="16dp"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Entrar"
+                android:clickable="true"
+                android:textColor="#f56b46"
+                android:padding="16dp"
+                android:textSize="18sp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="5dp"
+                android:textAllCaps="false"
+                android:background="@drawable/bkgd_red_2"
+                android:onClick="entrar"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Cadastrar"
+                android:clickable="true"
+                android:textColor="#f56b46"
+                android:padding="16dp"
+                android:textSize="18sp"
+                android:layout_gravity="center_horizontal"
+                android:textAllCaps="false"
+                android:background="@drawable/bkgd_red_2"
+                android:onClick="cadastrar"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Esqueceu a senha?"
+                style="@style/TextAppearance.AppCompat.Body2"
+                android:layout_gravity="center_horizontal"
+                android:textColor="#fff"
+                android:padding="16dp"
+                android:textSize="15sp"
+                android:clickable="true"
+                android:onClick="esqueceuSenha" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ir para a Loja"
+                android:textStyle="bold"
+                android:layout_gravity="center_horizontal"
+                android:textColor="#fff"
+                android:padding="16dp"
+                android:textSize="25sp"
+                android:clickable="true"
+                android:onClick="irParaALoja"/>
+
+</LinearLayout>
