@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
                     return true;
                 case R.id.navigation_buscar:
                     return true;
-                case R.id.navigation_vender:
+                case R.id.navigation_leiloar:
                     return true;
                 case R.id.navigation_carrinho:
                     return true;

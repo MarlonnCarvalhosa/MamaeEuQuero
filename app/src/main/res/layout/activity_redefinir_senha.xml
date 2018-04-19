@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RedefinirSenhaActivity"
+    android:background="#f56b46">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/esqueceu_a_sua_senha"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="#fff"
+        android:layout_gravity="center_horizontal"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="2dp"
+        android:paddingBottom="16dp" />
+
+    <EditText
+        android:layout_width="350dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:padding="16dp"
+        android:drawablePadding="16dp"
+        android:hint="@string/digite_seu_e_mail"
+        android:textColorHint="#f56b46"
+        android:maxLines="1"
+        android:inputType="textEmailAddress"
+        android:background="@drawable/bkgrd_redlogin1"
+        android:id="@+id/editText_redefinirEmail"
+        android:layout_marginTop="10dp"/>
+
+    <Button
+        android:id="@+id/enviarRedefinicao"
+        android:visibility="visible"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="@string/enviar"
+        android:clickable="true"
+        android:textColor="#f56b46"
+        android:padding="16dp"
+        android:textSize="18sp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="5dp"
+        android:textAllCaps="false"
+        android:background="@drawable/bkgd_red_2"
+        android:onClick="enviarRedefinicaoSenha"/>
+
+
+</LinearLayout>

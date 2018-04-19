@@ -24,6 +24,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
+
     private EditText senha,email;
     private LinearLayout linearLayout;
     private TextView recuperar;
@@ -45,23 +46,28 @@ public class LoginActivity extends AppCompatActivity {
 
     }
     public void buscadeid(){
+
         email=findViewById(R.id.editText_email);
         senha=findViewById(R.id.editText_senha);
         recuperar=findViewById(R.id.redefinir);
         progressBar=findViewById(R.id.progressbar);
-        login=findViewById(R.id.logar);}
+        login=findViewById(R.id.logar);
+    }
 
 
         public void metodobotoes() {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                login.setVisibility(View.GONE);
                progressBar.setVisibility(View.VISIBLE);
+
                 final String inputemail = email.getText().toString();
                 final String password= senha.getText().toString();
+
                 if (TextUtils.isEmpty(inputemail)) {
-                    email.setError("Obrigatorio");
+                    email.setError("Campo Obrigatorio");
                    login.setVisibility(View.VISIBLE);
                    progressBar.setVisibility(View.GONE);
 
@@ -71,7 +77,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
 
                 if (TextUtils.isEmpty(password)) {
-                    senha.setError("Obrigatorio");
+                    senha.setError("Campo Obrigatorio");
                     login.setVisibility(View.VISIBLE);
                     progressBar.setVisibility(View.GONE);
 
@@ -107,6 +113,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+
     public void verificaAuth(){
         if(auth.getCurrentUser() !=null) {
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -118,12 +125,6 @@ public class LoginActivity extends AppCompatActivity {
                 finish();
 
             }
-
-
-
-
-
-
     }
 }}
 
