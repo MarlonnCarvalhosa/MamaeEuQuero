@@ -10,13 +10,13 @@
     android:background="#f56b46">
 
 
-            <ImageView
-                android:layout_marginTop="25dp"
-                android:layout_width="200dp"
-                android:layout_height="180dp"
-                android:layout_marginLeft="87dp"
-                android:src="@drawable/logolight"
-                android:padding="4dp" />
+    <ImageView
+        android:layout_width="182dp"
+        android:layout_height="170dp"
+        android:layout_marginLeft="87dp"
+        android:layout_marginTop="25dp"
+        android:padding="4dp"
+        android:src="@drawable/logolight" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -58,10 +58,12 @@
                 android:inputType="textPassword"
                 android:drawableRight="@drawable/ic_lock_red_400_24dp"
                 android:background="@drawable/bkgrd_redlogin1"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="10dp"
                 android:drawablePadding="16dp"/>
 
             <Button
+                android:id="@+id/logar"
+                android:visibility="visible"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Entrar"
@@ -76,41 +78,27 @@
                 android:background="@drawable/bkgd_red_2"
                 android:onClick="entrar"/>
 
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Cadastrar"
-                android:clickable="true"
-                android:textColor="#f56b46"
-                android:padding="16dp"
-                android:textSize="18sp"
-                android:layout_gravity="center_horizontal"
-                android:textAllCaps="false"
-                android:background="@drawable/bkgd_red_2"
-                android:onClick="cadastrar"/>
+    <ProgressBar
+        android:id="@+id/progressbar"
+        android:visibility="gone"
+        android:layout_width="98dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Esqueceu a senha?"
-                style="@style/TextAppearance.AppCompat.Body2"
-                android:layout_gravity="center_horizontal"
-                android:textColor="#fff"
-                android:padding="16dp"
-                android:textSize="15sp"
-                android:clickable="true"
-                android:onClick="esqueceuSenha" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Ir para a Loja"
-                android:textStyle="bold"
-                android:layout_gravity="center_horizontal"
-                android:textColor="#fff"
-                android:padding="16dp"
-                android:textSize="25sp"
-                android:clickable="true"
-                android:onClick="irParaALoja"/>
+    <TextView
+        android:id="@+id/redefinir"
+        style="@style/TextAppearance.AppCompat.Large"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="5dp"
+        android:text="@string/esqueceu"
+        android:textAlignment="center"
+        android:textSize="15dp" />
+
+
+
+
 
 </LinearLayout>
