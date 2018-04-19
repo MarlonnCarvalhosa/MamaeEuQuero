@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "696406870049",
+    "firebase_url": "https://mamaeeuquero-903fb.firebaseio.com",
+    "project_id": "mamaeeuquero-903fb",
+    "storage_bucket": "mamaeeuquero-903fb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:696406870049:android:dc62a571b55a1de0",
+        "android_client_info": {
+          "package_name": "com.marlonncarvalhosa.mamaeeuquero"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "696406870049-93ocnan45i5c3taud1tr228icao30muv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.marlonncarvalhosa.mamaeeuquero",
+            "certificate_hash": "cd4f68e456466dfb617a4a31794cf5c220fab501"
+          }
+        },
+        {
+          "client_id": "696406870049-289btoql07topaa9im2g0jt7ibuufjn1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDavQuv7T84R2vZ50cDPwTS-zuDNlnhaks"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "696406870049-289btoql07topaa9im2g0jt7ibuufjn1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
