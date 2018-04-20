@@ -35,23 +35,24 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        auth=FirebaseAuth.getInstance();
+        auth = FirebaseAuth.getInstance();
         buscadeid();
         metodobotoes();
         progressBar.setVisibility(View.GONE);
 
-
     }
+
     public void buscadeid(){
 
-        email=findViewById(R.id.editText_email);
-        senha=findViewById(R.id.editText_senha);
-        recuperar=findViewById(R.id.redefinir);
-        progressBar=findViewById(R.id.progressbar);
-        login=findViewById(R.id.logar);
+        email = findViewById(R.id.editText_email);
+        senha = findViewById(R.id.editText_senha);
+        recuperar = findViewById(R.id.redefinir);
+        progressBar = findViewById(R.id.progressbar);
+        login = findViewById(R.id.logar);
     }
 
 
@@ -64,7 +65,7 @@ public class LoginActivity extends AppCompatActivity {
                progressBar.setVisibility(View.VISIBLE);
 
                 final String inputemail = email.getText().toString();
-                final String password= senha.getText().toString();
+                final String password = senha.getText().toString();
 
                 if (TextUtils.isEmpty(inputemail)) {
                     email.setError("Campo Obrigatorio");
@@ -83,9 +84,6 @@ public class LoginActivity extends AppCompatActivity {
 
                     return;
                 }
-
-
-
 
 
                 auth.signInWithEmailAndPassword(inputemail,password)
@@ -125,7 +123,9 @@ public class LoginActivity extends AppCompatActivity {
                 finish();
 
             }
+
     }
+
 }}
 
 
