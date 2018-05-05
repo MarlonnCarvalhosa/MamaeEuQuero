@@ -7,7 +7,7 @@
     android:paddingTop="16dp"
     android:paddingRight="24dp"
     android:paddingLeft="24dp"
-    android:background="#f56b46">
+    android:background="#46acf5">
 
 
     <ImageView
@@ -38,7 +38,7 @@
                 android:padding="16dp"
                 android:drawablePadding="16dp"
                 android:hint="Email"
-                android:textColorHint="#f56b46"
+                android:textColorHint="#46acf5"
                 android:maxLines="1"
                 android:inputType="textEmailAddress"
                 android:background="@drawable/bkgrd_redlogin1"
@@ -52,7 +52,7 @@
                 android:ems="10"
                 android:padding="16dp"
                 android:hint="Senha"
-                android:textColorHint="#f56b46"
+                android:textColorHint="#46acf5"
                 android:maxLines="1"
                 android:id="@+id/editText_senha"
                 android:inputType="textPassword"
@@ -68,7 +68,7 @@
                 android:layout_height="wrap_content"
                 android:text="Entrar"
                 android:clickable="true"
-                android:textColor="#f56b46"
+                android:textColor="#46acf5"
                 android:padding="16dp"
                 android:textSize="18sp"
                 android:layout_gravity="center_horizontal"

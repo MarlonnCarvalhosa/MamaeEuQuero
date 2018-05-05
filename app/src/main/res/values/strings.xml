@@ -225,12 +225,23 @@
     <string name="esqueceu">Esqueceu seus dados de login? <b>clique aqui</b></string>
     <string name="inicio">Inicio</string>
     <string name="buscar">Buscar</string>
-    <string name="leiloar">Leiloar</string>
     <string name="carrinho">Carrinho</string>
     <string name="perfil">Perfil</string>
     <string name="entrar">Entrar</string>
     <string name="digite_seu_e_mail">Digite seu e-mail</string>
     <string name="enviar">Enviar</string>
     <string name="esqueceu_a_sua_senha">Esqueceu a sua senha?</string>
+    <string name="t_tulo">Título</string>
+    <string name="digite_um_t_tulo_para_seu_produto">Digite um título para seu produto</string>
+    <string name="descri_o">Descrição</string>
+    <string name="descreva_seu_produto">Descreva seu produto</string>
+    <string name="adicionar_imagens">Adicionar Imagens</string>
+    <string name="leiloar">Leiloar</string>
+    <string name="finalizar">Finalizar</string>
+    <string name="confirmar_senha">Confirmar Senha</string>
+    <string name="senha">Senha</string>
+    <string name="e_mail">E-mail</string>
+    <string name="numero_celular">Numero Celular</string>
+    <string name="data_nascimento">Data Nascimento</string>
 
 </resources>
