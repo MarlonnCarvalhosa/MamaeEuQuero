@@ -8,7 +8,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.marlonncarvalhosa.mamaeeuquero.fragments.BuscarFragment;
+import com.marlonncarvalhosa.mamaeeuquero.fragments.CarrinhoFragment;
 import com.marlonncarvalhosa.mamaeeuquero.fragments.InicioFragment;
+import com.marlonncarvalhosa.mamaeeuquero.fragments.LeiloarFragment;
 import com.marlonncarvalhosa.mamaeeuquero.fragments.PerfilFragment;
 import com.marlonncarvalhosa.mamaeeuquero.utils.FragmentoUtils;
 
@@ -25,10 +28,13 @@ public class MainActivity extends AppCompatActivity {
                     FragmentoUtils.replace(MainActivity.this, new InicioFragment());
                     return true;
                 case R.id.navigation_buscar:
+                    FragmentoUtils.replace(MainActivity.this, new BuscarFragment());
                     return true;
                 case R.id.navigation_leiloar:
+                    FragmentoUtils.replace(MainActivity.this, new LeiloarFragment());
                     return true;
                 case R.id.navigation_carrinho:
+                    FragmentoUtils.replace(MainActivity.this, new CarrinhoFragment());
                     return true;
                 case R.id.navigation_perfil:
                     FragmentoUtils.replace(MainActivity.this, new PerfilFragment());
