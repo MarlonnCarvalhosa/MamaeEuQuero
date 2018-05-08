@@ -46,7 +46,6 @@ public class LeiloarFragment extends Fragment {
         leiloar = view.findViewById(R.id.button_leiloar);
 
     }
-
     private void metodbutton() {
 
         leiloar.setOnClickListener(new View.OnClickListener() {
