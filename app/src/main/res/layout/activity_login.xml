@@ -7,7 +7,7 @@
     android:paddingTop="16dp"
     android:paddingRight="24dp"
     android:paddingLeft="24dp"
-    android:background="#46acf5">
+    android:background="#9ae1c9">
 
 
     <ImageView
@@ -21,7 +21,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Mamae Eu Quero"
+                android:text="Mamãe Eu Quero"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 android:textColor="#fff"
@@ -37,8 +37,9 @@
                 android:ems="10"
                 android:padding="16dp"
                 android:drawablePadding="16dp"
-                android:hint="Email"
-                android:textColorHint="#46acf5"
+                android:hint="@string/e_mail"
+                android:textColorHint="#6cd6B2"
+                android:textColor="#6cd6B2"
                 android:maxLines="1"
                 android:inputType="textEmailAddress"
                 android:background="@drawable/bkgrd_redlogin1"
@@ -51,8 +52,9 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:padding="16dp"
-                android:hint="Senha"
-                android:textColorHint="#46acf5"
+                android:hint="@string/senha"
+                android:textColorHint="#6cd6B2"
+                android:textColor="#6cd6B2"
                 android:maxLines="1"
                 android:id="@+id/editText_senha"
                 android:inputType="textPassword"
@@ -66,9 +68,9 @@
                 android:visibility="visible"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Entrar"
+                android:text="@string/entrar"
                 android:clickable="true"
-                android:textColor="#46acf5"
+                android:textColor="#6cd6B2"
                 android:padding="16dp"
                 android:textSize="18sp"
                 android:layout_gravity="center_horizontal"

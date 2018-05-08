@@ -19,10 +19,12 @@ import com.marlonncarvalhosa.mamaeeuquero.R;
  * A simple {@link Fragment} subclass.
  */
 public class LeiloarFragment extends Fragment {
+
     private EditText edit_produto ,edit_descricao;
     private Button leiloar;
     private Spinner categoria;
     private LayoutInflater inflater1;
+
     public LeiloarFragment() {
     }
 
@@ -30,6 +32,7 @@ public class LeiloarFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         View view =  inflater.inflate(R.layout.fragment_leiloar, container, false);
         idcampo(view);
         return  view;
@@ -38,12 +41,14 @@ public class LeiloarFragment extends Fragment {
     private void idcampo(View view) {
 
         edit_produto = view.findViewById(R.id.edit_nomeProduto);
-        edit_descricao= view.findViewById(R.id.editText_descricao);
-        categoria=view.findViewById(R.id.spinnerclasse);
-        leiloar=view.findViewById(R.id.button_leiloar);
+        edit_descricao = view.findViewById(R.id.editText_descricao);
+        categoria = view.findViewById(R.id.spinnerclasse);
+        leiloar = view.findViewById(R.id.button_leiloar);
 
     }
+
     private void metodbutton() {
+
         leiloar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

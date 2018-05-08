@@ -85,6 +85,7 @@
 
         <Button
             android:id="@+id/btnAddImg"
+            android:background="@drawable/ic_action_camera"
             android:layout_gravity="center_horizontal"
             android:layout_width="70dp"
             android:layout_height="60dp"

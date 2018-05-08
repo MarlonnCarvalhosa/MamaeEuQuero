@@ -35,6 +35,7 @@
                                     <map>
                                       <entry key="outputName" value="ic_action_camera" />
                                       <entry key="theme" value="CUSTOM" />
+                                      <entry key="themeColor" value="6cd6b2" />
                                     </map>
                                   </option>
                                 </PersistentState>

@@ -5,12 +5,15 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/apresentacao"
+    android:background="#9ae1c9"
     tools:context=".SplashScreenActivity">
 
 
-
-
-
-
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="70dp"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/logolight" />
 </LinearLayout>
