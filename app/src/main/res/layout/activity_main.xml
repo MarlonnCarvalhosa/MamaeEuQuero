@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+ae<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -19,7 +19,7 @@
         android:id="@+id/navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#46acf5"
+        android:background="#6cd6B2"
         app:menu="@menu/navigation" />
 
 </LinearLayout>

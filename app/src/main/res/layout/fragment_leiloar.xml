@@ -35,7 +35,7 @@
             android:textColorHint="#fff"
             android:maxLines="1"
             android:background="@drawable/edteste"
-            android:id="@+id/editText_titulo"
+            android:id="@+id/edit_nomeProduto"
             android:layout_marginTop="10dp"/>
 
         <TextView
@@ -63,29 +63,36 @@
             android:background="@drawable/edteste"
             android:id="@+id/editText_descricao"
             android:layout_marginTop="10dp"/>
-
         <TextView
-            android:id="@+id/textView_addImg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="15dp"
             android:textColor="#000000"
-            android:textSize="21sp"
-            android:layout_marginTop="170dp"
+            android:textSize="19sp"
+            android:layout_marginTop="20dp"
             android:layout_gravity="center_horizontal"
             style="bold"
-            android:text="@string/adicionar_imagens" />
+            android:text="Categoria" />
+
+        <Spinner
+            android:layout_margin="20dp"
+            android:popupBackground="@color/gray"
+            android:id="@+id/spinnerclasse"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:entries="@array/spinerTipoProduto"
+            android:padding="16dp" />
 
         <Button
             android:id="@+id/btnAddImg"
             android:layout_gravity="center_horizontal"
             android:layout_width="70dp"
             android:layout_height="60dp"
-            android:background="@drawable/ic_action_camera"
-            android:onClick="adicionarImg"/>
+
+           />
 
         <Button
-            android:id="@+id/leiloar"
+            android:id="@+id/button_leiloar"
             android:visibility="visible"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -101,7 +108,7 @@
             android:layout_marginBottom="5dp"
             android:textAllCaps="false"
             android:background="@drawable/edteste"
-            android:onClick="btnLeiloar"/>
+            />
 
 
     </LinearLayout>

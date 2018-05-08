@@ -244,4 +244,12 @@
     <string name="numero_celular">Numero Celular</string>
     <string name="data_nascimento">Data Nascimento</string>
 
+    <array name="spinerTipoProduto">
+        <item> teste1 </item>
+        <item> teste2 </item>
+        <item> teste3 </item>
+        <item> teste4 </item>
+
+    </array>
+
 </resources>
