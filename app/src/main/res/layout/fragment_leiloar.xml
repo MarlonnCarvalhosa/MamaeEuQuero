@@ -71,7 +71,7 @@
             android:layout_marginTop="20dp"
             android:layout_gravity="center_horizontal"
             style="bold"
-            android:text="Categoria" />
+            android:text="@string/categoria" />
 
         <Spinner
             android:layout_margin="20dp"
@@ -107,7 +107,7 @@
             android:layout_marginTop="40dp"
             android:layout_marginBottom="5dp"
             android:textAllCaps="false"
-            android:background="@drawable/edteste"
+            android:background="@drawable/edteste2"
             />
 
 
