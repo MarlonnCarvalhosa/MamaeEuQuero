@@ -247,10 +247,11 @@
     <string name="nome_completo">Nome Completo</string>
 
     <array name="spinerTipoProduto">
-        <item> teste1 </item>
-        <item> teste2 </item>
-        <item> teste3 </item>
-        <item> teste4 </item>
+        <item> Escolha a categoria do produto</item>
+        <item> Roupa </item>
+        <item> Brinquedo </item>
+        <item> Acessórios </item>
+        <item> Outros </item>
 
     </array>
 

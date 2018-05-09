@@ -36,6 +36,7 @@ public class LeiloarFragment extends Fragment {
         View view =  inflater.inflate(R.layout.fragment_leiloar, container, false);
         idcampo(view);
         return  view;
+
     }
 
     private void idcampo(View view) {
@@ -46,6 +47,7 @@ public class LeiloarFragment extends Fragment {
         leiloar = view.findViewById(R.id.button_leiloar);
 
     }
+
     private void metodbutton() {
 
         leiloar.setOnClickListener(new View.OnClickListener() {

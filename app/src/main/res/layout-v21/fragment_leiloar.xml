@@ -77,9 +77,8 @@
         <Spinner
             android:layout_margin="20dp"
             android:id="@+id/spinnerclasse"
-            android:background="@color/verdeEscuro"
-            android:backgroundTint="@color/verdeClaro"
-            android:popupBackground="@color/verdeClaro"
+            android:backgroundTint="#6cd6B2"
+            android:popupBackground="#959ae1c9"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
