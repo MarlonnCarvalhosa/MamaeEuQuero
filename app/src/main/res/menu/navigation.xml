@@ -1,29 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
         android:id="@+id/navigation_inicio"
         android:icon="@drawable/ic_home_black_24dp"
-        android:title="@string/inicio" />
+        android:title="@string/inicio"/>
 
     <item
         android:id="@+id/navigation_buscar"
         android:icon="@drawable/ic_action_search_white"
-        android:title="@string/buscar" />
+        android:title="@string/buscar"/>
 
     <item
         android:id="@+id/navigation_leiloar"
         android:icon="@drawable/ic_action_cifrao_white"
-        android:title="@string/leiloar" />
+        android:title="@string/leiloar"/>
 
     <item
         android:id="@+id/navigation_carrinho"
         android:icon="@drawable/ic_action_carrinho_white"
-        android:title="@string/carrinho" />
+        android:title="@string/carrinho"/>
 
     <item
         android:id="@+id/navigation_perfil"
         android:icon="@drawable/ic_action_perfil_white"
-        android:title="@string/perfil" />
+        android:title="@string/perfil"/>
 
 </menu>
