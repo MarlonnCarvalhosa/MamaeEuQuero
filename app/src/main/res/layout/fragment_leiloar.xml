@@ -36,7 +36,8 @@
             android:maxLines="1"
             android:background="@drawable/edteste"
             android:id="@+id/edit_nomeProduto"
-            android:layout_marginTop="10dp"/>
+            android:layout_marginTop="10dp"
+            android:inputType="text"/>
 
         <TextView
             android:id="@+id/textView_descricao"
@@ -62,7 +63,8 @@
             android:maxLines="1"
             android:background="@drawable/edteste"
             android:id="@+id/editText_descricao"
-            android:layout_marginTop="10dp"/>
+            android:layout_marginTop="10dp"
+            android:inputType="text" />
 
         <TextView
             android:layout_width="wrap_content"
