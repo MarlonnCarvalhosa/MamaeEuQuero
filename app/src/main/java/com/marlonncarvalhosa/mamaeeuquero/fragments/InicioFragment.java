@@ -4,6 +4,7 @@ package com.marlonncarvalhosa.mamaeeuquero.fragments;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,11 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.marlonncarvalhosa.mamaeeuquero.R;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 /**
@@ -37,9 +43,38 @@ public class InicioFragment extends Fragment {
         View view =  inflater.inflate(R.layout.fragment_inicio, container, false);
         idcampo(view);
         metodbutton();
+        iniciaCronometro();
+
         return  view;
 
     }
+
+    public void iniciaCronometro(){
+        Timer timer = null;
+        final SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
+        if (timer == null)
+        {
+            timer = new Timer();
+            final Timer finalTimer = timer;
+            TimerTask tarefa = new TimerTask() {
+                public void run()
+                {
+                    try {
+                        Date dataDeHoje =  new Date();
+                        if(dataDeHoje.before(lance.getDataFinal())) {
+                            countdownText.setText(format.format(new Date().getTime()));
+                        }else{
+                            finalTimer.cancel();
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            };
+            timer.scheduleAtFixedRate(tarefa, 0, 1000);
+        }
+    }
+
 
     public void idcampo (View view){
 
@@ -54,7 +89,7 @@ public class InicioFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-                startStop();
+             startStop();
 
             }
         });
@@ -75,12 +110,14 @@ public class InicioFragment extends Fragment {
 
     public void startTimer() {
 
+        timeLeftinMilliseconds = 60000;
+
         countDownTimer = new CountDownTimer(timeLeftinMilliseconds, 1000) {
             @Override
             public void onTick(long millisUntilFinished) { // No video manda colocar 1 onde tá escrito millisUntilFinished, mas nõa funciona
 
-                timeLeftinMilliseconds = 1;
-                updateTimer();
+
+                updateTimer(millisUntilFinished);
 
             }
 
@@ -104,10 +141,12 @@ public class InicioFragment extends Fragment {
 
     }
 
-    public void updateTimer(){
+    public void updateTimer(long millisUntilFinished){
 
         int minutes = (int) timeLeftinMilliseconds / 60000;
-        int seconds = (int) timeLeftinMilliseconds % 60000 / 1000;
+        int seconds =
+
+                (int) timeLeftinMilliseconds % 60000 / 1000;
 
         String timeLeftText;
 

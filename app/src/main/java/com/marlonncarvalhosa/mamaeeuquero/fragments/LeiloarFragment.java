@@ -45,7 +45,7 @@ public class LeiloarFragment extends Fragment {
     private void idcampo(View view) {
 
         edit_produto = view.findViewById(R.id.edit_nomeProduto);
-        edit_descricao = view.findViewById(R.id.editText_descricao);
+        edit_descricao = view.findViewById(R.id.edit_nomeCidade);
         categoria = view.findViewById(R.id.spinnerclasse);
         leiloar = view.findViewById(R.id.button_leiloar);
 

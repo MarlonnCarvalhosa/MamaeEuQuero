@@ -233,7 +233,6 @@
     <string name="esqueceu_a_sua_senha">Esqueceu a sua senha?</string>
     <string name="t_tulo">Título</string>
     <string name="digite_um_t_tulo_para_seu_produto">Digite um título para seu produto</string>
-    <string name="descri_o">Descrição</string>
     <string name="descreva_seu_produto">Descreva seu produto</string>
     <string name="adicionar_imagens">Adicionar Imagens</string>
     <string name="leiloar">Leiloar</string>
@@ -245,9 +244,11 @@
     <string name="data_nascimento">Data Nascimento</string>
     <string name="categoria">Categoria</string>
     <string name="nome_completo">Nome Completo</string>
+    <string name="descri_o">Descrição</string>
+    <string name="cidade">Cidade</string>
 
     <array name="spinerTipoProduto">
-        <item> Escolha a categoria do produto</item>
+        <item> Categoria</item>
         <item> Roupa </item>
         <item> Brinquedo </item>
         <item> Acessórios </item>
