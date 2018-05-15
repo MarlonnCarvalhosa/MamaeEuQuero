@@ -81,12 +81,12 @@
 
 
         <Button
+
             android:id="@+id/button_leiloar"
             android:visibility="visible"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/leiloar"
-            android:clickable="true"
             android:textColor="#ffffff"
             android:padding="16dp"
             android:textSize="18sp"

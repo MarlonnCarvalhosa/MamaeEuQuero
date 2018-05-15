@@ -12,9 +12,12 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
 import com.marlonncarvalhosa.mamaeeuquero.CadastroActivity;
+import com.marlonncarvalhosa.mamaeeuquero.DAO.DataBaseDAO;
 import com.marlonncarvalhosa.mamaeeuquero.MainActivity;
 import com.marlonncarvalhosa.mamaeeuquero.R;
+import com.marlonncarvalhosa.mamaeeuquero.model.Produto;
 
 import java.util.List;
 
@@ -23,10 +26,12 @@ import java.util.List;
  */
 public class LeiloarFragment extends Fragment {
 
-    private EditText edit_produto ,edit_descricao;
+    private EditText edit_produto ,edit_cidade;
     private Button leiloar;
     private Spinner categoria;
     private LayoutInflater inflater1;
+    DatabaseReference databaseProduto;
+
 
     public LeiloarFragment() {
     }
@@ -45,21 +50,29 @@ public class LeiloarFragment extends Fragment {
     private void idcampo(View view) {
 
         edit_produto = view.findViewById(R.id.edit_nomeProduto);
-        edit_descricao = view.findViewById(R.id.edit_nomeCidade);
+        edit_cidade = view.findViewById(R.id.edit_nomeCidade);
         categoria = view.findViewById(R.id.spinnerclasse);
         leiloar = view.findViewById(R.id.button_leiloar);
-
-    }
-
-    private void metodbutton() {
 
         leiloar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Toast.makeText(getContext(),"botao do mal",Toast.LENGTH_LONG).show();
+                Produto produto = new Produto();
+                produto.setNome(edit_produto.getText().toString());
+                produto.setCat(categoria.getSelectedItem().toString());
+                produto.setPreco("2000");
+
+                new DataBaseDAO().instancia_produto(produto);
 
 
             }
         });
+
     }
+
+
+
+
 
 }

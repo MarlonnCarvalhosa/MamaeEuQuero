@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.marlonncarvalhosa.mamaeeuquero.R;
+import com.marlonncarvalhosa.mamaeeuquero.model.Lance;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -61,11 +62,12 @@ public class InicioFragment extends Fragment {
                 {
                     try {
                         Date dataDeHoje =  new Date();
-                        if(dataDeHoje.before(lance.getDataFinal())) {
+                        Lance lance;
+                      //  if(dataDeHoje.before(lance.getDataFinal())) {
                             countdownText.setText(format.format(new Date().getTime()));
-                        }else{
+                      //  }else{
                             finalTimer.cancel();
-                        }
+                        //}
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
