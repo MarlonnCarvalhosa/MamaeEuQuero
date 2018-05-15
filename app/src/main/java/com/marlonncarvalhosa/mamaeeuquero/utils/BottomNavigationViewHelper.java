@@ -1,4 +1,4 @@
-package com.marlonncarvalhosa.mamaeeuquero;
+package com.marlonncarvalhosa.mamaeeuquero.utils;
 
 import android.annotation.SuppressLint;
 import android.support.design.internal.BottomNavigationItemView;

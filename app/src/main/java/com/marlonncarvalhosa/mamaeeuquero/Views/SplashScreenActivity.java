@@ -1,9 +1,10 @@
-package com.marlonncarvalhosa.mamaeeuquero;
+package com.marlonncarvalhosa.mamaeeuquero.Views;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+
+import com.marlonncarvalhosa.mamaeeuquero.R;
 
 public class SplashScreenActivity extends AppCompatActivity {
 

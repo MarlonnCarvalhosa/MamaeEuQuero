@@ -6,20 +6,15 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
-import com.marlonncarvalhosa.mamaeeuquero.CadastroActivity;
 import com.marlonncarvalhosa.mamaeeuquero.DAO.DataBaseDAO;
-import com.marlonncarvalhosa.mamaeeuquero.MainActivity;
 import com.marlonncarvalhosa.mamaeeuquero.R;
 import com.marlonncarvalhosa.mamaeeuquero.model.Produto;
-
-import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.

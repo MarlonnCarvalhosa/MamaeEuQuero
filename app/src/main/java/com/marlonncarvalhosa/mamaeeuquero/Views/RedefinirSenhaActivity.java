@@ -1,7 +1,9 @@
-package com.marlonncarvalhosa.mamaeeuquero;
+package com.marlonncarvalhosa.mamaeeuquero.Views;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.marlonncarvalhosa.mamaeeuquero.R;
 
 public class RedefinirSenhaActivity extends AppCompatActivity {
 

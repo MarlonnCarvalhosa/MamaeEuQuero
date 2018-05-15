@@ -1,15 +1,13 @@
-package com.marlonncarvalhosa.mamaeeuquero;
+package com.marlonncarvalhosa.mamaeeuquero.Views;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.TextView;
 
+import com.marlonncarvalhosa.mamaeeuquero.utils.BottomNavigationViewHelper;
+import com.marlonncarvalhosa.mamaeeuquero.R;
 import com.marlonncarvalhosa.mamaeeuquero.fragments.BuscarFragment;
 import com.marlonncarvalhosa.mamaeeuquero.fragments.CarrinhoFragment;
 import com.marlonncarvalhosa.mamaeeuquero.fragments.InicioFragment;

@@ -6,12 +6,11 @@
     tools:context=".fragments.BuscarFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center_horizontal|center_vertical"
-        android:textColor="#000000"
-        android:textSize="100sp"
-        android:text="Buscar" />
+  <android.support.v7.widget.RecyclerView
+      android:id="@+id/recyclerproduto"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent">
+
+  </android.support.v7.widget.RecyclerView>
 
 </FrameLayout>
