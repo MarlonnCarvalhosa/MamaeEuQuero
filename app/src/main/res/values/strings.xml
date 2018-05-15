@@ -246,6 +246,7 @@
     <string name="nome_completo">Nome Completo</string>
     <string name="descri_o">Descrição</string>
     <string name="cidade">Cidade</string>
+    <string name="pre_o">Preço</string>
 
     <array name="spinerTipoProduto">
         <item> Categoria</item>

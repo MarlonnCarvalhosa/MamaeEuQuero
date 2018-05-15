@@ -21,7 +21,7 @@ import com.marlonncarvalhosa.mamaeeuquero.model.Produto;
  */
 public class LeiloarFragment extends Fragment {
 
-    private EditText edit_produto ,edit_cidade;
+    private EditText edit_produto, edit_cidade, edit_preco;
     private Button leiloar;
     private Spinner categoria;
     private LayoutInflater inflater1;
@@ -45,7 +45,8 @@ public class LeiloarFragment extends Fragment {
     private void idcampo(View view) {
 
         edit_produto = view.findViewById(R.id.edit_nomeProduto);
-        edit_cidade = view.findViewById(R.id.edit_nomeCidade);
+        edit_preco = view.findViewById(R.id.edit_preco);
+        edit_cidade = view.findViewById(R.id.edit_nomecidade);
         categoria = view.findViewById(R.id.spinnerclasse);
         leiloar = view.findViewById(R.id.button_leiloar);
 
@@ -54,9 +55,9 @@ public class LeiloarFragment extends Fragment {
             public void onClick(View v) {
                 Toast.makeText(getContext(),"botao do mal",Toast.LENGTH_LONG).show();
                 Produto produto = new Produto();
+                produto.setPreco(edit_preco.getText().toString());
                 produto.setNome(edit_produto.getText().toString());
                 produto.setCat(categoria.getSelectedItem().toString());
-                produto.setPreco("2000");
 
                 new DataBaseDAO().instancia_produto(produto);
 

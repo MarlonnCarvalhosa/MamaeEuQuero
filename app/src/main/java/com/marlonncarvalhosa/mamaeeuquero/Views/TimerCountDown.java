@@ -1,13 +1,7 @@
-package com.marlonncarvalhosa.mamaeeuquero.fragments;
+package com.marlonncarvalhosa.mamaeeuquero.Views;
 
-
-import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.support.v4.app.Fragment;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -19,11 +13,7 @@ import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
-
-/**
- * A simple {@link Fragment} subclass.
- */
-public class InicioFragment extends Fragment {
+public class TimerCountDown {
 
     private TextView countdownText;
     private Button countdownButton;
@@ -31,24 +21,6 @@ public class InicioFragment extends Fragment {
     private CountDownTimer countDownTimer;
     private long timeLeftinMilliseconds = 600000; //10m
     private boolean timerRunning;
-
-
-    public InicioFragment() {
-    }
-
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.fragment_inicio, container, false);
-        idcampo(view);
-        metodbutton();
-        iniciaCronometro();
-
-        return  view;
-
-    }
 
     public void iniciaCronometro(){
         Timer timer = null;
@@ -61,12 +33,12 @@ public class InicioFragment extends Fragment {
                 public void run()
                 {
                     try {
-                        Date dataDehoje =  new Date();
+                        Date dataDeHoje =  new Date();
                         Lance lance;
-                      //  if(dataDeHoje.before(lance.getDataFinal())) {
-                            countdownText.setText(format.format(new Date().getTime()));
-                      //  }else{
-                            finalTimer.cancel();
+                        //  if(dataDeHoje.before(lance.getDataFinal())) {
+                        countdownText.setText(format.format(new Date().getTime()));
+                        //  }else{
+                        finalTimer.cancel();
                         //}
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -91,7 +63,7 @@ public class InicioFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-             startStop();
+                startStop();
 
             }
         });

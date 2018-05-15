@@ -23,12 +23,14 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
             android:ems="10"
             android:padding="16dp"
             android:drawablePadding="16dp"
             android:hint="@string/t_tulo"
-            android:textColor="@color/black"
-            android:textColorHint="@color/black"
+            android:textColor="#737373"
+            android:textColorHint="#737373"
             android:maxLines="1"
             android:background="@color/white"
             android:id="@+id/edit_nomeProduto"
@@ -37,6 +39,8 @@
 
 
         <android.support.v7.widget.CardView
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@color/black"/>
@@ -44,12 +48,14 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
             android:ems="10"
             android:padding="16dp"
             android:drawablePadding="16dp"
             android:hint="@string/descri_o"
-            android:textColor="@color/black"
-            android:textColorHint="@color/black"
+            android:textColor="#737373"
+            android:textColorHint="#737373"
             android:maxLines="1"
             android:background="@color/white"
             android:id="@+id/edit_DescricaoProduto"
@@ -58,6 +64,8 @@
         <Spinner
             android:id="@+id/spinnerclasse"
             android:background="@color/verdeEscuro"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
             android:popupBackground="#e29ae1c9"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -66,22 +74,46 @@
             android:padding="16dp" />
 
         <EditText
-            android:id="@+id/edit_nomeCidade"
+            android:id="@+id/edit_nomecidade"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
             android:ems="10"
             android:padding="16dp"
             android:drawablePadding="16dp"
             android:hint="@string/cidade"
-            android:textColor="@color/black"
-            android:textColorHint="@color/black"
+            android:textColor="#737373"
+            android:textColorHint="#737373"
             android:maxLines="1"
             android:background="@color/white"
             android:inputType="text"/>
 
+        <android.support.v7.widget.CardView
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/black"/>
+
+        <EditText
+            android:id="@+id/edit_preco"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:ems="10"
+            android:padding="16dp"
+            android:drawablePadding="16dp"
+            android:hint="@string/pre_o"
+            android:textColor="#737373"
+            android:textColorHint="#737373"
+            android:maxLines="1"
+            android:background="@color/white"
+            android:inputType="number"/>
 
         <Button
-
             android:id="@+id/button_leiloar"
             android:visibility="visible"
             android:layout_width="match_parent"
@@ -97,7 +129,6 @@
             android:layout_marginBottom="5dp"
             android:textAllCaps="false"
             android:background="@drawable/edteste2"/>
-
 
     </LinearLayout>
 
