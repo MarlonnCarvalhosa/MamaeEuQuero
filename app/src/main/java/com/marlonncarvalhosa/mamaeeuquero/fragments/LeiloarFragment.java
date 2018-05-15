@@ -25,7 +25,7 @@ public class LeiloarFragment extends Fragment {
     private Button leiloar;
     private Spinner categoria;
     private LayoutInflater inflater1;
-    DatabaseReference databaseProduto;
+    private DatabaseReference databaseProduto;
 
 
     public LeiloarFragment() {

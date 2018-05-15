@@ -13,7 +13,7 @@ public class DataBaseDAO {
         produto.setId(ConfiguraçõesFirebase.getFirebase().push().getKey());
         Log.v("teste save",produto.getId()+produto.getNome());
         DatabaseReference reference = ConfiguraçõesFirebase.getFirebase();
-        reference.child(ConstantsUtils.BANCO_PRODUTO).child(String.valueOf(produto.getId())).setValue(produto);
+        reference.child(ConstantsUtils.BANCO_PRODUTOS).child(String.valueOf(produto.getId())).setValue(produto);
 
 
 
