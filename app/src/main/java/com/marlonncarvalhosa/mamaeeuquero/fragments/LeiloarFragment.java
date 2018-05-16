@@ -21,7 +21,7 @@ import com.marlonncarvalhosa.mamaeeuquero.model.Produto;
  */
 public class LeiloarFragment extends Fragment {
 
-    private EditText edit_produto, edit_cidade, edit_preco;
+    private EditText edit_produto, edit_cidade, edit_preco ,edit_descricao;
     private Button leiloar;
     private Spinner categoria;
     private LayoutInflater inflater1;
@@ -49,6 +49,7 @@ public class LeiloarFragment extends Fragment {
         edit_cidade = view.findViewById(R.id.edit_nomecidade);
         categoria = view.findViewById(R.id.spinnerclasse);
         leiloar = view.findViewById(R.id.button_leiloar);
+        edit_descricao  =view.findViewById(R.id.edit_DescricaoProduto);
 
         leiloar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,6 +59,9 @@ public class LeiloarFragment extends Fragment {
                 produto.setPreco(edit_preco.getText().toString());
                 produto.setNome(edit_produto.getText().toString());
                 produto.setCat(categoria.getSelectedItem().toString());
+                produto.setLocal(edit_cidade.getText().toString());
+                produto.setDescrição(edit_descricao.getText().toString());
+
 
                 new DataBaseDAO().instancia_produto(produto);
 

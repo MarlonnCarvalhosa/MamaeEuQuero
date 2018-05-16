@@ -5,16 +5,20 @@ public class Produto {
     private String nome;
     private String cat;
     private String preco;
+    private String local;
+    private String descrição;
 
     public Produto() {
 
     }
 
-    public Produto(String id, String nome, String cat, String preco) {
+    public Produto(String id, String nome, String cat, String preco , String local , String descrição) {
         this.id = id;
         this.nome = nome;
         this.cat = cat;
         this.preco = preco;
+        this.local = local;
+        this.descrição= descrição;
     }
 
     public String getId() {
@@ -47,5 +51,21 @@ public class Produto {
 
     public void setPreco(String preco) {
         this.preco = preco;
+    }
+
+    public String getDescrição() {
+        return descrição;
+    }
+
+    public void setDescrição(String descrição) {
+        this.descrição = descrição;
+    }
+
+    public String getLocal() {
+        return local;
+    }
+
+    public void setLocal(String local) {
+        this.local = local;
     }
 }
