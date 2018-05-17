@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AndroidTestUI</string>
+    <string name="app_name">Mamãe Eu Quero</string>
     <string name="action_settings">Settings</string>
 
     <!-- Strings related to Main -->
@@ -247,6 +247,7 @@
     <string name="descri_o">Descrição</string>
     <string name="cidade">Cidade</string>
     <string name="pre_o">Preço</string>
+    <string name="ltimo_lance">Último lance</string>
 
     <array name="spinerTipoProduto">
         <item> Categoria</item>

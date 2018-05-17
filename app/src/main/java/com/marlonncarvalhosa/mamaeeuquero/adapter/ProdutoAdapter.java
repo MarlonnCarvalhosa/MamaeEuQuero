@@ -50,9 +50,8 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ViewHold
     public void onBindViewHolder(final ProdutoAdapter.ViewHolder holder, int position) {
         final Produto produto = produtos.get(position);
         holder.textViewProduto.setText(produto.getNome());
-        holder.textViewCidade.setText(produto.getPreco());
-        holder.textViewpreco.setText(produto.getPreco());
-
+        holder.textViewCidade.setText(produto.getLocal());
+        holder.textViewPreco.setText(produto.getPreco());
     }
 
     @Override
@@ -61,12 +60,12 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ViewHold
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView textViewProduto,textViewpreco,textViewCidade;
+        private TextView textViewProduto,textViewPreco,textViewCidade;
         public ViewHolder(View itemView) {
             super(itemView);
             textViewProduto=itemView.findViewById(R.id.nomeProduto);
             textViewCidade=itemView.findViewById(R.id.cidade);
-            textViewpreco=itemView.findViewById(R.id.preco);
+            textViewPreco=itemView.findViewById(R.id.preco);
         }
     }
 }

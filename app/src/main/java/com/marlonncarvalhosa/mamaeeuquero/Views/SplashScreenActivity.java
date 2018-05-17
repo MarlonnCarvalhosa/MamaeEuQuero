@@ -54,7 +54,7 @@ public class SplashScreenActivity extends AppCompatActivity {
             }
         }).start();
 
-        finish(); // Tirar para aparecer a SplashScreen
+         // Tirar para aparecer a SplashScreen
 
     }
 
