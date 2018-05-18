@@ -9,11 +9,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.marlonncarvalhosa.mamaeeuquero.R;
 import com.marlonncarvalhosa.mamaeeuquero.adapter.ProdutoAdapter;
 import com.marlonncarvalhosa.mamaeeuquero.model.Produto;
@@ -26,6 +29,7 @@ import java.util.List;
  * A simple {@link Fragment} subclass.
  */
 public class BuscarFragment extends Fragment {
+
     private RecyclerView recyclerView;
     private List<Produto> produtos;
     private Query databaseProdutos;
@@ -82,7 +86,7 @@ public class BuscarFragment extends Fragment {
 
     }
 
-    private void idCampo(View view) {
+    public void idCampo(View view) {
 
         recyclerView = view.findViewById(R.id.recyclerproduto);
         recyclerView.setHasFixedSize(true);
@@ -90,9 +94,9 @@ public class BuscarFragment extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
 
-
-
-
     }
+
+
+
 
 }
