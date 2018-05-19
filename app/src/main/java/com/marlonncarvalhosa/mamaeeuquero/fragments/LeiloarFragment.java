@@ -92,7 +92,6 @@ public class LeiloarFragment extends Fragment {
 
                 uploadImage();
 
-                Toast.makeText(getContext(),"Produto Leiloado",Toast.LENGTH_LONG).show();
                 Produto produto = new Produto();
                 produto.setPreco(edit_preco.getText().toString());
                 produto.setNome(edit_produto.getText().toString());
@@ -122,14 +121,14 @@ public class LeiloarFragment extends Fragment {
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                             taskSnapshot.getDownloadUrl();
                             progressDialog.dismiss();
-                            Toast.makeText(getContext(), "Uploaded", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), "Leilão efetuado com sucesso", Toast.LENGTH_SHORT).show();
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
                             progressDialog.dismiss();
-                            Toast.makeText(getContext(), "Failed "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), "Falhou "+e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     })
                     .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
@@ -137,7 +136,7 @@ public class LeiloarFragment extends Fragment {
                         public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
                             double progress = (100.0*taskSnapshot.getBytesTransferred()/taskSnapshot
                                     .getTotalByteCount());
-                            progressDialog.setMessage("Uploaded "+(int)progress+"%");
+                            progressDialog.setMessage("Carregando "+(int)progress+"%");
                         }
                     });
         }

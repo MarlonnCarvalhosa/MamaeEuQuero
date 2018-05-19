@@ -1,5 +1,7 @@
 package com.marlonncarvalhosa.mamaeeuquero.model;
 
+import android.widget.ImageView;
+
 public class Produto {
     private String id;
     private String nome;
@@ -12,14 +14,15 @@ public class Produto {
 
     }
 
-    public Produto(String id, String nome, String cat, String preco , String local , String descrição) {
+    public Produto(String id, String nome, String cat, String preco , String local , String descrição , String data) {
         this.id = id;
         this.nome = nome;
         this.cat = cat;
         this.preco = preco;
         this.local = local;
-        this.descrição= descrição;
+        this.descrição = descrição;
     }
+
 
     public String getId() {
         return id;

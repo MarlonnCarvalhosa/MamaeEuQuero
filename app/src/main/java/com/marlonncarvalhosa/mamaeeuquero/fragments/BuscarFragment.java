@@ -41,7 +41,7 @@ public class BuscarFragment extends Fragment {
     private List<Produto> produtos;
     private Query databaseProdutos;
     private ProdutoAdapter adapter;
-    private ImageView imageView;
+    private ImageView imagemProduto;
     private Uri mImageUri;
     public BuscarFragment() {
         // Required empty public constructor
@@ -59,7 +59,6 @@ public class BuscarFragment extends Fragment {
 
     }
 
-    @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
@@ -67,8 +66,8 @@ public class BuscarFragment extends Fragment {
                 && data != null && data.getData() != null) {
             mImageUri = data.getData();
 
-            Picasso.get().load(mImageUri).into(imageView);
-            imageView.setImageURI(mImageUri);
+            Picasso.get().load(mImageUri).into(imagemProduto);
+            imagemProduto.setImageURI(mImageUri);
         }
     }
 
@@ -110,7 +109,7 @@ public class BuscarFragment extends Fragment {
 
     public void idCampo(View view) {
 
-        imageView = (ImageView) view.findViewById(R.id.imagemProduto);
+        imagemProduto = (ImageView) view.findViewById(R.id.imagemProduto);
         recyclerView = view.findViewById(R.id.recyclerproduto);
         recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
@@ -118,6 +117,8 @@ public class BuscarFragment extends Fragment {
         recyclerView.setAdapter(adapter);
 
     }
+
+
 
 
 
