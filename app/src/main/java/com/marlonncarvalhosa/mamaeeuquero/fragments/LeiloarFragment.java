@@ -1,9 +1,11 @@
 package com.marlonncarvalhosa.mamaeeuquero.fragments;
 
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,10 +16,19 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.marlonncarvalhosa.mamaeeuquero.DAO.DataBaseDAO;
 import com.marlonncarvalhosa.mamaeeuquero.R;
+import com.marlonncarvalhosa.mamaeeuquero.Views.MainActivity;
 import com.marlonncarvalhosa.mamaeeuquero.model.Produto;
 import com.squareup.picasso.Picasso;
+
+import java.util.UUID;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -33,9 +44,18 @@ public class LeiloarFragment extends Fragment {
     private ImageView miniImagem;
     private LayoutInflater inflater1;
 
+    private Uri filePath;
+
     private Uri mImageUri;
 
-    private static final int PICK_IMAGE_REQUEST = 1;
+
+    private ImageView imageView;
+
+    //teste
+    FirebaseStorage storage;
+    StorageReference storageReference;
+
+    private final int PICK_IMAGE_REQUEST = 71;
 
     public LeiloarFragment() {
     }
@@ -62,10 +82,15 @@ public class LeiloarFragment extends Fragment {
         leiloar = view.findViewById(R.id.button_leiloar);
         edit_descricao  =view.findViewById(R.id.edit_DescricaoProduto);
 
+        storage = FirebaseStorage.getInstance();
+        storageReference = storage.getReference();
+
         leiloar.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
+
+                uploadImage();
 
                 Toast.makeText(getContext(),"Produto Leiloado",Toast.LENGTH_LONG).show();
                 Produto produto = new Produto();
@@ -80,6 +105,42 @@ public class LeiloarFragment extends Fragment {
             }
         });
 
+
+    }
+
+    private void uploadImage() {
+
+        if(mImageUri != null)
+        {
+            final ProgressDialog progressDialog = new ProgressDialog(getContext());
+            progressDialog.setTitle("Uploading...");
+            progressDialog.show();
+
+            StorageReference ref = storageReference.child("images/"+ UUID.randomUUID().toString());
+            ref.putFile(mImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            taskSnapshot.getDownloadUrl();
+                            progressDialog.dismiss();
+                            Toast.makeText(getContext(), "Uploaded", Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            progressDialog.dismiss();
+                            Toast.makeText(getContext(), "Failed "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                            double progress = (100.0*taskSnapshot.getBytesTransferred()/taskSnapshot
+                                    .getTotalByteCount());
+                            progressDialog.setMessage("Uploaded "+(int)progress+"%");
+                        }
+                    });
+        }
     }
 
     public void btnAdicionarImg(View view) {
@@ -114,5 +175,7 @@ public class LeiloarFragment extends Fragment {
             miniImagem.setImageURI(mImageUri);
         }
     }
+
+
 
 }

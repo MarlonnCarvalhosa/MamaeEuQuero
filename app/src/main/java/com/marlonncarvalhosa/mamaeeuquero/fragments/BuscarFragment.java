@@ -1,6 +1,8 @@
 package com.marlonncarvalhosa.mamaeeuquero.fragments;
 
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DividerItemDecoration;
@@ -17,23 +19,30 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.marlonncarvalhosa.mamaeeuquero.R;
 import com.marlonncarvalhosa.mamaeeuquero.adapter.ProdutoAdapter;
 import com.marlonncarvalhosa.mamaeeuquero.model.Produto;
 import com.marlonncarvalhosa.mamaeeuquero.utils.ConfiguraçõesFirebase;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static android.app.Activity.RESULT_OK;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class BuscarFragment extends Fragment {
 
+    private static final int PICK_IMAGE_REQUEST = 71;
     private RecyclerView recyclerView;
     private List<Produto> produtos;
     private Query databaseProdutos;
     private ProdutoAdapter adapter;
+    private ImageView imageView;
+    private Uri mImageUri;
     public BuscarFragment() {
         // Required empty public constructor
     }
@@ -48,6 +57,19 @@ public class BuscarFragment extends Fragment {
         preencherLista();
         return view;
 
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK
+                && data != null && data.getData() != null) {
+            mImageUri = data.getData();
+
+            Picasso.get().load(mImageUri).into(imageView);
+            imageView.setImageURI(mImageUri);
+        }
     }
 
     private void preencherLista() {
@@ -88,6 +110,7 @@ public class BuscarFragment extends Fragment {
 
     public void idCampo(View view) {
 
+        imageView = (ImageView) view.findViewById(R.id.imagemProduto);
         recyclerView = view.findViewById(R.id.recyclerproduto);
         recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
