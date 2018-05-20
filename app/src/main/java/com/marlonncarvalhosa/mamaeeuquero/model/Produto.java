@@ -9,20 +9,39 @@ public class Produto {
     private String preco;
     private String local;
     private String descrição;
+    private String pathImagem;
+    private String imageUrl;
+
+    public String getPathImagem() {
+        return pathImagem;
+    }
+
+    public void setPathImagem(String pathImagem) {
+        this.pathImagem = pathImagem;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
 
     public Produto() {
 
     }
 
-    public Produto(String id, String nome, String cat, String preco , String local , String descrição , String data) {
+    public Produto(String id, String nome, String cat, String preco, String local, String descrição, String pathImagem, String imageUrl) {
         this.id = id;
         this.nome = nome;
         this.cat = cat;
         this.preco = preco;
         this.local = local;
         this.descrição = descrição;
+        this.pathImagem = pathImagem;
+        this.imageUrl = imageUrl;
     }
-
 
     public String getId() {
         return id;

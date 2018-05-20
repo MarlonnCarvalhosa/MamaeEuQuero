@@ -90,16 +90,10 @@ public class LeiloarFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
+
                 uploadImage();
 
-                Produto produto = new Produto();
-                produto.setPreco(edit_preco.getText().toString());
-                produto.setNome(edit_produto.getText().toString());
-                produto.setCat(categoria.getSelectedItem().toString());
-                produto.setLocal(edit_cidade.getText().toString());
-                produto.setDescrição(edit_descricao.getText().toString());
 
-                new DataBaseDAO().instancia_produto(produto);
 
             }
         });
@@ -114,14 +108,30 @@ public class LeiloarFragment extends Fragment {
             final ProgressDialog progressDialog = new ProgressDialog(getContext());
             progressDialog.setTitle("Uploading...");
             progressDialog.show();
-
-            StorageReference ref = storageReference.child("images/"+ UUID.randomUUID().toString());
+            final String pathImage = "images/"+ UUID.randomUUID().toString();
+            final StorageReference ref = storageReference.child(pathImage);
             ref.putFile(mImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                             taskSnapshot.getDownloadUrl();
                             progressDialog.dismiss();
                             Toast.makeText(getContext(), "Leilão efetuado com sucesso", Toast.LENGTH_SHORT).show();
+
+                            Uri imageUrl = taskSnapshot.getDownloadUrl();
+
+
+
+                            Produto produto = new Produto();
+                            produto.setPreco(edit_preco.getText().toString());
+                            produto.setNome(edit_produto.getText().toString());
+                            produto.setCat(categoria.getSelectedItem().toString());
+                            produto.setLocal(edit_cidade.getText().toString());
+                            produto.setDescrição(edit_descricao.getText().toString());
+                            produto.setImageUrl(imageUrl.toString());
+                            produto.setPathImagem(pathImage);
+
+
+                            new DataBaseDAO().instancia_produto(produto);
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
@@ -141,6 +151,8 @@ public class LeiloarFragment extends Fragment {
                     });
         }
     }
+
+
 
     public void btnAdicionarImg(View view) {
         

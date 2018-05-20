@@ -7,8 +7,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CircleCrop;
+import com.bumptech.glide.request.RequestOptions;
 import com.marlonncarvalhosa.mamaeeuquero.R;
 import com.marlonncarvalhosa.mamaeeuquero.model.Produto;
 
@@ -52,6 +56,14 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ViewHold
         holder.textViewProduto.setText(produto.getNome());
         holder.textViewCidade.setText(produto.getLocal());
         holder.textViewPreco.setText(produto.getPreco());
+        try {
+            Glide.with(activity).load(produto.getImageUrl()).apply(RequestOptions.circleCropTransform()).into(holder.imageView);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+
+
     }
 
     @Override
@@ -61,11 +73,13 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ViewHold
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView textViewProduto,textViewPreco,textViewCidade;
+        private ImageView imageView;
         public ViewHolder(View itemView) {
             super(itemView);
             textViewProduto=itemView.findViewById(R.id.nomeProduto);
             textViewCidade=itemView.findViewById(R.id.cidade);
             textViewPreco=itemView.findViewById(R.id.preco);
+            imageView = itemView.findViewById(R.id.imagemProduto);
         }
     }
 }
