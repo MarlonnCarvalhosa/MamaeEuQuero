@@ -21,37 +21,29 @@ import java.util.List;
 public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ViewHolder> {
     private FragmentActivity activity;
     private List<Produto> produtos;
-    private RecyclerView recyclerView;
 
 
-    public ProdutoAdapter(FragmentActivity activity, List<Produto> produtos, RecyclerView recyclerView){
+
+    public ProdutoAdapter(FragmentActivity activity, List<Produto> produtos){
         this.activity=activity;
         this.produtos=produtos;
-        this.recyclerView=recyclerView;
+
     }
     public void atualiza(List<Produto> produtos){
         this.produtos=produtos;
         this.notifyDataSetChanged();
-        try{
-            int i;
-            for (i=0;i <produtos.size(); i++){
-                Produto produto = produtos.get(i);
-                Log.v("PRODUTOSSSSS",produto.getNome()+"");
-            }
-        }catch (Exception e){
-            e.printStackTrace();
-        }
 
     }
 
 
+    @NonNull
     @Override
-    public ProdutoAdapter.ViewHolder  onCreateViewHolder( ViewGroup parent, int viewType) {
+    public ProdutoAdapter.ViewHolder  onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new ProdutoAdapter.ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_produto,parent,false));
     }
 
     @Override
-    public void onBindViewHolder(final ProdutoAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final ProdutoAdapter.ViewHolder holder, int position) {
         final Produto produto = produtos.get(position);
         holder.textViewProduto.setText(produto.getNome());
         holder.textViewCidade.setText(produto.getLocal());

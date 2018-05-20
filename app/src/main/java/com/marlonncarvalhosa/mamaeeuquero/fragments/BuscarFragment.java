@@ -4,6 +4,7 @@ package com.marlonncarvalhosa.mamaeeuquero.fragments;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -49,7 +50,7 @@ public class BuscarFragment extends Fragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_buscar, container, false);
@@ -102,14 +103,14 @@ public class BuscarFragment extends Fragment {
             }
         });
 
-        adapter = new ProdutoAdapter(getActivity(),produtos, recyclerView);
+        adapter = new ProdutoAdapter(getActivity(),produtos);
         recyclerView.setAdapter(adapter);
 
     }
 
     public void idCampo(View view) {
 
-        imagemProduto = (ImageView) view.findViewById(R.id.imagemProduto);
+        imagemProduto = view.findViewById(R.id.imagemProduto);
         recyclerView = view.findViewById(R.id.recyclerproduto);
         recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
