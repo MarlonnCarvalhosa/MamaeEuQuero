@@ -56,6 +56,7 @@
                 android:background="@color/white"
                 android:drawablePadding="16dp"
                 android:ems="10"
+                android:maxLength="35"
                 android:hint="@string/t_tulo"
                 android:inputType="text"
                 android:maxLines="1"

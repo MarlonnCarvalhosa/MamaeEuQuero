@@ -51,7 +51,6 @@ public class LeiloarFragment extends Fragment {
 
     private Uri mImageUri;
 
-
     private ImageView imageView;
 
     //teste
@@ -105,7 +104,7 @@ public class LeiloarFragment extends Fragment {
         if(mImageUri != null)
         {
             final ProgressDialog progressDialog = new ProgressDialog(getContext());
-            progressDialog.setTitle("Uploading...");
+            progressDialog.setTitle("Leiloando...");
             progressDialog.show();
             final String pathImage = "images/"+ UUID.randomUUID().toString();
             final StorageReference ref = storageReference.child(pathImage);
@@ -118,8 +117,6 @@ public class LeiloarFragment extends Fragment {
 
                             Uri imageUrl = taskSnapshot.getDownloadUrl();
 
-
-
                             Produto produto = new Produto();
                             produto.setPreco(edit_preco.getText().toString());
                             produto.setNome(edit_produto.getText().toString());
@@ -128,7 +125,6 @@ public class LeiloarFragment extends Fragment {
                             produto.setDescrição(edit_descricao.getText().toString());
                             produto.setImageUrl(imageUrl.toString());
                             produto.setPathImagem(pathImage);
-
 
                             new DataBaseDAO().instancia_produto(produto);
                         }
@@ -145,7 +141,7 @@ public class LeiloarFragment extends Fragment {
                         public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
                             double progress = (100.0*taskSnapshot.getBytesTransferred()/taskSnapshot
                                     .getTotalByteCount());
-                            progressDialog.setMessage("Carregando "+(int)progress+"%");
+                            progressDialog.setMessage("Carregando Imagem "+(int)progress+"%");
                         }
                     });
         }

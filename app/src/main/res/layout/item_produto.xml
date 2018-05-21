@@ -10,6 +10,7 @@
         android:layout_margin="5dp">
 
         <LinearLayout
+            android:id="@+id/linearAdapter"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#FFFFFF"
@@ -33,6 +34,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="#000"
+                    android:maxLines="1"
                     android:textSize="16sp" />
 
                 <TextView
