@@ -14,7 +14,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="612dp"
             android:orientation="vertical">
 
             <LinearLayout
@@ -24,11 +24,11 @@
 
                 <Button
                     android:id="@+id/btnAddImg"
-                    android:background="@drawable/adicionarfoto"
-                    android:layout_marginTop="25dp"
-                    android:layout_marginLeft="25dp"
                     android:layout_width="80dp"
-                    android:layout_height="80dp"/>
+                    android:layout_height="80dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="25dp"
+                    android:background="@drawable/adicionarfoto" />
 
                 <HorizontalScrollView
                     android:layout_width="match_parent"
@@ -42,86 +42,84 @@
                         android:layout_height="wrap_content" />
 
 
-
-
                 </HorizontalScrollView>
 
             </LinearLayout>
 
             <EditText
+                android:id="@+id/edit_nomeProduto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
                 android:layout_marginLeft="10dp"
-                android:ems="10"
-                android:padding="16dp"
-                android:drawablePadding="16dp"
-                android:hint="@string/t_tulo"
-                android:textColor="#737373"
-                android:textColorHint="#737373"
-                android:maxLines="1"
-                android:background="@color/white"
-                android:id="@+id/edit_nomeProduto"
+                android:layout_marginRight="10dp"
                 android:layout_marginTop="25dp"
-                android:inputType="text"/>
+                android:background="@color/white"
+                android:drawablePadding="16dp"
+                android:ems="10"
+                android:hint="@string/t_tulo"
+                android:inputType="text"
+                android:maxLines="1"
+                android:padding="16dp"
+                android:textColor="#737373"
+                android:textColorHint="#737373" />
 
 
             <View
-                android:layout_marginRight="10dp"
-                android:layout_marginLeft="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                 android:background="@color/verdeEscuro" />
 
             <EditText
+                android:id="@+id/edit_DescricaoProduto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
                 android:layout_marginLeft="10dp"
-                android:ems="10"
-                android:padding="16dp"
-                android:drawablePadding="16dp"
-                android:hint="@string/descri_o"
-                android:textColor="#737373"
-                android:textColorHint="#737373"
-                android:maxLines="1"
+                android:layout_marginRight="10dp"
                 android:background="@color/white"
-                android:id="@+id/edit_DescricaoProduto"
-                android:inputType="text"/>
+                android:drawablePadding="16dp"
+                android:ems="10"
+                android:hint="@string/descri_o"
+                android:inputType="text"
+                android:maxLines="1"
+                android:padding="16dp"
+                android:textColor="#737373"
+                android:textColorHint="#737373" />
 
             <Spinner
                 android:id="@+id/spinnerclasse"
-                android:background="@color/verdeEscuro"
-                android:layout_marginRight="10dp"
-                android:layout_marginLeft="10dp"
-                android:popupBackground="#e29ae1c9"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/verdeEscuro"
                 android:ems="10"
                 android:entries="@array/spinerTipoProduto"
-                android:padding="16dp" />
+                android:padding="16dp"
+                android:popupBackground="#e29ae1c9" />
 
             <EditText
                 android:id="@+id/edit_nomecidade"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
                 android:layout_marginLeft="10dp"
-                android:ems="10"
-                android:padding="16dp"
-                android:drawablePadding="16dp"
-                android:hint="@string/cidade"
-                android:textColor="#737373"
-                android:textColorHint="#737373"
-                android:maxLines="1"
+                android:layout_marginRight="10dp"
                 android:background="@color/white"
-                android:inputType="text"/>
+                android:drawablePadding="16dp"
+                android:ems="10"
+                android:hint="@string/cidade"
+                android:inputType="text"
+                android:maxLines="1"
+                android:padding="16dp"
+                android:textColor="#737373"
+                android:textColorHint="#737373" />
 
             <View
-                android:layout_marginRight="10dp"
-                android:layout_marginLeft="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                 android:background="@color/verdeEscuro" />
 
             <EditText
@@ -129,35 +127,35 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
 
-                android:layout_marginRight="10dp"
                 android:layout_marginLeft="10dp"
-                android:ems="10"
-                android:padding="16dp"
-                android:drawablePadding="16dp"
-                android:hint="@string/pre_o"
-                android:textColor="#737373"
-                android:textColorHint="#737373"
-                android:maxLines="1"
+                android:layout_marginRight="10dp"
                 android:background="@color/white"
-                android:inputType="numberDecimal"/>
+                android:drawablePadding="16dp"
+                android:ems="10"
+                android:hint="@string/pre_o"
+                android:inputType="numberDecimal"
+                android:maxLines="1"
+                android:padding="16dp"
+                android:textColor="#737373"
+                android:textColorHint="#737373" />
 
 
             <Button
                 android:id="@+id/button_leiloar"
-                android:visibility="visible"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/leiloar"
-                android:textColor="#ffffff"
-                android:padding="16dp"
-                android:textSize="18sp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginRight="25dp"
-                android:layout_marginLeft="25dp"
-                android:layout_marginTop="40dp"
                 android:layout_marginBottom="5dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/edteste2"
+                android:padding="16dp"
+                android:text="@string/leiloar"
                 android:textAllCaps="false"
-                android:background="@drawable/edteste2"/>
+                android:textColor="#ffffff"
+                android:textSize="18sp"
+                android:visibility="visible" />
 
         </LinearLayout>
 

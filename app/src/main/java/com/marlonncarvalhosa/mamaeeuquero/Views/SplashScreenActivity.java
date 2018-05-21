@@ -31,7 +31,7 @@ public class SplashScreenActivity extends AppCompatActivity {
 
                 try {
 
-                    while (counter == 0 || counter <= 3) {
+                    while (counter == 0 || counter <= 5) {
 
                         Thread.sleep(1000);
                         counter++;
@@ -41,7 +41,7 @@ public class SplashScreenActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
-                if (counter == 4){
+                if (counter == 6){
 
                     Intent intent = new Intent(SplashScreenActivity.this, MainActivity.class);
 

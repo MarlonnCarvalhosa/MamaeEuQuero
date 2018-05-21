@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -29,6 +31,7 @@ import com.marlonncarvalhosa.mamaeeuquero.model.Produto;
 import com.squareup.picasso.Picasso;
 
 import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -90,14 +93,10 @@ public class LeiloarFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-
                 uploadImage();
-
-
 
             }
         });
-
 
     }
 

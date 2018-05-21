@@ -18,6 +18,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.TimeUnit;
 
 
 /**
@@ -25,12 +26,11 @@ import java.util.TimerTask;
  */
 public class InicioFragment extends Fragment {
 
-    private TextView countdownText;
-    private Button countdownButton;
+    TextView text1;
 
-    private CountDownTimer countDownTimer;
-    private long timeLeftinMilliseconds = 600000; //10m
-    private boolean timerRunning;
+    private static final String FORMAT = "%02d:%02d:%02d";
+
+    int seconds , minutes;
 
 
     public InicioFragment() {
@@ -43,121 +43,32 @@ public class InicioFragment extends Fragment {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_inicio, container, false);
         idcampo(view);
-        metodbutton();
-        iniciaCronometro();
+
+        new CountDownTimer(	86400000, 1000) { // adjust the milli seconds here
+
+            public void onTick(long millisUntilFinished) {
+
+                text1.setText(""+String.format(FORMAT,
+                        TimeUnit.MILLISECONDS.toHours(millisUntilFinished),
+                        TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) - TimeUnit.HOURS.toMinutes(
+                                TimeUnit.MILLISECONDS.toHours(millisUntilFinished)),
+                        TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) - TimeUnit.MINUTES.toSeconds(
+                                TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished))));
+            }
+
+            public void onFinish() {
+                text1.setText("done!");
+            }
+        }.start();
 
         return  view;
 
     }
 
-    public void iniciaCronometro(){
-        Timer timer = null;
-        final SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
-        if (timer == null)
-        {
-            timer = new Timer();
-            final Timer finalTimer = timer;
-            TimerTask tarefa = new TimerTask() {
-                public void run()
-                {
-                    try {
-                        Date dataDehoje =  new Date();
-                        Lance lance;
-                      //  if(dataDeHoje.before(lance.getDataFinal())) {
-                            countdownText.setText(format.format(new Date().getTime()));
-                      //  }else{
-                            finalTimer.cancel();
-                        //}
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-            };
-            timer.scheduleAtFixedRate(tarefa, 0, 1000);
-        }
-    }
-
-
     public void idcampo (View view){
 
-        countdownText = view.findViewById(R.id.countdown_text);
-        countdownButton = view.findViewById(R.id.countdown_button);
+        text1 = view.findViewById(R.id.countdown_text);
 
     }
 
-    private void metodbutton() {
-
-        countdownButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-             startStop();
-
-            }
-        });
-    }
-
-    public void startStop(){
-
-        if (timerRunning) {
-
-            stopTimer();
-
-        } else {
-
-            startTimer();
-        }
-
-    }
-
-    public void startTimer() {
-
-        timeLeftinMilliseconds = 60000;
-
-        countDownTimer = new CountDownTimer(timeLeftinMilliseconds, 1000) {
-            @Override
-            public void onTick(long millisUntilFinished) { // No video manda colocar 1 onde tá escrito millisUntilFinished, mas nõa funciona
-
-
-                updateTimer(millisUntilFinished);
-
-            }
-
-            @Override
-            public void onFinish() {
-
-            }
-
-        }.start();
-
-        countdownButton.setText("pause");
-        timerRunning = true;
-
-    }
-
-    public void stopTimer() {
-
-        countDownTimer.cancel();
-        countdownButton.setText("start");
-        timerRunning = false;
-
-    }
-
-    public void updateTimer(long millisUntilFinished){
-
-        int minutes = (int) timeLeftinMilliseconds / 60000;
-        int seconds =
-
-                (int) timeLeftinMilliseconds % 60000 / 1000;
-
-        String timeLeftText;
-
-        timeLeftText = "" + minutes;
-        timeLeftText += ":";
-        if (seconds < 10) timeLeftText += "0";
-        timeLeftText += seconds;
-
-        countdownText.setText(timeLeftText);
-
-    }
 }
