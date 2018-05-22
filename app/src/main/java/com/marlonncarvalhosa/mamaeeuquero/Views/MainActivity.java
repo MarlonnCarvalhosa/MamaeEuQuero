@@ -4,15 +4,13 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.marlonncarvalhosa.mamaeeuquero.utils.BottomNavigationViewHelper;
 import com.marlonncarvalhosa.mamaeeuquero.R;
-import com.marlonncarvalhosa.mamaeeuquero.fragments.BuscarFragment;
-import com.marlonncarvalhosa.mamaeeuquero.fragments.CarrinhoFragment;
 import com.marlonncarvalhosa.mamaeeuquero.fragments.InicioFragment;
+import com.marlonncarvalhosa.mamaeeuquero.fragments.CarrinhoFragment;
+import com.marlonncarvalhosa.mamaeeuquero.fragments.BuscarFragment;
 import com.marlonncarvalhosa.mamaeeuquero.fragments.LeiloarFragment;
 import com.marlonncarvalhosa.mamaeeuquero.fragments.PerfilFragment;
 import com.marlonncarvalhosa.mamaeeuquero.utils.FragmentoUtils;
@@ -79,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 super.onScrollStateChanged(recyclerView, newState);
-            }*/ //Oculta o Bottom navigation
+            } */ //Oculta o Bottom navigation
 
     }
 

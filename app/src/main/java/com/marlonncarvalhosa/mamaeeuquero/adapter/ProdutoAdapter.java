@@ -96,5 +96,19 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ViewHold
         return produtos.size()-1;
     }
 
+<<<<<<< HEAD
 
+=======
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        private TextView textViewProduto,textViewPreco,textViewCidade,data,text1;
+        private ImageView imageView;
+        public ViewHolder(View itemView) {
+            super(itemView);
+            textViewProduto = itemView.findViewById(R.id.nomeProduto);
+            textViewCidade = itemView.findViewById(R.id.cidade);
+            textViewPreco = itemView.findViewById(R.id.preco);
+            imageView = itemView.findViewById(R.id.imagemProduto);
+            data = itemView.findViewById(R.id.datainicio);         }
+    }
+>>>>>>> adc2f3acbcf7f63091ae7a0f279015daa9a7cad0
 }
