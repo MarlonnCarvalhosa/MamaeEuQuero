@@ -51,8 +51,6 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-
-
                     <android.support.v7.widget.CardView
                         android:layout_width="90dp"
                         android:layout_height="wrap_content"
@@ -132,9 +130,6 @@
                         android:layout_marginRight="10dp"
                         android:textColor="#5b5b5b"
                         android:textSize="12sp" />
-
-
-                   />
 
                 </LinearLayout>
 

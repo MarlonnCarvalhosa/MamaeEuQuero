@@ -42,7 +42,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
-
                 </HorizontalScrollView>
 
             </LinearLayout>
@@ -64,7 +63,6 @@
                 android:padding="16dp"
                 android:textColor="#737373"
                 android:textColorHint="#737373" />
-
 
             <View
                 android:layout_width="match_parent"

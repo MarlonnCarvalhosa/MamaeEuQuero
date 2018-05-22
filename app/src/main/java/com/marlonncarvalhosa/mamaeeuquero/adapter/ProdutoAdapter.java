@@ -70,14 +70,14 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ViewHold
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView textViewProduto,textViewPreco,textViewCidade,data;
+        private TextView textViewProduto,textViewPreco,textViewCidade,data,text1;
         private ImageView imageView;
         public ViewHolder(View itemView) {
             super(itemView);
-            textViewProduto=itemView.findViewById(R.id.nomeProduto);
-            textViewCidade=itemView.findViewById(R.id.cidade);
-            textViewPreco=itemView.findViewById(R.id.preco);
+            textViewProduto = itemView.findViewById(R.id.nomeProduto);
+            textViewCidade = itemView.findViewById(R.id.cidade);
+            textViewPreco = itemView.findViewById(R.id.preco);
             imageView = itemView.findViewById(R.id.imagemProduto);
-            data=itemView.findViewById(R.id.datainicio);         }
+            data = itemView.findViewById(R.id.datainicio);         }
     }
 }

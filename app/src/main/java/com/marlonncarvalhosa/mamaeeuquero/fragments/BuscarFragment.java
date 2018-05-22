@@ -1,126 +1,66 @@
 package com.marlonncarvalhosa.mamaeeuquero.fragments;
 
 
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.DividerItemDecoration;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 import com.marlonncarvalhosa.mamaeeuquero.R;
-import com.marlonncarvalhosa.mamaeeuquero.adapter.ProdutoAdapter;
-import com.marlonncarvalhosa.mamaeeuquero.model.Produto;
-import com.marlonncarvalhosa.mamaeeuquero.utils.ConfiguraçõesFirebase;
-import com.squareup.picasso.Picasso;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import static android.app.Activity.RESULT_OK;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class BuscarFragment extends Fragment {
 
-    private static final int PICK_IMAGE_REQUEST = 71;
-    private RecyclerView recyclerView;
-    private List<Produto> produtos;
-    private Query databaseProdutos;
-    private ProdutoAdapter adapter;
-    private ImageView imagemProduto;
-    private Uri mImageUri;
+    TextView text1;
+
+    private static final String FORMAT = "%02d:%02d:%02d";
+
+    int seconds , minutes;
+
+
     public BuscarFragment() {
-        // Required empty public constructor
     }
 
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_buscar, container, false);
-        idCampo(view);
-        preencherLista();
-        return view;
+        View view =  inflater.inflate(R.layout.fragment_buscar, container, false);
+        idcampo(view);
 
-    }
+        new CountDownTimer(	86400000, 1000) { // adjust the milli seconds here
 
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
+            public void onTick(long millisUntilFinished) {
 
-        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK
-                && data != null && data.getData() != null) {
-            mImageUri = data.getData();
-
-            Picasso.get().load(mImageUri).into(imagemProduto);
-            imagemProduto.setImageURI(mImageUri);
-        }
-    }
-
-    private void preencherLista() {
-        produtos = new ArrayList<>();
-        databaseProdutos = ConfiguraçõesFirebase.getProdutos();
-        databaseProdutos.keepSynced(true);
-        databaseProdutos.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-
-                try{
-
-                    produtos.clear();
-                    for(DataSnapshot snapshot : dataSnapshot.getChildren()){
-                        Produto produto = snapshot.getValue(Produto.class);
-                        produtos.add(produto);
-
-
-                    }
-                    adapter.atualiza(produtos);
-                }catch (Exception e){
-                    e.printStackTrace();
-                }
-
+                text1.setText(""+String.format(FORMAT,
+                        TimeUnit.MILLISECONDS.toHours(millisUntilFinished),
+                        TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) - TimeUnit.HOURS.toMinutes(
+                                TimeUnit.MILLISECONDS.toHours(millisUntilFinished)),
+                        TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) - TimeUnit.MINUTES.toSeconds(
+                                TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished))));
             }
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
+            public void onFinish() {
+                text1.setText("done!");
             }
-        });
+        }.start();
 
-        adapter = new ProdutoAdapter(getActivity(),produtos);
-        recyclerView.setAdapter(adapter);
+        return  view;
 
     }
 
-    public void idCampo(View view) {
+    public void idcampo (View view){
 
-        imagemProduto = view.findViewById(R.id.imagemProduto);
-        recyclerView = view.findViewById(R.id.recyclerproduto);
-        recyclerView.setHasFixedSize(true);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(adapter);
+        text1 = view.findViewById(R.id.countdown_text);
 
     }
 

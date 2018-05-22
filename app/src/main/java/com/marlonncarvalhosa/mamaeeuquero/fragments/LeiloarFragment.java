@@ -72,13 +72,13 @@ public class LeiloarFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View view =  inflater.inflate(R.layout.fragment_leiloar, container, false);
-        idcampo(view);
+        idCampo(view);
         btnAdicionarImg(view);
         return  view;
 
     }
 
-    private void idcampo(View view) {
+    private void idCampo(View view) {
 
         miniImagem = view.findViewById(R.id.mini_imagem);
         addImgButton = view.findViewById(R.id.btnAddImg);
@@ -89,7 +89,7 @@ public class LeiloarFragment extends Fragment {
         leiloar = view.findViewById(R.id.button_leiloar);
         edit_descricao  =view.findViewById(R.id.edit_DescricaoProduto);
         long date= System.currentTimeMillis();
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yy");
         data = formatter.format(date);
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
@@ -135,27 +135,25 @@ public class LeiloarFragment extends Fragment {
                             produto.setDataInicial(data);
 
                             new DataBaseDAO().instancia_produto(produto);
+
                         }
-                    })
-                    .addOnFailureListener(new OnFailureListener() {
+                    }).addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
                             progressDialog.dismiss();
                             Toast.makeText(getContext(), "Falhou "+e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
-                    })
-                    .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+
+                    }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
                             double progress = (100.0*taskSnapshot.getBytesTransferred()/taskSnapshot
                                     .getTotalByteCount());
-                            progressDialog.setMessage("Carregando Imagem "+(int)progress+"%");
+                            progressDialog.setMessage("Carregando Imagem " + (int)progress + "%");
                         }
                     });
         }
     }
-
-
 
     public void btnAdicionarImg(View view) {
         
@@ -189,7 +187,5 @@ public class LeiloarFragment extends Fragment {
             miniImagem.setImageURI(mImageUri);
         }
     }
-
-
 
 }
