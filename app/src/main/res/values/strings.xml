@@ -74,6 +74,16 @@
     <string name="nav_my_apps">My Apps</string>
     <string name="nav_color">Material Design Color</string>
 
+    <!-- Strings relacionadas a tela detalhes do produto -->
+    <string name="nome_do_produto_detalhe">Nome do Produto</string>
+    <string name="ultimo_lance">Último Lance</string>
+    <string name="valor_lance_detalhe">R$ 00,00</string>
+    <string name="tempo_restante">Tempo Restante</string>
+    <string name="tempo_restante_detalhes">0h 00min 00s</string>
+    <string name="mais_detalhes">Mais detalhes</string>
+    <string name="texto_descricao">Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja de tipos e os embaralhou para fazer um livro de modelos de tipos. Lorem Ipsum sobreviveu não só a cinco séculos, como</string>
+    <string name="dar_um_lance_botao">Dar um Lance</string>
+
     <!-- Strings related to Scrolling -->
     <string name="title_activity_scrolling">Scrolling</string>
     <string name="large_text">
@@ -248,6 +258,7 @@
     <string name="cidade">Cidade</string>
     <string name="pre_o">Preço</string>
     <string name="ltimo_lance">Último lance</string>
+    <string name="detalhes_do_produto_string">Detalhes do Produto</string>
 
     <array name="spinerTipoProduto">
         <item> Categoria</item>
