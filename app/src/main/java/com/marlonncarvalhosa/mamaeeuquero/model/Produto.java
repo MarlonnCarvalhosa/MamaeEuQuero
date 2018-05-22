@@ -11,6 +11,7 @@ public class Produto {
     private String descrição;
     private String pathImagem;
     private String imageUrl;
+    private  String dataInicial;
 
     public String getPathImagem() {
         return pathImagem;
@@ -32,7 +33,7 @@ public class Produto {
 
     }
 
-    public Produto(String id, String nome, String cat, String preco, String local, String descrição, String pathImagem, String imageUrl) {
+    public Produto(String id, String nome, String cat, String preco, String local, String descrição, String pathImagem, String imageUrl,String dataInicial) {
         this.id = id;
         this.nome = nome;
         this.cat = cat;
@@ -41,6 +42,7 @@ public class Produto {
         this.descrição = descrição;
         this.pathImagem = pathImagem;
         this.imageUrl = imageUrl;
+        this.dataInicial=dataInicial;
     }
 
     public String getId() {
@@ -89,5 +91,13 @@ public class Produto {
 
     public void setLocal(String local) {
         this.local = local;
+    }
+
+    public String getDataInicial() {
+        return dataInicial;
+    }
+
+    public void setDataInicial(String dataInicial) {
+        this.dataInicial = dataInicial;
     }
 }

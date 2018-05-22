@@ -30,6 +30,10 @@ import com.marlonncarvalhosa.mamaeeuquero.Views.MainActivity;
 import com.marlonncarvalhosa.mamaeeuquero.model.Produto;
 import com.squareup.picasso.Picasso;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.time.DateTimeException;
+import java.util.Calendar;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
@@ -45,6 +49,7 @@ public class LeiloarFragment extends Fragment {
     private Spinner categoria;
     private Button addImgButton;
     private ImageView miniImagem;
+    private String data;
     private LayoutInflater inflater1;
 
     private Uri filePath;
@@ -83,7 +88,9 @@ public class LeiloarFragment extends Fragment {
         categoria = view.findViewById(R.id.spinnerclasse);
         leiloar = view.findViewById(R.id.button_leiloar);
         edit_descricao  =view.findViewById(R.id.edit_DescricaoProduto);
-
+        long date= System.currentTimeMillis();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        data = formatter.format(date);
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
 
@@ -125,6 +132,7 @@ public class LeiloarFragment extends Fragment {
                             produto.setDescrição(edit_descricao.getText().toString());
                             produto.setImageUrl(imageUrl.toString());
                             produto.setPathImagem(pathImage);
+                            produto.setDataInicial(data);
 
                             new DataBaseDAO().instancia_produto(produto);
                         }

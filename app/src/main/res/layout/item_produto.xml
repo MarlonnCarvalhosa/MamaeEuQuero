@@ -125,7 +125,7 @@
                         android:textSize="12sp" />
 
                     <TextView
-                        android:id="@+id/data"
+                        android:id="@+id/datainicio"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
@@ -134,7 +134,7 @@
                         android:textSize="12sp" />
 
 
-                    android:textSize="12sp" />
+                   />
 
                 </LinearLayout>
 
