@@ -6,6 +6,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
+import com.marlonncarvalhosa.mamaeeuquero.fragments.LoginFragment;
 import com.marlonncarvalhosa.mamaeeuquero.utils.BottomNavigationViewHelper;
 import com.marlonncarvalhosa.mamaeeuquero.R;
 import com.marlonncarvalhosa.mamaeeuquero.fragments.InicioFragment;
@@ -37,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
                     FragmentoUtils.replace(MainActivity.this, new CarrinhoFragment());
                     return true;
                 case R.id.navigation_perfil:
-                    FragmentoUtils.replace(MainActivity.this, new PerfilFragment());
+                    FragmentoUtils.replace(MainActivity.this, new LoginFragment());
                     return true;
             }
             return false;

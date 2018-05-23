@@ -15,4 +15,15 @@
        android:layout_marginTop="130dp"
        android:src="@drawable/logo_gif_verde"/>
 
+   <TextView
+       android:layout_width="300dp"
+       android:layout_height="300dp"
+       android:layout_gravity="center_horizontal"
+       android:text="Mamae  testeeu quero"
+       android:textAlignment="center"
+       android:textColor="@color/white"
+       android:textSize="20dp"
+       android:textStyle="bold" />
+
+
 </LinearLayout>

@@ -28,6 +28,7 @@ import com.marlonncarvalhosa.mamaeeuquero.DAO.DataBaseDAO;
 import com.marlonncarvalhosa.mamaeeuquero.R;
 import com.marlonncarvalhosa.mamaeeuquero.Views.MainActivity;
 import com.marlonncarvalhosa.mamaeeuquero.model.Produto;
+import com.marlonncarvalhosa.mamaeeuquero.utils.FragmentoUtils;
 import com.squareup.picasso.Picasso;
 
 import java.sql.Date;
@@ -121,6 +122,7 @@ public class LeiloarFragment extends Fragment {
                             taskSnapshot.getDownloadUrl();
                             progressDialog.dismiss();
                             Toast.makeText(getContext(), "Leilão efetuado com sucesso", Toast.LENGTH_SHORT).show();
+                            FragmentoUtils.replace(getActivity(), new InicioFragment());
 
                             Uri imageUrl = taskSnapshot.getDownloadUrl();
 
