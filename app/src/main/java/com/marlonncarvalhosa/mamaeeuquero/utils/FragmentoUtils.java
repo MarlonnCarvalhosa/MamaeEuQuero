@@ -14,13 +14,6 @@ public class FragmentoUtils {
     public static void replace(FragmentActivity activity, Fragment fragment) {
         activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragmento, fragment).commit();
     }
-    public  static  void replace(AppCompatActivity activity, Fragment fragment, int container){
-        FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
-        transaction.replace(container, fragment);
-        transaction.commit();
 
-
-
-    }
 
 }
