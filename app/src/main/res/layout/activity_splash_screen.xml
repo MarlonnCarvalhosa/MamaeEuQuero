@@ -5,15 +5,14 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#9ae1c9"
+    android:background="#63DEC4"
     tools:context=".Views.SplashScreenActivity">
 
-
-<!--    <pl.droidsonroids.gif.GifImageView
-        android:visibility="gone"
-        android:layout_width="400dp"
-        android:layout_height="400dp"
-        android:layout_marginLeft="15dp"
-        android:src="@drawable/logo_gif_verde"/>-->
+   <pl.droidsonroids.gif.GifImageView
+       android:layout_width="300dp"
+       android:layout_height="300dp"
+       android:layout_gravity="center_horizontal"
+       android:layout_marginTop="130dp"
+       android:src="@drawable/logo_gif_verde"/>
 
 </LinearLayout>
