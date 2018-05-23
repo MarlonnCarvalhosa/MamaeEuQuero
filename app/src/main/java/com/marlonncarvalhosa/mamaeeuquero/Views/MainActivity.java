@@ -67,7 +67,6 @@ public class MainActivity extends AppCompatActivity {
                     navigation.setVisibility(View.GONE);
                 }
             }
-
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState)
             {
@@ -75,7 +74,6 @@ public class MainActivity extends AppCompatActivity {
                 {
                     navigation.setVisibility(View.VISIBLE);
                 }
-
                 super.onScrollStateChanged(recyclerView, newState);
             } */ //Oculta o Bottom navigation
 
