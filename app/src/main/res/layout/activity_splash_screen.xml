@@ -9,10 +9,11 @@
     tools:context=".Views.SplashScreenActivity">
 
 
-    <pl.droidsonroids.gif.GifImageView
+<!--    <pl.droidsonroids.gif.GifImageView
+        android:visibility="gone"
         android:layout_width="400dp"
         android:layout_height="400dp"
         android:layout_marginLeft="15dp"
-        android:src="@drawable/logo_gif_verde"/>
+        android:src="@drawable/logo_gif_verde"/>-->
 
 </LinearLayout>
