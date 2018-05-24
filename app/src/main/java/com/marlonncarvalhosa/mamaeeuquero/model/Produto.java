@@ -2,7 +2,9 @@ package com.marlonncarvalhosa.mamaeeuquero.model;
 
 import android.widget.ImageView;
 
-public class Produto {
+import java.io.Serializable;
+
+public class Produto implements Serializable{
     private String id;
     private String nome;
     private String cat;

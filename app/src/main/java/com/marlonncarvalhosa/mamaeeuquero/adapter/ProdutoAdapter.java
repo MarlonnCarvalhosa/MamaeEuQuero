@@ -78,7 +78,9 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ViewHold
         holder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentoUtils.replace(activity, new DescricaoFragment());
+
+                FragmentoUtils.replace(activity, new DescricaoFragment().newIntance(produto));
+
                 Toast.makeText(holder.itemView.getContext(), "Position: " + produto.getNome(), Toast.LENGTH_LONG).show();
             }
         });
@@ -93,7 +95,7 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ViewHold
     @Override
     public int getItemCount()
     {
-        return produtos.size()-1;
+        return produtos.size();
     }
 
 
