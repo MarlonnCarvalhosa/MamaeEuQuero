@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
@@ -14,12 +13,13 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="10dp"
+            android:orientation="vertical"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:orientation="vertical">
+            android:layout_marginBottom="10dp">
 
             <ImageView
+                android:id="@+id/imageProduto"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:scaleType="centerCrop" />
@@ -27,13 +27,13 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
+                android:id="@+id/TextProduto"
+                android:padding="5dp"
                 android:background="@color/colorPrimary"
                 android:gravity="center"
-                android:padding="5dp"
-                android:textColor="#000"
                 android:textSize="16sp"
-                android:textStyle="bold" />
+                android:textColor="#000"
+                android:textStyle="bold"/>
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -44,72 +44,71 @@
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-
-                    android:textColor="#595959" />
+                    android:text="Último Lance"
+                    android:textColor="#595959"/>
 
                 <TextView
-                    android:id="@+id/precoUltimoLance"
+                    android:id="@+id/TextValor"
                     android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_marginTop="25dp"
-                    android:background="@color/colorPrimary"
                     android:gravity="center"
+                    android:layout_height="wrap_content"
                     android:padding="8dp"
-
-                    android:textColor="#000" />
+                    android:layout_marginTop="25dp"
+                    android:textColor="#000"
+                    android:background="@color/colorPrimary"
+                    android:layout_alignParentLeft="true"/>
 
                 <TextView
                     android:layout_width="110dp"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
                     android:gravity="center"
-                    android:textColor="#595959" />
+                    android:textColor="#595959"
+                    android:layout_alignParentRight="true"
+                    android:text="Tempo Restante"/>
 
                 <TextView
-                    android:id="@+id/tempoRestanteCarrinho"
+                    android:id="@+id/TextTempo"
                     android:layout_width="110dp"
+                    android:gravity="center"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
+                    android:padding="8dp"
+                    android:textColor="#000"
                     android:layout_marginTop="25dp"
                     android:background="@color/colorPrimary"
-                    android:gravity="center"
-                    android:padding="8dp"
-
-                    android:textColor="#000" />
+                    android:layout_alignParentRight="true"/>
 
             </RelativeLayout>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
-                android:layout_marginTop="15dp"
+                android:text="Mais detalhes"
                 android:textColor="@color/colorPrimaryDark"
+                android:layout_marginTop="15dp"
                 android:textSize="16sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"/>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginTop="5dp"
-                android:background="@color/colorPrimaryDark" />
+                android:background="@color/colorPrimaryDark"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-
-                android:textColor="#000" />
+                android:id="@+id/textDetalhes"
+                android:textColor="#000"/>
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:layout_marginBottom="10dp"
-
-                android:layout_marginTop="8dp"
                 android:background="@color/colorPrimary"
-                android:textColor="#000" />
+                android:text="DAR UM LANCE"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="10dp"
+                android:textColor="#000"/>
 
         </LinearLayout>
 
