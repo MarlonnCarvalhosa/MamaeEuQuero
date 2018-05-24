@@ -1,6 +1,7 @@
 package com.marlonncarvalhosa.mamaeeuquero.fragments;
 
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -21,6 +22,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.marlonncarvalhosa.mamaeeuquero.R;
+import com.marlonncarvalhosa.mamaeeuquero.Views.CadastroActivity;
 import com.marlonncarvalhosa.mamaeeuquero.Views.LoginActivity;
 import com.marlonncarvalhosa.mamaeeuquero.Views.MainActivity;
 import com.marlonncarvalhosa.mamaeeuquero.utils.FragmentoUtils;

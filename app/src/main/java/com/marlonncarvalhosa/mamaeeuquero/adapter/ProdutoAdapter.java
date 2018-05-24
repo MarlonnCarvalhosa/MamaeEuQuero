@@ -50,6 +50,7 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ViewHold
             linearLayout= itemView.findViewById(R.id.linearAdapter);
 
 
+
             linearLayout.setClickable(true);
             linearLayout.setFocusableInTouchMode(true);
 

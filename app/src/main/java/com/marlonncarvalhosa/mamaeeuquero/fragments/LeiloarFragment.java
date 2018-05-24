@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
@@ -51,6 +52,7 @@ public class LeiloarFragment extends Fragment {
     private Button addImgButton;
     private ImageView miniImagem;
     private String data;
+    private FirebaseAuth auth;
     private LayoutInflater inflater1;
 
     private Uri filePath;
@@ -119,10 +121,14 @@ public class LeiloarFragment extends Fragment {
             ref.putFile(mImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            auth = FirebaseAuth.getInstance();
+                            auth.signOut();
+
                             taskSnapshot.getDownloadUrl();
                             progressDialog.dismiss();
                             Toast.makeText(getContext(), "Leilão efetuado com sucesso", Toast.LENGTH_SHORT).show();
                             FragmentoUtils.replace(getActivity(), new InicioFragment());
+
 
                             Uri imageUrl = taskSnapshot.getDownloadUrl();
 
@@ -143,7 +149,9 @@ public class LeiloarFragment extends Fragment {
                         @Override
                         public void onFailure(@NonNull Exception e) {
                             progressDialog.dismiss();
-                            Toast.makeText(getContext(), "Falhou "+e.getMessage(), Toast.LENGTH_SHORT).show();
+
+                            FragmentoUtils.replace(getActivity(), new LoginFragment());
+                            Toast.makeText(getContext(), "Faça o login para leiloar. ", Toast.LENGTH_LONG).show();
                         }
 
                     }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
@@ -151,7 +159,7 @@ public class LeiloarFragment extends Fragment {
                         public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
                             double progress = (100.0*taskSnapshot.getBytesTransferred()/taskSnapshot
                                     .getTotalByteCount());
-                            progressDialog.setMessage("Carregando Imagem " + (int)progress + "%");
+                            progressDialog.setMessage("Carregando Imagem "+(int)progress+"%");
                         }
                     });
         }

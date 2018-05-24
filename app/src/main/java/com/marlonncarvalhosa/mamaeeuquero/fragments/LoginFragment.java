@@ -4,6 +4,7 @@ package com.marlonncarvalhosa.mamaeeuquero.fragments;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,6 +31,7 @@ public class LoginFragment extends Fragment
     private TextView recuperar;
     private Button login;
     private FirebaseAuth auth;
+    private TextView btnCadastrar;
     ProgressBar progressBar;
 
 
@@ -44,8 +46,9 @@ public class LoginFragment extends Fragment
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_login, container, false);
         idCampo(view);
+        txtCadastrar(view);
 
-
+        ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
 
         auth = FirebaseAuth.getInstance();
         verificaAuth();
@@ -81,9 +84,8 @@ public class LoginFragment extends Fragment
             login.setVisibility(View.VISIBLE);
             progressBar.setVisibility(View.GONE);
 
-
-
             return;
+
         }
 
         if (TextUtils.isEmpty(password)) {
@@ -92,8 +94,8 @@ public class LoginFragment extends Fragment
             progressBar.setVisibility(View.GONE);
 
             return;
-        }
 
+        }
 
         auth.signInWithEmailAndPassword(inputemail,password)
                 .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
@@ -106,11 +108,7 @@ public class LoginFragment extends Fragment
                             email.setText("");
                             senha.setText("");
 
-
-
-
-                        }
-                        else {
+                        } else {
                             FragmentoUtils.replace(getActivity(), new PerfilFragment());
                         }
 
@@ -119,7 +117,6 @@ public class LoginFragment extends Fragment
                 });
 
     }
-
 
     public void verificaAuth() {
         if (auth.getCurrentUser() != null) {
@@ -130,6 +127,17 @@ public class LoginFragment extends Fragment
             }
 
         }
+    }
+
+    public void txtCadastrar(View view){
+
+        btnCadastrar = view.findViewById(R.id.cadastro);
+        btnCadastrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentoUtils.replace(getActivity(), new CadastroFragment());
+            }
+        });
     }
 }
 

@@ -250,11 +250,11 @@
     <string name="ltimo_lance">Último lance</string>
 
     <array name="spinerTipoProduto">
-        <item> Categoria</item>
-        <item> Roupa </item>
-        <item> Brinquedo </item>
-        <item> Acessórios </item>
-        <item> Outros </item>
+        <item>Categoria</item>
+        <item>Roupa</item>
+        <item>Brinquedo</item>
+        <item>Acessórios</item>
+        <item>Outros</item>
 
     </array>
 
