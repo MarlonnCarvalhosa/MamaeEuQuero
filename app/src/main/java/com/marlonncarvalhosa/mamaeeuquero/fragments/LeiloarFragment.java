@@ -1,7 +1,9 @@
 package com.marlonncarvalhosa.mamaeeuquero.fragments;
 
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -53,7 +55,6 @@ public class LeiloarFragment extends Fragment {
     private ImageView miniImagem;
     private String data;
     private FirebaseAuth auth;
-    private LayoutInflater inflater1;
 
     private Uri filePath;
 
@@ -114,7 +115,7 @@ public class LeiloarFragment extends Fragment {
         if(mImageUri != null)
         {
             final ProgressDialog progressDialog = new ProgressDialog(getContext());
-            progressDialog.setTitle("Leiloando...");
+            progressDialog.setTitle("Leiloando...");cd 
             progressDialog.show();
             final String pathImage = "images/"+ UUID.randomUUID().toString();
             final StorageReference ref = storageReference.child(pathImage);
@@ -126,9 +127,23 @@ public class LeiloarFragment extends Fragment {
 
                             taskSnapshot.getDownloadUrl();
                             progressDialog.dismiss();
-                            Toast.makeText(getContext(), "Leilão efetuado com sucesso", Toast.LENGTH_SHORT).show();
-                            FragmentoUtils.replace(getActivity(), new InicioFragment());
 
+                            AlertDialog.Builder alert = new AlertDialog.Builder(getContext());
+
+                            alert
+                                    .setTitle("Leiloado ;)")
+                                    .setIcon(R.drawable.ic_action_check_verde)
+                                    .setMessage("Seu produto foi anunciado com sucesso!")
+                                    .setCancelable(false)
+                                    .setPositiveButton("Finalizar", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            FragmentoUtils.replace(getActivity(), new InicioFragment());
+                                        }
+                                    });
+
+                            AlertDialog alertDialog = alert.create();
+                            alertDialog.show();
 
                             Uri imageUrl = taskSnapshot.getDownloadUrl();
 
@@ -150,8 +165,25 @@ public class LeiloarFragment extends Fragment {
                         public void onFailure(@NonNull Exception e) {
                             progressDialog.dismiss();
 
-                            FragmentoUtils.replace(getActivity(), new LoginFragment());
-                            Toast.makeText(getContext(), "Faça o login para leiloar. ", Toast.LENGTH_LONG).show();
+
+                            AlertDialog.Builder alert = new AlertDialog.Builder(getContext());
+
+                            alert
+                                    .setTitle("Atenção!")
+                                    .setIcon(R.drawable.ic_action_alert_red)
+                                    .setMessage("para leiloar um produto, é necessário está logado.")
+                                    .setCancelable(true)
+                                    .setPositiveButton("Efetuar o Login", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            FragmentoUtils.replace(getActivity(), new LoginFragment());
+                                        }
+                                    });
+
+                            AlertDialog alertDialog = alert.create();
+                            alertDialog.show();
+
+
                         }
 
                     }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {

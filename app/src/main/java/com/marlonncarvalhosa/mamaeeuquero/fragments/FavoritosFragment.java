@@ -14,17 +14,14 @@ import com.marlonncarvalhosa.mamaeeuquero.R;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.LocalTime;
-import java.time.temporal.ChronoUnit;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.concurrent.TimeUnit;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class BuscarFragment extends Fragment {
+public class FavoritosFragment extends Fragment {
 
     TextView text1;
     public final static long SECOND_MILLIS = 1000;
@@ -37,7 +34,7 @@ public class BuscarFragment extends Fragment {
     int seconds , minutes;
 
 
-    public BuscarFragment() {
+    public FavoritosFragment() {
     }
 
 
@@ -45,7 +42,7 @@ public class BuscarFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.fragment_buscar, container, false);
+        View view =  inflater.inflate(R.layout.fragment_favoritos, container, false);
         idcampo(view);
         data = Calendar.getInstance();
         data.set(Calendar.HOUR_OF_DAY, 18);

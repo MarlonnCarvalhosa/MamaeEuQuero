@@ -49,8 +49,6 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ViewHold
             data=itemView.findViewById(R.id.datainicio);
             linearLayout= itemView.findViewById(R.id.linearAdapter);
 
-
-
             linearLayout.setClickable(true);
             linearLayout.setFocusableInTouchMode(true);
 
@@ -81,8 +79,6 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ViewHold
             public void onClick(View v) {
 
                 FragmentoUtils.replace(activity, new DescricaoFragment().newIntance(produto));
-
-                Toast.makeText(holder.itemView.getContext(), "Position: " + produto.getNome(), Toast.LENGTH_LONG).show();
             }
         });
         try {
