@@ -82,7 +82,7 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ViewHold
 
                 FragmentoUtils.replace(activity, new DescricaoFragment().newIntance(produto));
 
-                Toast.makeText(holder.itemView.getContext(), "Position: " + produto.getNome(), Toast.LENGTH_LONG).show();
+
             }
         });
         try {

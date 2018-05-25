@@ -12,9 +12,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.marlonncarvalhosa.mamaeeuquero.R;
 import com.marlonncarvalhosa.mamaeeuquero.model.Produto;
 import com.marlonncarvalhosa.mamaeeuquero.utils.ConstantsUtils;
+import com.marlonncarvalhosa.mamaeeuquero.utils.FragmentoUtils;
 
 public class DescricaoFragment extends Fragment{
 private Bundle bundle;
@@ -22,6 +25,8 @@ private  Produto produto;
 private ImageView imageView;
 private TextView nomeProduto,lanceProduto,tempoProduto,detalhesProduto;
 private Button btnLance;
+private FirebaseAuth auth;
+
 
     public DescricaoFragment() {
         // Required empty public constructor
@@ -33,6 +38,8 @@ private Button btnLance;
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_descricao, container, false);
+        auth = FirebaseAuth.getInstance();
+
         idCampo(view);
 
         initView(view);
@@ -41,12 +48,16 @@ private Button btnLance;
     return view;
     }
 
+
     private void idCampo(View view) {
+
         nomeProduto=view.findViewById(R.id.TextProduto);
         lanceProduto=view.findViewById(R.id.TextValor);
         tempoProduto=view.findViewById(R.id.TextTempo);
         detalhesProduto=view.findViewById(R.id.textDetalhes);
         imageView=view.findViewById(R.id.imageProduto);
+        btnLance=view.findViewById(R.id.btn_lance);
+
     }
 
     private void initView(View view) {
@@ -57,6 +68,15 @@ private Button btnLance;
             lanceProduto.setText(produto.getPreco());
             tempoProduto.setText(produto.getDataInicial());
             detalhesProduto.setText(produto.getDescrição());
+            btnLance.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                verificaAuth();
+
+                }
+            });
+
+
             String url = produto.getImageUrl();
 
             try {
@@ -80,4 +100,23 @@ private Button btnLance;
         descricaoFragment.setArguments(bundle);
         return descricaoFragment;
     }
-}
+
+    public void verificaAuth() {
+        if (auth.getCurrentUser() != null) {
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            if (user != null) { Toast.makeText(getActivity(),"foi",Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(),"a implementar voce esta logado",Toast.LENGTH_LONG).show();
+                }
+
+            }
+            if (auth.getCurrentUser()==null){
+                FragmentoUtils.replace(getActivity(), new LoginFragment());
+            }
+
+        }
+    }
+
+
+
+
+
