@@ -1,7 +1,7 @@
 package com.marlonncarvalhosa.mamaeeuquero.fragments;
 
 
-import android.app.AlertDialog;
+
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,6 +34,7 @@ import com.marlonncarvalhosa.mamaeeuquero.Views.MainActivity;
 import com.marlonncarvalhosa.mamaeeuquero.model.Produto;
 import com.marlonncarvalhosa.mamaeeuquero.utils.FragmentoUtils;
 import com.squareup.picasso.Picasso;
+import android.support.v7.app.AlertDialog;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;
@@ -115,7 +117,7 @@ public class LeiloarFragment extends Fragment {
         if(mImageUri != null)
         {
             final ProgressDialog progressDialog = new ProgressDialog(getContext());
-            progressDialog.setTitle("Leiloando...");cd 
+            progressDialog.setTitle("Leiloando...");
             progressDialog.show();
             final String pathImage = "images/"+ UUID.randomUUID().toString();
             final StorageReference ref = storageReference.child(pathImage);
@@ -128,7 +130,9 @@ public class LeiloarFragment extends Fragment {
                             taskSnapshot.getDownloadUrl();
                             progressDialog.dismiss();
 
-                            AlertDialog.Builder alert = new AlertDialog.Builder(getContext());
+
+
+                            AlertDialog.Builder alert = new android.support.v7.app.AlertDialog.Builder(getContext());
 
                             alert
                                     .setTitle("Leiloado ;)")
@@ -166,7 +170,7 @@ public class LeiloarFragment extends Fragment {
                             progressDialog.dismiss();
 
 
-                            AlertDialog.Builder alert = new AlertDialog.Builder(getContext());
+                            AlertDialog.Builder alert = new android.support.v7.app.AlertDialog.Builder(getContext());
 
                             alert
                                     .setTitle("Atenção!")

@@ -15,6 +15,7 @@ import com.bumptech.glide.Glide;
 import com.marlonncarvalhosa.mamaeeuquero.R;
 import com.marlonncarvalhosa.mamaeeuquero.model.Produto;
 import com.marlonncarvalhosa.mamaeeuquero.utils.ConstantsUtils;
+import com.marlonncarvalhosa.mamaeeuquero.utils.Lance_Dialog;
 
 public class DescricaoFragment extends Fragment{
 private Bundle bundle;
@@ -34,19 +35,34 @@ private Button btnLance;
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_descricao, container, false);
         idCampo(view);
-
+        //darLance(view);
         initView(view);
 
 
     return view;
     }
 
+    /*private void darLance(View view) {
+        btnLance.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                abrirDialogo();
+            }
+        });
+    }
+
+    private void abrirDialogo() {
+        Lance_Dialog lance_dialog = new Lance_Dialog();
+        lance_dialog.show(getFragmentManager(), " Lance");
+    }*/
+
     private void idCampo(View view) {
-        nomeProduto=view.findViewById(R.id.TextProduto);
-        lanceProduto=view.findViewById(R.id.TextValor);
-        tempoProduto=view.findViewById(R.id.TextTempo);
-        detalhesProduto=view.findViewById(R.id.textDetalhes);
-        imageView=view.findViewById(R.id.imageProduto);
+        btnLance = view.findViewById(R.id.btn_lance);
+        nomeProduto = view.findViewById(R.id.TextProduto);
+        lanceProduto = view.findViewById(R.id.TextValor);
+        tempoProduto = view.findViewById(R.id.TextTempo);
+        detalhesProduto = view.findViewById(R.id.textDetalhes);
+        imageView = view.findViewById(R.id.imageProduto);
     }
 
     private void initView(View view) {
@@ -67,9 +83,7 @@ private Button btnLance;
                 e.printStackTrace();
             }
 
-
         }
-
 
     }
 
