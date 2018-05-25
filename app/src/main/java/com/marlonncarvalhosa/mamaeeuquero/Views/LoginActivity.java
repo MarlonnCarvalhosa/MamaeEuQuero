@@ -93,19 +93,18 @@ public class LoginActivity extends AppCompatActivity {
                                     email.setText("");
                                     senha.setText("");
 
-
-
-
                                 }
                                 else {
                                     verificaAuth();
                                 }
 
-
                             }
+
                         });
+
             }
         });
+
     }
 
     public void verificaAuth(){

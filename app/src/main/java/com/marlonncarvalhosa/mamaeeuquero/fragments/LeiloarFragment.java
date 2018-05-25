@@ -1,13 +1,16 @@
 package com.marlonncarvalhosa.mamaeeuquero.fragments;
 
 
+
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,6 +34,7 @@ import com.marlonncarvalhosa.mamaeeuquero.Views.MainActivity;
 import com.marlonncarvalhosa.mamaeeuquero.model.Produto;
 import com.marlonncarvalhosa.mamaeeuquero.utils.FragmentoUtils;
 import com.squareup.picasso.Picasso;
+import android.support.v7.app.AlertDialog;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;
@@ -53,7 +57,6 @@ public class LeiloarFragment extends Fragment {
     private ImageView miniImagem;
     private String data;
     private FirebaseAuth auth;
-    private LayoutInflater inflater1;
 
     private Uri filePath;
 
@@ -126,9 +129,25 @@ public class LeiloarFragment extends Fragment {
 
                             taskSnapshot.getDownloadUrl();
                             progressDialog.dismiss();
-                            Toast.makeText(getContext(), "Leilão efetuado com sucesso", Toast.LENGTH_SHORT).show();
-                            FragmentoUtils.replace(getActivity(), new InicioFragment());
 
+
+
+                            AlertDialog.Builder alert = new android.support.v7.app.AlertDialog.Builder(getContext());
+
+                            alert
+                                    .setTitle("Leiloado ;)")
+                                    .setIcon(R.drawable.ic_action_check_verde)
+                                    .setMessage("Seu produto foi anunciado com sucesso!")
+                                    .setCancelable(false)
+                                    .setPositiveButton("Finalizar", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            FragmentoUtils.replace(getActivity(), new InicioFragment());
+                                        }
+                                    });
+
+                            AlertDialog alertDialog = alert.create();
+                            alertDialog.show();
 
                             Uri imageUrl = taskSnapshot.getDownloadUrl();
 
@@ -150,8 +169,25 @@ public class LeiloarFragment extends Fragment {
                         public void onFailure(@NonNull Exception e) {
                             progressDialog.dismiss();
 
-                            FragmentoUtils.replace(getActivity(), new LoginFragment());
-                            Toast.makeText(getContext(), "Faça o login para leiloar. ", Toast.LENGTH_LONG).show();
+
+                            AlertDialog.Builder alert = new android.support.v7.app.AlertDialog.Builder(getContext());
+
+                            alert
+                                    .setTitle("Atenção!")
+                                    .setIcon(R.drawable.ic_action_alert_red)
+                                    .setMessage("para leiloar um produto, é necessário está logado.")
+                                    .setCancelable(true)
+                                    .setPositiveButton("Efetuar o Login", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            FragmentoUtils.replace(getActivity(), new LoginFragment());
+                                        }
+                                    });
+
+                            AlertDialog alertDialog = alert.create();
+                            alertDialog.show();
+
+
                         }
 
                     }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {

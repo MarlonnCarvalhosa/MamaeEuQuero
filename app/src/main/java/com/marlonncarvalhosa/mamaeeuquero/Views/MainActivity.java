@@ -1,5 +1,6 @@
 package com.marlonncarvalhosa.mamaeeuquero.Views;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -11,13 +12,11 @@ import com.marlonncarvalhosa.mamaeeuquero.utils.BottomNavigationViewHelper;
 import com.marlonncarvalhosa.mamaeeuquero.R;
 import com.marlonncarvalhosa.mamaeeuquero.fragments.InicioFragment;
 import com.marlonncarvalhosa.mamaeeuquero.fragments.CarrinhoFragment;
-import com.marlonncarvalhosa.mamaeeuquero.fragments.BuscarFragment;
+import com.marlonncarvalhosa.mamaeeuquero.fragments.FavoritosFragment;
 import com.marlonncarvalhosa.mamaeeuquero.fragments.LeiloarFragment;
-import com.marlonncarvalhosa.mamaeeuquero.fragments.PerfilFragment;
 import com.marlonncarvalhosa.mamaeeuquero.utils.FragmentoUtils;
 
 public class MainActivity extends AppCompatActivity {
-
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -28,8 +27,8 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.navigation_inicio:
                     FragmentoUtils.replace(MainActivity.this, new InicioFragment());
                     return true;
-                case R.id.navigation_buscar:
-                    FragmentoUtils.replace(MainActivity.this, new BuscarFragment());
+                case R.id.navigation_favoritos:
+                    FragmentoUtils.replace(MainActivity.this, new FavoritosFragment());
                     return true;
                 case R.id.navigation_leiloar:
                     FragmentoUtils.replace(MainActivity.this, new LeiloarFragment());
@@ -45,6 +44,8 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
+
+    @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,28 +59,6 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigation);
         BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
 
-        /*RecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener()
-        {
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy)
-            {
-                if (dy > 0 ||dy<0 && navigation.isShown())
-                {
-                    navigation.setVisibility(View.GONE);
-                }
-            }
-            @Override
-            public void onScrollStateChanged(RecyclerView recyclerView, int newState)
-            {
-                if (newState == RecyclerView.SCROLL_STATE_IDLE)
-                {
-                    navigation.setVisibility(View.VISIBLE);
-                }
-                super.onScrollStateChanged(recyclerView, newState);
-            } */ //Oculta o Bottom navigation
-
     }
-
-
 
 }
