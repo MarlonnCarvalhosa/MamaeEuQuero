@@ -79,11 +79,7 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ViewHold
             public void onClick(View v) {
 
                 FragmentoUtils.replace(activity, new DescricaoFragment().newIntance(produto));
-<<<<<<< HEAD
 
-
-=======
->>>>>>> ae9beaa39ec71dd3178760b55ee167a582ec4537
             }
         });
         try {

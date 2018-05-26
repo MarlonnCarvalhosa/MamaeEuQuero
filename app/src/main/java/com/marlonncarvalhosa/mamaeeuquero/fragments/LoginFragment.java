@@ -14,7 +14,6 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -56,6 +55,7 @@ public class LoginFragment extends Fragment
         return view;
 
     }
+
     private void idCampo(View view) {
         email = view.findViewById(R.id.editText_email);
         senha = view.findViewById(R.id.editText_senha);
@@ -65,7 +65,6 @@ public class LoginFragment extends Fragment
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
 
                 efetuaLogin();
             }
@@ -102,6 +101,9 @@ public class LoginFragment extends Fragment
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
+                        final String saveEmail = email.getContext().toString();
+                        final String saveSenha = senha.getContext().toString();
+
                         if(!task.isSuccessful()){
                             login.setVisibility(View.VISIBLE);
                             progressBar.setVisibility(View.GONE);
@@ -121,7 +123,8 @@ public class LoginFragment extends Fragment
     public void verificaAuth() {
         if (auth.getCurrentUser() != null) {
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-            if (user != null) { Toast.makeText(getActivity(),"foi",Toast.LENGTH_LONG).show();
+            if (user != null) {
+
                 FragmentoUtils.replace(getActivity(), new PerfilFragment());
 
             }

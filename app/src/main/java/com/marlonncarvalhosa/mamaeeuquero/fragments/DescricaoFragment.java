@@ -17,11 +17,9 @@ import com.google.firebase.auth.FirebaseUser;
 import com.marlonncarvalhosa.mamaeeuquero.R;
 import com.marlonncarvalhosa.mamaeeuquero.model.Produto;
 import com.marlonncarvalhosa.mamaeeuquero.utils.ConstantsUtils;
-<<<<<<< HEAD
 import com.marlonncarvalhosa.mamaeeuquero.utils.FragmentoUtils;
-=======
 import com.marlonncarvalhosa.mamaeeuquero.utils.Lance_Dialog;
->>>>>>> ae9beaa39ec71dd3178760b55ee167a582ec4537
+
 
 public class DescricaoFragment extends Fragment{
 private Bundle bundle;
@@ -45,48 +43,27 @@ private FirebaseAuth auth;
         auth = FirebaseAuth.getInstance();
 
         idCampo(view);
-        //darLance(view);
         initView(view);
 
 
     return view;
     }
 
-<<<<<<< HEAD
-
     private void idCampo(View view) {
 
-        nomeProduto=view.findViewById(R.id.TextProduto);
-        lanceProduto=view.findViewById(R.id.TextValor);
-        tempoProduto=view.findViewById(R.id.TextTempo);
-        detalhesProduto=view.findViewById(R.id.textDetalhes);
-        imageView=view.findViewById(R.id.imageProduto);
-        btnLance=view.findViewById(R.id.btn_lance);
-
-=======
-    /*private void darLance(View view) {
-        btnLance.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                abrirDialogo();
-            }
-        });
-    }
-
-    private void abrirDialogo() {
-        Lance_Dialog lance_dialog = new Lance_Dialog();
-        lance_dialog.show(getFragmentManager(), " Lance");
-    }*/
-
-    private void idCampo(View view) {
-        btnLance = view.findViewById(R.id.btn_lance);
         nomeProduto = view.findViewById(R.id.TextProduto);
         lanceProduto = view.findViewById(R.id.TextValor);
         tempoProduto = view.findViewById(R.id.TextTempo);
         detalhesProduto = view.findViewById(R.id.textDetalhes);
         imageView = view.findViewById(R.id.imageProduto);
->>>>>>> ae9beaa39ec71dd3178760b55ee167a582ec4537
+        btnLance = view.findViewById(R.id.btn_lance);
     }
+
+    private void abrirDialogo() {
+        Lance_Dialog lance_dialog = new Lance_Dialog();
+        lance_dialog.show(getFragmentManager(), " Lance");
+    }
+
 
     private void initView(View view) {
         bundle = getArguments();
@@ -100,10 +77,8 @@ private FirebaseAuth auth;
                 @Override
                 public void onClick(View v) {
                 verificaAuth();
-
                 }
             });
-
 
             String url = produto.getImageUrl();
 
@@ -130,8 +105,8 @@ private FirebaseAuth auth;
     public void verificaAuth() {
         if (auth.getCurrentUser() != null) {
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-            if (user != null) { Toast.makeText(getActivity(),"foi",Toast.LENGTH_LONG).show();
-                Toast.makeText(getActivity(),"a implementar voce esta logado",Toast.LENGTH_LONG).show();
+            if (user != null) {
+                abrirDialogo();
                 }
 
             }

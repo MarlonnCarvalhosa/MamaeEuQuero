@@ -16,6 +16,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Timer;
 
 
 /**
@@ -27,6 +28,8 @@ public class FavoritosFragment extends Fragment {
     public final static long SECOND_MILLIS = 1000;
     public final static long MINUTE_MILLIS = SECOND_MILLIS*60;
     public final static long HOUR_MILLIS = MINUTE_MILLIS*60;
+    private static final int MINUTES_IN_AN_HOUR = 60;
+    private static final int SECONDS_IN_A_MINUTE = 60;
 
     private static final String FORMAT = "%02dh %02dm %02ds";
     private Calendar data;
@@ -45,55 +48,50 @@ public class FavoritosFragment extends Fragment {
         View view =  inflater.inflate(R.layout.fragment_favoritos, container, false);
         idcampo(view);
         data = Calendar.getInstance();
-        data.set(Calendar.HOUR_OF_DAY, 18);
-        data.set(Calendar.MINUTE, 30);
+        data.set(Calendar.DAY_OF_MONTH, 25);
+        data.set(Calendar.HOUR_OF_DAY, 2);
+        data.set(Calendar.MINUTE, 50);
 
-        Calendar diaAtual = Calendar.getInstance();
 
         Calendar proximoDia = Calendar.getInstance();
         proximoDia.setTimeInMillis(data.getTimeInMillis());
         proximoDia.add(Calendar.DAY_OF_MONTH, 1);
 
-        int hora = hoursDiff(diaAtual.getTime(), proximoDia.getTime());
-        int minute = minutesDiff(diaAtual.getTime(), proximoDia.getTime());
-        int segundo = secondsDiff(diaAtual.getTime(), proximoDia.getTime());
+        long milisegundos = (proximoDia.getTimeInMillis() - Calendar.getInstance().getTimeInMillis());
 
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(diaAtual.getTimeInMillis());
-        calendar.add(Calendar.HOUR_OF_DAY, hora);
-        calendar.add(Calendar.MINUTE, minute);
-        calendar.add(Calendar.SECOND, segundo);
-        seconds = (hora * 60 * 60) + (minutes * 60) + seconds;
-
-
-        Log.v("rfr", "Diferença final " + calendar.getTime());
-        new CountDownTimer(	seconds, 1000) { // adjust the milli seconds here
+        new CountDownTimer(	milisegundos, 1000) { // adjust the milli seconds here
 
             public void onTick(long millisUntilFinished) {
 
-                data.setTimeInMillis(millisUntilFinished);
-                data.add(Calendar.DAY_OF_MONTH, 1);
-                DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
-                String horaFormatada = dateFormat.format(data.getTime());
-                text1.setText(horaFormatada);
-                /*
+                text1.setText(timeConversion((int) (millisUntilFinished)/1000));
 
-                text1.setText(""+String.format(FORMAT,
-                        TimeUnit.MILLISECONDS.toHours(millisUntilFinished),
-                        TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) - TimeUnit.HOURS.toMinutes(
-                                TimeUnit.MILLISECONDS.toHours(millisUntilFinished)),
-                        TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) - TimeUnit.MINUTES.toSeconds(
-                                TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished))));
-                                */
             }
 
             public void onFinish() {
-                text1.setText("done!");
+                text1.setText("Tempo expirado!");
             }
         }.start();
 
         return  view;
 
+    }
+
+    private static String timeConversion(int totalSeconds) {
+        int hours = totalSeconds / MINUTES_IN_AN_HOUR / SECONDS_IN_A_MINUTE;
+        int minutes = (totalSeconds - (hoursToSeconds(hours)))
+                / SECONDS_IN_A_MINUTE;
+        int seconds = totalSeconds
+                - ((hoursToSeconds(hours)) + (minutesToSeconds(minutes)));
+
+        return hours + "h " + minutes + "m " + seconds + "s";
+    }
+
+    private static int hoursToSeconds(int hours) {
+        return hours * MINUTES_IN_AN_HOUR * SECONDS_IN_A_MINUTE;
+    }
+
+    private static int minutesToSeconds(int minutes) {
+        return minutes * SECONDS_IN_A_MINUTE;
     }
 
     public static int secondsDiff(Date earlierDate, Date laterDate )
