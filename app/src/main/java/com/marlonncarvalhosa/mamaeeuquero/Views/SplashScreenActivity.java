@@ -9,27 +9,22 @@ import com.marlonncarvalhosa.mamaeeuquero.R;
 
 public class SplashScreenActivity extends AppCompatActivity {
 
-    private static int SPLASH_DISPLAY_LENGTH = 3000;
-
-   // int counter = 0;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
-        getSupportActionBar().hide();
-
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Intent it = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(it);
-                finish();
-            }
-        },SPLASH_DISPLAY_LENGTH);
-
+        Handler handler = new Handler();
+        handler.postDelayed(r, 3000);
     }
 
+    Runnable r = new Runnable() {
+        @Override
+        public void run() {
+            Intent intent = new Intent(SplashScreenActivity.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
+    };
 
 }
