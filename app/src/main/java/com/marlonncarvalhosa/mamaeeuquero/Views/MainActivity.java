@@ -5,7 +5,10 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 
 import com.marlonncarvalhosa.mamaeeuquero.fragments.LoginFragment;
 import com.marlonncarvalhosa.mamaeeuquero.utils.BottomNavigationViewHelper;
@@ -18,6 +21,9 @@ import com.marlonncarvalhosa.mamaeeuquero.utils.FragmentoUtils;
 
 public class MainActivity extends AppCompatActivity {
 
+    Toolbar toolbar;
+    private Button button;
+
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -26,18 +32,38 @@ public class MainActivity extends AppCompatActivity {
             switch (item.getItemId()) {
                 case R.id.navigation_inicio:
                     FragmentoUtils.replace(MainActivity.this, new InicioFragment());
+                    toolbar = (Toolbar) findViewById(R.id.toolbarTopo);
+                    setSupportActionBar(toolbar);
+                    getSupportActionBar().setTitle("Postagens Recentes");
+
                     return true;
                 case R.id.navigation_favoritos:
                     FragmentoUtils.replace(MainActivity.this, new FavoritosFragment());
+                    toolbar = (Toolbar) findViewById(R.id.toolbarTopo);
+                    setSupportActionBar(toolbar);
+                    getSupportActionBar().setTitle("Favoritos");
+
                     return true;
                 case R.id.navigation_leiloar:
                     FragmentoUtils.replace(MainActivity.this, new LeiloarFragment());
+                    toolbar = (Toolbar) findViewById(R.id.toolbarTopo);
+                    setSupportActionBar(toolbar);
+                    getSupportActionBar().setTitle("Leiloar");
+
                     return true;
                 case R.id.navigation_carrinho:
                     FragmentoUtils.replace(MainActivity.this, new CarrinhoFragment());
+                    toolbar = (Toolbar) findViewById(R.id.toolbarTopo);
+                    setSupportActionBar(toolbar);
+                    getSupportActionBar().setTitle("Meu Carrinho");
+
                     return true;
                 case R.id.navigation_perfil:
                     FragmentoUtils.replace(MainActivity.this, new LoginFragment());
+                    toolbar = (Toolbar) findViewById(R.id.toolbarTopo);
+                    setSupportActionBar(toolbar);
+                    getSupportActionBar().setTitle("Meu Perfil");
+
                     return true;
             }
             return false;
@@ -51,6 +77,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        toolbar = (Toolbar) findViewById(R.id.toolbarTopo);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Postagens Recentes");
+
         final BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
@@ -60,5 +90,9 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
 
     }
-
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_logo, menu);
+        return true;
+    }
 }

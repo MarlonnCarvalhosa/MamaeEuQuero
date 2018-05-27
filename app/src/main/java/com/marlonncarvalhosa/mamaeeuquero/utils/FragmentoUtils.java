@@ -12,7 +12,7 @@ import com.marlonncarvalhosa.mamaeeuquero.fragments.DescricaoFragment;
 public class FragmentoUtils {
 
     public static void replace(FragmentActivity activity, Fragment fragment) {
-        activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragmento, fragment).commit();
+        activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragmentPrincipal, fragment).commit();
     }
 
 
