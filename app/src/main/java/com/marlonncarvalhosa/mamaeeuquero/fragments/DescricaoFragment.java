@@ -1,6 +1,7 @@
 package com.marlonncarvalhosa.mamaeeuquero.fragments;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -9,11 +10,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.marlonncarvalhosa.mamaeeuquero.Views.FullScreenImage;
 import com.marlonncarvalhosa.mamaeeuquero.R;
 import com.marlonncarvalhosa.mamaeeuquero.model.Produto;
 import com.marlonncarvalhosa.mamaeeuquero.utils.ConstantsUtils;
@@ -41,12 +42,23 @@ private FirebaseAuth auth;
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_descricao, container, false);
         auth = FirebaseAuth.getInstance();
-
         idCampo(view);
+        imgFull(view);
         initView(view);
 
 
+
     return view;
+    }
+
+    public void imgFull(View view) {
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), FullScreenImage.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void idCampo(View view) {
@@ -115,7 +127,7 @@ private FirebaseAuth auth;
             }
 
         }
-    }
+}
 
 
 
