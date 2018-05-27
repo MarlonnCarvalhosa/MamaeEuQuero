@@ -49,8 +49,8 @@ public class FavoritosFragment extends Fragment {
         idcampo(view);
         data = Calendar.getInstance();
         data.set(Calendar.DAY_OF_MONTH, 25);
-        data.set(Calendar.HOUR_OF_DAY, 2);
-        data.set(Calendar.MINUTE, 50);
+        data.set(Calendar.HOUR_OF_DAY, 23);
+        data.set(Calendar.MINUTE, 00);
 
 
         Calendar proximoDia = Calendar.getInstance();

@@ -23,6 +23,8 @@ import com.marlonncarvalhosa.mamaeeuquero.fragments.InicioFragment;
 import com.marlonncarvalhosa.mamaeeuquero.model.Produto;
 import com.marlonncarvalhosa.mamaeeuquero.utils.FragmentoUtils;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -30,29 +32,111 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ViewHold
     private FragmentActivity activity;
     private List<Produto> produtos;
 
+    public final static long SECOND_MILLIS = 1000;
+    public final static long MINUTE_MILLIS = SECOND_MILLIS*60;
+    public final static long HOUR_MILLIS = MINUTE_MILLIS*60;
+    private static final int MINUTES_IN_AN_HOUR = 60;
+    private static final int SECONDS_IN_A_MINUTE = 60;
+
+    private static final String FORMAT = "%02dh %02dm %02ds";
+    private Calendar calendar;
+
+    int seconds , minutes;
+
     public ProdutoAdapter(FragmentActivity activity, List<Produto> produtos){
         this.activity=activity;
         this.produtos=produtos;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView textViewProduto,textViewPreco,textViewCidade,data;
+        private TextView textViewProduto,textViewPreco,textViewCidade,data, textViewCountTimer;;
         private LinearLayout linearLayout;
         private ImageView imageView;
+
         public ViewHolder(View itemView) {
             super(itemView);
 
+            textViewCountTimer=itemView.findViewById(R.id.tempo);
             textViewProduto=itemView.findViewById(R.id.nomeProduto);
             textViewCidade=itemView.findViewById(R.id.cidade);
             textViewPreco=itemView.findViewById(R.id.preco);
             imageView = itemView.findViewById(R.id.imagemProduto);
             data=itemView.findViewById(R.id.datainicio);
             linearLayout= itemView.findViewById(R.id.linearAdapter);
-
             linearLayout.setClickable(true);
             linearLayout.setFocusableInTouchMode(true);
 
+            calendar = Calendar.getInstance();
+            calendar.set(Calendar.DAY_OF_MONTH, 26);
+            calendar.set(Calendar.HOUR_OF_DAY, 23);
+            calendar.set(Calendar.MINUTE, 17);
+
+
+            Calendar proximoDia = Calendar.getInstance();
+            proximoDia.setTimeInMillis(calendar.getTimeInMillis());
+            proximoDia.add(Calendar.DAY_OF_MONTH, 1);
+
+            long milisegundos = (proximoDia.getTimeInMillis() - Calendar.getInstance().getTimeInMillis());
+
+            new CountDownTimer(	milisegundos, 1000) { // adjust the milli seconds here
+
+                public void onTick(long millisUntilFinished) {
+
+                    textViewCountTimer.setText(timeConversion((int) (millisUntilFinished)/1000));
+
+                }
+
+                public void onFinish() {
+                    textViewCountTimer.setText("Tempo expirado!");
+                }
+            }.start();
+
         }
+    }
+
+    private static String timeConversion(int totalSeconds) {
+        int hours = totalSeconds / MINUTES_IN_AN_HOUR / SECONDS_IN_A_MINUTE;
+        int minutes = (totalSeconds - (hoursToSeconds(hours)))
+                / SECONDS_IN_A_MINUTE;
+        int seconds = totalSeconds
+                - ((hoursToSeconds(hours)) + (minutesToSeconds(minutes)));
+
+        return hours + "h " + minutes + "m " + seconds + "s";
+    }
+
+    private static int hoursToSeconds(int hours) {
+        return hours * MINUTES_IN_AN_HOUR * SECONDS_IN_A_MINUTE;
+    }
+
+    private static int minutesToSeconds(int minutes) {
+        return minutes * SECONDS_IN_A_MINUTE;
+    }
+
+    public static int secondsDiff(Date earlierDate, Date laterDate )
+    {
+        if( earlierDate == null || laterDate == null ) return 0;
+
+        return (int)((laterDate.getTime()/SECOND_MILLIS) - (earlierDate.getTime()/SECOND_MILLIS));
+    }
+
+    /**
+     * Get the minutes difference
+     */
+    public static int minutesDiff( Date earlierDate, Date laterDate )
+    {
+        if( earlierDate == null || laterDate == null ) return 0;
+
+        return (int)((laterDate.getTime()/MINUTE_MILLIS) - (earlierDate.getTime()/MINUTE_MILLIS));
+    }
+
+    /**
+     * Get the hours difference
+     */
+    public static int hoursDiff( Date earlierDate, Date laterDate )
+    {
+        if( earlierDate == null || laterDate == null ) return 0;
+
+        return (int)((laterDate.getTime()/HOUR_MILLIS) - (earlierDate.getTime()/HOUR_MILLIS));
     }
 
     public void atualiza(List<Produto> produtos){
@@ -74,6 +158,7 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ViewHold
         holder.textViewCidade.setText(produto.getLocal());
         holder.textViewPreco.setText(produto.getPreco());
         holder.data.setText(produto.getDataInicial());
+        holder.textViewCountTimer.getContext();
         holder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -93,6 +178,7 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ViewHold
     @Override
     public int getItemCount()
     {
+
         return produtos.size();
     }
 
