@@ -88,7 +88,7 @@ private FirebaseAuth auth;
             btnLance.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                verificaAuth();
+                    verificaAuth();
                 }
             });
 
@@ -119,14 +119,14 @@ private FirebaseAuth auth;
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
             if (user != null) {
                 abrirDialogo();
-                }
-
-            }
-            if (auth.getCurrentUser()==null){
-                FragmentoUtils.replace(getActivity(), new LoginFragment());
             }
 
         }
+        if (auth.getCurrentUser() == null){
+            FragmentoUtils.replace(getActivity(), new LoginFragment());
+        }
+
+    }
 }
 
 

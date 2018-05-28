@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.marlonncarvalhosa.mamaeeuquero.fragments.LoginFragment;
 import com.marlonncarvalhosa.mamaeeuquero.utils.BottomNavigationViewHelper;
 import com.marlonncarvalhosa.mamaeeuquero.R;
@@ -23,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
     Toolbar toolbar;
     private Button button;
-
+    FirebaseAuth auth;
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -77,6 +78,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+
         toolbar = (Toolbar) findViewById(R.id.toolbarTopo);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Postagens Recentes");
@@ -95,4 +98,5 @@ public class MainActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_logo, menu);
         return true;
     }
+
 }

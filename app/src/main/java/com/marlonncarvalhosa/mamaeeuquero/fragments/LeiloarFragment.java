@@ -24,6 +24,7 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
@@ -33,6 +34,7 @@ import com.marlonncarvalhosa.mamaeeuquero.R;
 import com.marlonncarvalhosa.mamaeeuquero.Views.MainActivity;
 import com.marlonncarvalhosa.mamaeeuquero.model.Produto;
 import com.marlonncarvalhosa.mamaeeuquero.utils.FragmentoUtils;
+import com.marlonncarvalhosa.mamaeeuquero.utils.Lance_Dialog;
 import com.squareup.picasso.Picasso;
 import android.support.v7.app.AlertDialog;
 
@@ -50,12 +52,13 @@ import static android.app.Activity.RESULT_OK;
  */
 public class LeiloarFragment extends Fragment {
 
-    private EditText edit_produto, edit_cidade, edit_preco ,edit_descricao;
+    private EditText edit_produto, edit_cidade, edit_preco, edit_descricao;
     private Button leiloar;
     private Spinner categoria;
     private Button addImgButton;
     private ImageView miniImagem;
     private String data;
+    String horario;
     private FirebaseAuth auth;
 
     private Uri filePath;
@@ -77,10 +80,16 @@ public class LeiloarFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view =  inflater.inflate(R.layout.fragment_leiloar, container, false);
+        View view = inflater.inflate(R.layout.fragment_leiloar, container, false);
+        auth = FirebaseAuth.getInstance();
+        verificaAuth();
+        final Calendar c = Calendar.getInstance();
+        String hora = "" + c.get(Calendar.HOUR_OF_DAY);
+        String minute = "" + c.get(Calendar.MINUTE);
+        horario = (hora + ":" + minute);
         idCampo(view);
         btnAdicionarImg(view);
-        return  view;
+        return view;
 
     }
 
@@ -93,8 +102,8 @@ public class LeiloarFragment extends Fragment {
         edit_cidade = view.findViewById(R.id.edit_nomecidade);
         categoria = view.findViewById(R.id.spinnerclasse);
         leiloar = view.findViewById(R.id.button_leiloar);
-        edit_descricao  =view.findViewById(R.id.edit_DescricaoProduto);
-        long date= System.currentTimeMillis();
+        edit_descricao = view.findViewById(R.id.edit_DescricaoProduto);
+        long date = System.currentTimeMillis();
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yy");
         data = formatter.format(date);
         storage = FirebaseStorage.getInstance();
@@ -114,104 +123,102 @@ public class LeiloarFragment extends Fragment {
 
     private void uploadImage() {
 
-        if(mImageUri != null)
-        {
+        if (mImageUri != null) {
             final ProgressDialog progressDialog = new ProgressDialog(getContext());
             progressDialog.setTitle("Leiloando...");
             progressDialog.show();
-            final String pathImage = "images/"+ UUID.randomUUID().toString();
+            final String pathImage = "images/" + UUID.randomUUID().toString();
             final StorageReference ref = storageReference.child(pathImage);
             ref.putFile(mImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                            auth = FirebaseAuth.getInstance();
-                            auth.signOut();
-
-                            taskSnapshot.getDownloadUrl();
-                            progressDialog.dismiss();
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
 
-
-                            AlertDialog.Builder alert = new android.support.v7.app.AlertDialog.Builder(getContext());
-
-                            alert
-                                    .setTitle("Leiloado ;)")
-                                    .setIcon(R.drawable.ic_action_check_verde)
-                                    .setMessage("Seu produto foi anunciado com sucesso!")
-                                    .setCancelable(false)
-                                    .setPositiveButton("Finalizar", new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            FragmentoUtils.replace(getActivity(), new InicioFragment());
-                                        }
-                                    });
-
-                            AlertDialog alertDialog = alert.create();
-                            alertDialog.show();
-
-                            Uri imageUrl = taskSnapshot.getDownloadUrl();
-
-                            Produto produto = new Produto();
-                            produto.setPreco(edit_preco.getText().toString());
-                            produto.setNome(edit_produto.getText().toString());
-                            produto.setCat(categoria.getSelectedItem().toString());
-                            produto.setLocal(edit_cidade.getText().toString());
-                            produto.setDescrição(edit_descricao.getText().toString());
-                            produto.setImageUrl(imageUrl.toString());
-                            produto.setPathImagem(pathImage);
-                            produto.setDataInicial(data);
-
-                            new DataBaseDAO().instancia_produto(produto);
-
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            progressDialog.dismiss();
+                    taskSnapshot.getDownloadUrl();
+                    progressDialog.dismiss();
 
 
-                            AlertDialog.Builder alert = new android.support.v7.app.AlertDialog.Builder(getContext());
+                    AlertDialog.Builder alert = new android.support.v7.app.AlertDialog.Builder(getContext());
 
-                            alert
-                                    .setTitle("Atenção!")
-                                    .setIcon(R.drawable.ic_action_alert_red)
-                                    .setMessage("para leiloar um produto, é necessário está logado.")
-                                    .setCancelable(true)
-                                    .setPositiveButton("Efetuar o Login", new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            FragmentoUtils.replace(getActivity(), new LoginFragment());
-                                        }
-                                    });
+                    alert
+                            .setTitle("Leiloado ;)")
+                            .setIcon(R.drawable.ic_action_check_verde)
+                            .setMessage("Seu produto foi anunciado com sucesso!")
+                            .setCancelable(false)
+                            .setPositiveButton("Finalizar", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    FragmentoUtils.replace(getActivity(), new InicioFragment());
+                                }
+                            });
 
-                            AlertDialog alertDialog = alert.create();
-                            alertDialog.show();
+                    AlertDialog alertDialog = alert.create();
+                    alertDialog.show();
+
+                    Uri imageUrl = taskSnapshot.getDownloadUrl();
+
+                    Produto produto = new Produto();
+                    produto.setPreco(edit_preco.getText().toString());
+                    produto.setNome(edit_produto.getText().toString());
+                    produto.setCat(categoria.getSelectedItem().toString());
+                    produto.setLocal(edit_cidade.getText().toString());
+                    produto.setDescrição(edit_descricao.getText().toString());
+                    produto.setImageUrl(imageUrl.toString());
+                    produto.setPathImagem(pathImage);
+                    produto.setDataInicial(data);
+                    produto.setHorarioInicial(horario);
+
+                    new DataBaseDAO().instancia_produto(produto);
+
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    progressDialog.dismiss();
 
 
-                        }
+                    AlertDialog.Builder alert = new android.support.v7.app.AlertDialog.Builder(getContext());
 
-                    }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
-                            double progress = (100.0*taskSnapshot.getBytesTransferred()/taskSnapshot
-                                    .getTotalByteCount());
-                            progressDialog.setMessage("Carregando Imagem "+(int)progress+"%");
-                        }
-                    });
+                    alert
+                            .setTitle("Atenção!")
+                            .setIcon(R.drawable.ic_action_alert_red)
+                            .setMessage("para leiloar um produto, é necessário está logado.")
+                            .setCancelable(true)
+                            .setPositiveButton("Efetuar o Login", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    FragmentoUtils.replace(getActivity(), new LoginFragment());
+                                }
+                            });
+
+                    AlertDialog alertDialog = alert.create();
+                    alertDialog.show();
+
+
+                }
+
+            }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                    double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot
+                            .getTotalByteCount());
+                    progressDialog.setMessage("Carregando Imagem " + (int) progress + "%");
+                }
+            });
         }
     }
 
     public void btnAdicionarImg(View view) {
-        
+
         addImgButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                
+
                 abrirImagem();
-                
+
             }
         });
-        
+
     }
 
     private void abrirImagem() {
@@ -232,6 +239,20 @@ public class LeiloarFragment extends Fragment {
             Picasso.get().load(mImageUri).into(miniImagem);
             miniImagem.setImageURI(mImageUri);
         }
+    }
+
+    public void verificaAuth() {
+        if (auth.getCurrentUser() != null) {
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            if (user != null) {
+
+            }
+
+        }
+        if (auth.getCurrentUser() == null) {
+            FragmentoUtils.replace(getActivity(), new LoginFragment());
+        }
+
     }
 
 }
