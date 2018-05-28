@@ -1,5 +1,6 @@
 package com.marlonncarvalhosa.mamaeeuquero.Views;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.marlonncarvalhosa.mamaeeuquero.R;
+import com.marlonncarvalhosa.mamaeeuquero.fragments.DescricaoFragment;
 import com.marlonncarvalhosa.mamaeeuquero.model.Produto;
 import com.marlonncarvalhosa.mamaeeuquero.utils.ConstantsUtils;
 
@@ -16,17 +18,25 @@ public class FullScreenImage extends AppCompatActivity {
 
     private ImageView btn_sair;
     private ImageView imageView;
+    private String url;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_full_screen_image);
-
+        Intent intent = getIntent();
+        url = intent.getStringExtra(DescricaoFragment.URL_IMAGEM);
         btn_sair = (ImageView) findViewById(R.id.btn_sair);
         imageView = (ImageView) findViewById(R.id.img_full);
         sairImg();
         hideNavigationbar();
-
+        try {
+            Glide.with(getApplicationContext())
+                    .load(url)
+                    .into(imageView);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     private void sairImg() {

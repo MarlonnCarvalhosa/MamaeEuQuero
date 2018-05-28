@@ -23,6 +23,7 @@ import com.marlonncarvalhosa.mamaeeuquero.utils.Lance_Dialog;
 
 
 public class DescricaoFragment extends Fragment{
+    public static final String URL_IMAGEM = "package com.marlonncarvalhosa.mamaeeuquero.fragments;";
 private Bundle bundle;
 private  Produto produto;
 private ImageView imageView;
@@ -43,8 +44,9 @@ private FirebaseAuth auth;
         View view= inflater.inflate(R.layout.fragment_descricao, container, false);
         auth = FirebaseAuth.getInstance();
         idCampo(view);
-        imgFull(view);
+
         initView(view);
+        imgFull(view);
 
 
 
@@ -56,6 +58,7 @@ private FirebaseAuth auth;
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), FullScreenImage.class);
+                intent.putExtra(URL_IMAGEM,produto.getImageUrl());
                 startActivity(intent);
             }
         });
