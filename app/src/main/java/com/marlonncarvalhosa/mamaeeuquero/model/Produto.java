@@ -15,6 +15,9 @@ public class Produto implements Serializable{
     private String imageUrl;
     private  String dataInicial;
     private String horarioInicial;
+    private  int hora;
+    private int minuto;
+    private int dia ;
 
     public String getPathImagem() {
         return pathImagem;
@@ -36,7 +39,7 @@ public class Produto implements Serializable{
 
     }
 
-    public Produto(String id, String nome, String cat, String preco, String local, String descrição, String pathImagem, String imageUrl,String dataInicial,String horaInicial) {
+    public Produto(String id, String nome, String cat, String preco, String local, String descrição, String pathImagem, String imageUrl,String dataInicial,String horaInicial,int dia, int hora , int minuto) {
         this.id = id;
         this.nome = nome;
         this.cat = cat;
@@ -47,6 +50,9 @@ public class Produto implements Serializable{
         this.imageUrl = imageUrl;
         this.dataInicial=dataInicial;
         this.horarioInicial=horaInicial;
+        this.dia=dia;
+        this.hora=hora;
+        this.minuto=minuto;
     }
 
     public String getId() {
@@ -111,5 +117,29 @@ public class Produto implements Serializable{
 
     public void setHorarioInicial(String horarioInicial) {
         this.horarioInicial = horarioInicial;
+    }
+
+    public int getHora() {
+        return hora;
+    }
+
+    public int getMinuto() {
+        return minuto;
+    }
+
+    public void setMinuto(int minuto) {
+        this.minuto = minuto;
+    }
+
+    public int getDia() {
+        return dia;
+    }
+
+    public void setHora(int hora) {
+        this.hora = hora;
+    }
+
+    public void setDia(int dia) {
+        this.dia = dia;
     }
 }

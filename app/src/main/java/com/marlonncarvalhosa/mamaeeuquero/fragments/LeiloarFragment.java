@@ -59,6 +59,7 @@ public class LeiloarFragment extends Fragment {
     private ImageView miniImagem;
     private String data;
     String horario;
+    int hora , minuto, dia;
     private FirebaseAuth auth;
 
     private Uri filePath;
@@ -84,9 +85,10 @@ public class LeiloarFragment extends Fragment {
         auth = FirebaseAuth.getInstance();
         verificaAuth();
         final Calendar c = Calendar.getInstance();
-        String hora = "" + c.get(Calendar.HOUR_OF_DAY);
-        String minute = "" + c.get(Calendar.MINUTE);
-        horario = (hora + ":" + minute);
+      hora = 0 + c.get(Calendar.HOUR_OF_DAY);
+      minuto = 0 + c.get(Calendar.MINUTE);
+        dia = 0 +c.get(Calendar.DAY_OF_MONTH);
+        horario = (hora + ":" + minuto);
         idCampo(view);
         btnAdicionarImg(view);
         return view;
@@ -167,6 +169,9 @@ public class LeiloarFragment extends Fragment {
                     produto.setPathImagem(pathImage);
                     produto.setDataInicial(data);
                     produto.setHorarioInicial(horario);
+                    produto.setHora(hora);
+                    produto.setMinuto(minuto);
+                    produto.setDia(dia);
 
                     new DataBaseDAO().instancia_produto(produto);
 

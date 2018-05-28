@@ -39,7 +39,6 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ViewHold
     private static final int SECONDS_IN_A_MINUTE = 60;
 
     private static final String FORMAT = "%02dh %02dm %02ds";
-    private Calendar calendar;
 
     int seconds , minutes;
 
@@ -52,48 +51,81 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ViewHold
         private TextView textViewProduto,textViewPreco,textViewCidade,data, textViewCountTimer;;
         private LinearLayout linearLayout;
         private ImageView imageView;
+        Calendar calendar;
 
         public ViewHolder(View itemView) {
             super(itemView);
 
-            textViewCountTimer=itemView.findViewById(R.id.tempo);
-            textViewProduto=itemView.findViewById(R.id.nomeProduto);
-            textViewCidade=itemView.findViewById(R.id.cidade);
-            textViewPreco=itemView.findViewById(R.id.preco);
+            textViewCountTimer = itemView.findViewById(R.id.tempo);
+            textViewProduto = itemView.findViewById(R.id.nomeProduto);
+            textViewCidade = itemView.findViewById(R.id.cidade);
+            textViewPreco = itemView.findViewById(R.id.preco);
             imageView = itemView.findViewById(R.id.imagemProduto);
-            data=itemView.findViewById(R.id.datainicio);
-            linearLayout= itemView.findViewById(R.id.linearAdapter);
+            data = itemView.findViewById(R.id.datainicio);
+            linearLayout = itemView.findViewById(R.id.linearAdapter);
             linearLayout.setClickable(true);
             linearLayout.setFocusableInTouchMode(true);
-
             calendar = Calendar.getInstance();
-            calendar.set(Calendar.DAY_OF_MONTH, 26);
-            calendar.set(Calendar.HOUR_OF_DAY, 23);
-            calendar.set(Calendar.MINUTE, 17);
-
-
-            Calendar proximoDia = Calendar.getInstance();
-            proximoDia.setTimeInMillis(calendar.getTimeInMillis());
-            proximoDia.add(Calendar.DAY_OF_MONTH, 1);
-
-            long milisegundos = (proximoDia.getTimeInMillis() - Calendar.getInstance().getTimeInMillis());
-
-            new CountDownTimer(	milisegundos, 1000) { // adjust the milli seconds here
-
-                public void onTick(long millisUntilFinished) {
-
-                    textViewCountTimer.setText(timeConversion((int) (millisUntilFinished)/1000));
-
-                }
-
-                public void onFinish() {
-                    textViewCountTimer.setText("Tempo expirado!");
-                }
-            }.start();
-
         }
     }
+    public void atualiza(List<Produto> produtos){
+        this.produtos=produtos;
+        this.notifyDataSetChanged();
 
+    }
+
+    @NonNull
+    @Override
+    public ProdutoAdapter.ViewHolder  onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new ProdutoAdapter.ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_produto,parent,false));
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull final ProdutoAdapter.ViewHolder holder, int position) {
+        final Produto produto = produtos.get(position);
+
+        holder.textViewProduto.setText(produto.getNome());
+        holder.textViewCidade.setText(produto.getLocal());
+        holder.textViewPreco.setText(produto.getPreco());
+        holder.data.setText(produto.getDataInicial());
+        holder.calendar.set(Calendar.DAY_OF_MONTH,produto.getDia());
+        holder.calendar.set(Calendar.HOUR,produto.getHora());
+        holder.calendar.set(Calendar.MINUTE,produto.getMinuto());
+
+        holder.textViewCountTimer.getContext();
+        holder.linearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                FragmentoUtils.replace(activity, new DescricaoFragment().newIntance(produto));
+
+            }
+        });
+        try {
+            Glide.with(activity).load(produto.getImageUrl()).apply(RequestOptions.circleCropTransform()).into(holder.imageView);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        Calendar proximoDia = Calendar.getInstance();
+        proximoDia.setTimeInMillis(holder.calendar.getTimeInMillis());
+        proximoDia.add(Calendar.DAY_OF_MONTH, 1);
+
+        long milisegundos = (proximoDia.getTimeInMillis() - Calendar.getInstance().getTimeInMillis());
+
+        new CountDownTimer(	milisegundos, 1000) { // adjust the milli seconds here
+
+            public void onTick(long millisUntilFinished) {
+
+               holder.textViewCountTimer.setText(timeConversion((int) (millisUntilFinished)/1000));
+
+            }
+
+            public void onFinish() {
+                holder.textViewCountTimer.setText("Tempo expirado!");
+            }
+        }.start();
+
+    }
     private static String timeConversion(int totalSeconds) {
         int hours = totalSeconds / MINUTES_IN_AN_HOUR / SECONDS_IN_A_MINUTE;
         int minutes = (totalSeconds - (hoursToSeconds(hours)))
@@ -139,41 +171,7 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ViewHold
         return (int)((laterDate.getTime()/HOUR_MILLIS) - (earlierDate.getTime()/HOUR_MILLIS));
     }
 
-    public void atualiza(List<Produto> produtos){
-        this.produtos=produtos;
-        this.notifyDataSetChanged();
 
-    }
-
-    @NonNull
-    @Override
-    public ProdutoAdapter.ViewHolder  onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ProdutoAdapter.ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_produto,parent,false));
-    }
-
-    @Override
-    public void onBindViewHolder(@NonNull final ProdutoAdapter.ViewHolder holder, int position) {
-        final Produto produto = produtos.get(position);
-        holder.textViewProduto.setText(produto.getNome());
-        holder.textViewCidade.setText(produto.getLocal());
-        holder.textViewPreco.setText(produto.getPreco());
-        holder.data.setText(produto.getDataInicial());
-        holder.textViewCountTimer.getContext();
-        holder.linearLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                FragmentoUtils.replace(activity, new DescricaoFragment().newIntance(produto));
-
-            }
-        });
-        try {
-            Glide.with(activity).load(produto.getImageUrl()).apply(RequestOptions.circleCropTransform()).into(holder.imageView);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-
-    }
 
     @Override
     public int getItemCount()
