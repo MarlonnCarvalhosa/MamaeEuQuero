@@ -143,7 +143,7 @@ public class LeiloarFragment extends Fragment {
                     AlertDialog.Builder alert = new android.support.v7.app.AlertDialog.Builder(getContext());
 
                     alert
-                            .setTitle("Leiloado ;)")
+                            .setTitle("Produto Leiloado ;)")
                             .setIcon(R.drawable.ic_action_check_verde)
                             .setMessage("Seu produto foi anunciado com sucesso!")
                             .setCancelable(false)
@@ -180,25 +180,6 @@ public class LeiloarFragment extends Fragment {
                 @Override
                 public void onFailure(@NonNull Exception e) {
                     progressDialog.dismiss();
-
-
-                    AlertDialog.Builder alert = new android.support.v7.app.AlertDialog.Builder(getContext());
-
-                    alert
-                            .setTitle("Atenção!")
-                            .setIcon(R.drawable.ic_action_alert_red)
-                            .setMessage("para leiloar um produto, é necessário está logado.")
-                            .setCancelable(true)
-                            .setPositiveButton("Efetuar o Login", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    FragmentoUtils.replace(getActivity(), new LoginFragment());
-                                }
-                            });
-
-                    AlertDialog alertDialog = alert.create();
-                    alertDialog.show();
-
 
                 }
 

@@ -248,6 +248,9 @@
     <string name="cidade">Cidade</string>
     <string name="pre_o">Preço</string>
     <string name="ltimo_lance">Último lance</string>
+    <string name="ainda_n_o_possui_registro">Ainda não possui registro?</string>
+    <string name="clique_aqui">clique aqui</string>
+    <string name="esqueci_minha_senha">Esqueci minha senha</string>
 
     <array name="spinerTipoProduto">
         <item>Categoria</item>
