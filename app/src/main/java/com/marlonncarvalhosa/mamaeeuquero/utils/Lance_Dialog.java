@@ -11,6 +11,8 @@ import android.widget.EditText;
 
 import com.marlonncarvalhosa.mamaeeuquero.R;
 
+import java.util.Locale;
+
 public class Lance_Dialog extends AppCompatDialogFragment {
     private EditText valor;
 
@@ -20,6 +22,9 @@ public class Lance_Dialog extends AppCompatDialogFragment {
 
         LayoutInflater inflater = getActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.lance_layout, null);
+
+        //Locale mLocale = new Locale("pt", "BR");
+        //valor.addTextChangedListener(new MoneyTextWatcher(valor, mLocale));
 
         builder.setView(view)
                 .setTitle("De seu Lance!")
@@ -35,6 +40,7 @@ public class Lance_Dialog extends AppCompatDialogFragment {
 
                     }
                 });
+
 
         valor = view.findViewById(R.id.edit_lance);
 

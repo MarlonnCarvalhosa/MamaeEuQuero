@@ -11,6 +11,7 @@ import android.os.CountDownTimer;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.text.Layout;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,6 +36,7 @@ import com.marlonncarvalhosa.mamaeeuquero.Views.MainActivity;
 import com.marlonncarvalhosa.mamaeeuquero.model.Produto;
 import com.marlonncarvalhosa.mamaeeuquero.utils.FragmentoUtils;
 import com.marlonncarvalhosa.mamaeeuquero.utils.Lance_Dialog;
+import com.marlonncarvalhosa.mamaeeuquero.utils.MoneyTextWatcher;
 import com.squareup.picasso.Picasso;
 import android.support.v7.app.AlertDialog;
 
@@ -42,6 +44,7 @@ import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.time.DateTimeException;
 import java.util.Calendar;
+import java.util.Locale;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
@@ -85,12 +88,16 @@ public class LeiloarFragment extends Fragment {
         auth = FirebaseAuth.getInstance();
         verificaAuth();
         final Calendar c = Calendar.getInstance();
-      hora = 0 + c.get(Calendar.HOUR_OF_DAY);
-      minuto = 0 + c.get(Calendar.MINUTE);
+        hora = 0 + c.get(Calendar.HOUR_OF_DAY);
+        minuto = 0 + c.get(Calendar.MINUTE);
         dia = 0 +c.get(Calendar.DAY_OF_MONTH);
         horario = (hora + ":" + minuto);
         idCampo(view);
         btnAdicionarImg(view);
+
+        Locale mLocale = new Locale("pt", "BR");
+        edit_preco.addTextChangedListener(new MoneyTextWatcher(edit_preco, mLocale));
+
         return view;
 
     }

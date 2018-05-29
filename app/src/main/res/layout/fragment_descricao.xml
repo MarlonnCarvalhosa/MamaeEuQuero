@@ -57,23 +57,12 @@
                     android:layout_marginTop="25.5dp">
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="R$ "
-                        android:textColor="#fff"
-                        android:textStyle="bold"
-                        android:textSize="15sp"
-                        android:layout_gravity="center_vertical"
-                        android:background="@color/verdeClaro"
-                        android:layout_marginLeft="5dp"/>
-
-                    <TextView
                         android:id="@+id/TextValor"
-                        android:layout_width="80dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="33dp"
                         android:background="@color/verdeClaro"
                         android:layout_alignParentLeft="true"
-                        android:layout_marginLeft="26dp"
+                        android:layout_marginLeft="5dp"
                         android:gravity="left"
                         android:padding="8dp"
                         android:textColor="#ffffff"

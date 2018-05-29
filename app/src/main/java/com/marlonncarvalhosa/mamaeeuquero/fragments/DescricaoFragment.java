@@ -21,6 +21,9 @@ import com.marlonncarvalhosa.mamaeeuquero.model.Produto;
 import com.marlonncarvalhosa.mamaeeuquero.utils.ConstantsUtils;
 import com.marlonncarvalhosa.mamaeeuquero.utils.FragmentoUtils;
 import com.marlonncarvalhosa.mamaeeuquero.utils.Lance_Dialog;
+import com.marlonncarvalhosa.mamaeeuquero.utils.MoneyTextWatcher;
+
+import java.util.Locale;
 
 
 public class DescricaoFragment extends Fragment{
@@ -45,7 +48,6 @@ private FirebaseAuth auth;
         View view= inflater.inflate(R.layout.fragment_descricao, container, false);
         auth = FirebaseAuth.getInstance();
         idCampo(view);
-
         initView(view);
         imgFull(view);
 
