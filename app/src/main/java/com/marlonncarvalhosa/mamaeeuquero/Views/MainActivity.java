@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.widget.Button;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.marlonncarvalhosa.mamaeeuquero.fragments.CategoriasFragment;
 import com.marlonncarvalhosa.mamaeeuquero.fragments.LoginFragment;
 import com.marlonncarvalhosa.mamaeeuquero.utils.BottomNavigationViewHelper;
 import com.marlonncarvalhosa.mamaeeuquero.R;
@@ -39,10 +40,10 @@ public class MainActivity extends AppCompatActivity {
 
                     return true;
                 case R.id.navigation_favoritos:
-                    FragmentoUtils.replace(MainActivity.this, new FavoritosFragment());
+                    FragmentoUtils.replace(MainActivity.this, new CategoriasFragment());
                     toolbar = (Toolbar) findViewById(R.id.toolbarTopo);
                     setSupportActionBar(toolbar);
-                    getSupportActionBar().setTitle("Favoritos");
+                    getSupportActionBar().setTitle("Categorias");
 
                     return true;
                 case R.id.navigation_leiloar:
