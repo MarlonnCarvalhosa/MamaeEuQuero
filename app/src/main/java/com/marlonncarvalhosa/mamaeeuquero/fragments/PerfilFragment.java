@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -46,6 +47,8 @@ public class PerfilFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_perfil, container, false);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().show();
+
         auth = FirebaseAuth.getInstance();
         desconectar=view.findViewById(R.id.desconectar);
         desconectar.setOnClickListener(new View.OnClickListener() {

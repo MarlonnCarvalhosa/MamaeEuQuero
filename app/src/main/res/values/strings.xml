@@ -253,12 +253,14 @@
     <string name="esqueci_minha_senha">Esqueci minha senha!</string>
 
     <array name="spinerTipoProduto">
-        <item>Categoria</item>
-        <item>Roupa</item>
-        <item>Brinquedo</item>
+        <item>Selecione a categoria</item>
         <item>Acessórios</item>
-        <item>Outros</item>
-
+        <item>Brinquedos</item>
+        <item>Calçados</item>
+        <item>Enxoval</item>
+        <item>Escolar</item>
+        <item>Móvies</item>
+        <item>Roupas</item>
     </array>
 
 </resources>

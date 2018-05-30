@@ -3,6 +3,7 @@ package com.marlonncarvalhosa.mamaeeuquero.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.view.menu.MenuView;
 import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
@@ -37,6 +38,7 @@ public class CategoriasFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_categorias, container, false);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().show();
 
         /*clickAcessorios(view);
         clickBrinquedos(view);

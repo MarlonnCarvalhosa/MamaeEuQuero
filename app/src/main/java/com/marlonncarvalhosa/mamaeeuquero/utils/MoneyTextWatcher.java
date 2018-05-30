@@ -48,7 +48,7 @@ public class MoneyTextWatcher implements TextWatcher {
     }
 
     private BigDecimal parseToBigDecimal(String value, Locale locale) {
-        String replaceable = String.format(" [%s,.\\s]", NumberFormat.getCurrencyInstance(locale).getCurrency().getSymbol());
+        String replaceable = String.format("[%s,.\\s]", NumberFormat.getCurrencyInstance(locale).getCurrency().getSymbol());
 
         String cleanString = value.replaceAll(replaceable, "");
 
