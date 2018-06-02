@@ -28,12 +28,12 @@ import java.util.Locale;
 
 public class DescricaoFragment extends Fragment{
     public static final String URL_IMAGEM = "package com.marlonncarvalhosa.mamaeeuquero.fragments;";
-private Bundle bundle;
-private  Produto produto;
-private ImageView imageView;
-private TextView nomeProduto,lanceProduto,tempoProduto,detalhesProduto;
-private Button btnLance;
-private FirebaseAuth auth;
+    private Bundle bundle;
+    private  Produto produto;
+    private ImageView imageView;
+    private TextView nomeProduto,lanceProduto,tempoProduto,detalhesProduto;
+    private Button btnLance;
+    private FirebaseAuth auth;
 
 
     public DescricaoFragment() {
@@ -60,9 +60,11 @@ private FirebaseAuth auth;
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Intent intent = new Intent(getActivity(), FullScreenImage.class);
                 intent.putExtra(URL_IMAGEM,produto.getImageUrl());
                 startActivity(intent);
+
             }
         });
     }
@@ -78,8 +80,10 @@ private FirebaseAuth auth;
     }
 
     private void abrirDialogo() {
+
         Lance_Dialog lance_dialog = new Lance_Dialog();
         lance_dialog.show(getFragmentManager(), " Lance");
+
     }
 
 

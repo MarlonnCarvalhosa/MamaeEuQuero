@@ -31,7 +31,7 @@
                 android:layout_marginBottom="10dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/contorno_edit_view"
-                android:hint="Título"
+                android:hint="@string/t_tulo"
                 android:inputType="textCapSentences"
                 android:padding="15dp"
                 android:textSize="14sp" />
@@ -53,7 +53,7 @@
                 android:layout_marginTop="10dp"
                 android:background="@drawable/contorno_edit_view"
                 android:ems="10"
-                android:hint="Descrição"
+                android:hint="@string/descri_o"
                 android:inputType="textMultiLine"
                 android:padding="15dp"
                 android:textSize="14sp" />
@@ -62,7 +62,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
-                android:text="Nome da Cidade"
+                android:text="@string/nome_da_cidade"
                 android:textColor="#595959"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -75,7 +75,7 @@
                 android:layout_marginTop="10dp"
                 android:background="@drawable/contorno_edit_view"
                 android:ems="10"
-                android:hint="Cidade"
+                android:hint="@string/cidade"
                 android:inputType="textCapSentences"
                 android:padding="15dp"
                 android:textSize="14sp" />
@@ -106,7 +106,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Preço Inicial   R$"
+                    android:text="@string/pre_o_inicial_r"
                     android:textColor="#595959"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -117,7 +117,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
                     android:background="@drawable/contorno_edit_view"
-                    android:hint="Preço Inicial"
+                    android:hint="@string/pre_o_inicial"
                     android:ems="10"
                     android:maxLines="1"
                     android:inputType="number"

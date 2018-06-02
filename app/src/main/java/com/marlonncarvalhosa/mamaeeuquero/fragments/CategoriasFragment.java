@@ -10,8 +10,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.marlonncarvalhosa.mamaeeuquero.R;
+import com.marlonncarvalhosa.mamaeeuquero.utils.FragmentoUtils;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -40,15 +42,15 @@ public class CategoriasFragment extends Fragment {
         View view= inflater.inflate(R.layout.fragment_categorias, container, false);
         ((AppCompatActivity) getActivity()).getSupportActionBar().show();
 
-        /*clickAcessorios(view);
-        clickBrinquedos(view);
+        idCamppo(view);
+
+        clickAcessorios(view);
+        clickBrinquedo(view);
         clickCalcados(view);
         clickEnxoval(view);
         clickEscolar(view);
         clickMoveis(view);
-        clickRoupas(view);*/
-
-        idCamppo(view);
+        clickRoupas(view);
 
         return view;
 
@@ -66,81 +68,95 @@ public class CategoriasFragment extends Fragment {
 
     }
 
-    /*private void clickAcessorios(View view) {
+    public void clickAcessorios(View view) {
 
         acessorios.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+                FragmentoUtils.replace(getActivity(), new ProdutoCategoriaFragment());
+
             }
         });
 
     }
 
-    private void clickBrinquedos(View view) {
+    public void clickBrinquedo(View view) {
 
         brinquedos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+                FragmentoUtils.replace(getActivity(), new ProdutoCategoriaFragment());
+
             }
         });
 
     }
 
-    private void clickCalcados(View view) {
+    public void clickCalcados(View view) {
 
         calcados.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+                FragmentoUtils.replace(getActivity(), new ProdutoCategoriaFragment());
+
             }
         });
 
     }
 
-    private void clickEnxoval(View view) {
+    public void clickEnxoval(View view) {
 
         enxoval.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+                FragmentoUtils.replace(getActivity(), new ProdutoCategoriaFragment());
+
             }
         });
 
     }
 
-    private void clickEscolar(View view) {
+    public void clickEscolar(View view) {
 
         escolar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+                FragmentoUtils.replace(getActivity(), new ProdutoCategoriaFragment());
+
             }
         });
 
     }
 
-    private void clickMoveis(View view) {
+    public void clickMoveis(View view) {
 
         moveis.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+                FragmentoUtils.replace(getActivity(), new ProdutoCategoriaFragment());
+
             }
         });
 
     }
 
-    private void clickRoupas(View view) {
+    public void clickRoupas(View view) {
 
         roupas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+                FragmentoUtils.replace(getActivity(), new ProdutoCategoriaFragment());
+
             }
         });
 
-    }*/
+    }
 
 }

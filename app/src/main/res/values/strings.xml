@@ -251,6 +251,9 @@
     <string name="ainda_n_o_possui_registro">Ainda não possui registro?</string>
     <string name="clique_aqui">CLIQUE AQUI!</string>
     <string name="esqueci_minha_senha">Esqueci minha senha!</string>
+    <string name="pre_o_inicial">Preço Inicial</string>
+    <string name="pre_o_inicial_r">Preço Inicial R$</string>
+    <string name="nome_da_cidade">Nome da Cidade</string>
 
     <array name="spinerTipoProduto">
         <item>Selecione a categoria</item>
@@ -259,7 +262,7 @@
         <item>Calçados</item>
         <item>Enxoval</item>
         <item>Escolar</item>
-        <item>Móvies</item>
+        <item>Móveis</item>
         <item>Roupas</item>
     </array>
 
