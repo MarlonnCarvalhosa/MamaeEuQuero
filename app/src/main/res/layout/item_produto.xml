@@ -80,17 +80,6 @@
                         android:layout_height="wrap_content"
                         android:textColor="#5b5b5b"/>
 
-
-
-                    <ImageView
-                        android:id="@+id/estrela"
-                        android:src="@drawable/ic_action_estrela_favorito"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginLeft="20dp" />
-
-
                 </LinearLayout>
 
                 <View
