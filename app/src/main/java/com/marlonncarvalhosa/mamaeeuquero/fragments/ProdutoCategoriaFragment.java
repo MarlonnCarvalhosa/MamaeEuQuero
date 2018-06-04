@@ -41,6 +41,8 @@ public class ProdutoCategoriaFragment extends Fragment {
     private ProdutoAdapter adapter;
     private ImageView imagemProduto;
     private Uri mImageUri;
+    private String categoria;
+    private Bundle bundle;
 
 
     public ProdutoCategoriaFragment() {
@@ -53,6 +55,7 @@ public class ProdutoCategoriaFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_produto_categoria, container, false);
+        bundle=getArguments();
         idCampo(view);
         preencherLista();
         setHasOptionsMenu(true);
@@ -91,7 +94,11 @@ public class ProdutoCategoriaFragment extends Fragment {
                     produtos.clear();
                     for(DataSnapshot snapshot : dataSnapshot.getChildren()){
                         Produto produto = snapshot.getValue(Produto.class);
-                        produtos.add(produto);
+                        if (categoria.equals(produto.getCat())){
+                            produtos.add(produto);
+
+                        }
+
 
 
                     }

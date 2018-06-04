@@ -76,6 +76,8 @@ public class CategoriasFragment extends Fragment {
 
                 FragmentoUtils.replace(getActivity(), new ProdutoCategoriaFragment());
 
+
+
             }
         });
 
