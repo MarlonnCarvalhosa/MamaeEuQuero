@@ -256,7 +256,6 @@
     <string name="nome_da_cidade">Nome da Cidade</string>
 
     <array name="spinerTipoProduto">
-        <item>Selecione a categoria</item>
         <item>Acessórios</item>
         <item>Brinquedos</item>
         <item>Calçados</item>

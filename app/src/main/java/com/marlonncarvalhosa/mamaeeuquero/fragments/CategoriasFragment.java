@@ -73,7 +73,7 @@ public class CategoriasFragment extends Fragment {
         acessorios.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                setTextViewText("Acessórios");
                 FragmentoUtils.replace(getActivity(), new ProdutoCategoriaFragment());
 
 
@@ -88,7 +88,7 @@ public class CategoriasFragment extends Fragment {
         brinquedos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                setTextViewText("Brinquedos");
                 FragmentoUtils.replace(getActivity(), new ProdutoCategoriaFragment());
 
             }
@@ -101,7 +101,7 @@ public class CategoriasFragment extends Fragment {
         calcados.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                setTextViewText("Calçados");
                 FragmentoUtils.replace(getActivity(), new ProdutoCategoriaFragment());
 
             }
@@ -114,8 +114,8 @@ public class CategoriasFragment extends Fragment {
         enxoval.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                setTextViewText("Enxoval");
 
-                FragmentoUtils.replace(getActivity(), new ProdutoCategoriaFragment());
 
             }
         });
@@ -127,8 +127,8 @@ public class CategoriasFragment extends Fragment {
         escolar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                setTextViewText("Escolar");
 
-                FragmentoUtils.replace(getActivity(), new ProdutoCategoriaFragment());
 
             }
         });
@@ -140,8 +140,8 @@ public class CategoriasFragment extends Fragment {
         moveis.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                setTextViewText("Móveis");
 
-                FragmentoUtils.replace(getActivity(), new ProdutoCategoriaFragment());
 
             }
         });
@@ -153,12 +153,20 @@ public class CategoriasFragment extends Fragment {
         roupas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                setTextViewText("Roupas");
 
-                FragmentoUtils.replace(getActivity(), new ProdutoCategoriaFragment());
 
             }
         });
 
     }
+    public void setTextViewText(String text){
+        Bundle args = new Bundle();
+        args.putString("key",text);
 
+        ProdutoCategoriaFragment produtoCategoriaFragment= new ProdutoCategoriaFragment();
+        produtoCategoriaFragment.setArguments(args);
+        FragmentoUtils.replace(getActivity(),produtoCategoriaFragment);
+
+    }
 }
