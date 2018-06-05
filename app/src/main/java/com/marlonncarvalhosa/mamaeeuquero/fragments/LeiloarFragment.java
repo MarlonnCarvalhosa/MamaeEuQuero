@@ -218,10 +218,12 @@ public class LeiloarFragment extends Fragment {
     }
 
     private void abrirImagem() {
+
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(intent, PICK_IMAGE_REQUEST);
+
     }
 
     @Override
@@ -235,9 +237,11 @@ public class LeiloarFragment extends Fragment {
             Picasso.get().load(mImageUri).into(miniImagem);
             miniImagem.setImageURI(mImageUri);
         }
+
     }
 
     public void verificaAuth() {
+
         if (auth.getCurrentUser() != null) {
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
             if (user != null) {
@@ -245,6 +249,7 @@ public class LeiloarFragment extends Fragment {
             }
 
         }
+
         if (auth.getCurrentUser() == null) {
             FragmentoUtils.replace(getActivity(), new LoginFragment());
         }

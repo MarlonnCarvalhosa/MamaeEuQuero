@@ -122,6 +122,7 @@ public class LoginFragment extends Fragment
 
     public void verificaAuth() {
         if (auth.getCurrentUser() != null) {
+
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
             if (user != null) {
 
@@ -139,9 +140,13 @@ public class LoginFragment extends Fragment
         btnCadastrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 FragmentoUtils.replace(getActivity(), new CadastroFragment());
+
             }
         });
+
     }
+
 }
 

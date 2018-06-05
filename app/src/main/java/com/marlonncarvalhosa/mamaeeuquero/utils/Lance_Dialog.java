@@ -14,13 +14,11 @@ import com.marlonncarvalhosa.mamaeeuquero.R;
 import java.util.Locale;
 
 public class Lance_Dialog extends AppCompatDialogFragment {
+
     private EditText valor;
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-
-        //Locale mLocale = new Locale("pt", "BR");
-        //valor.addTextChangedListener(new MoneyTextWatcher(valor, mLocale));
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
@@ -42,9 +40,12 @@ public class Lance_Dialog extends AppCompatDialogFragment {
                     }
                 });
 
-
         valor = view.findViewById(R.id.edit_lance);
+
+        Locale mLocale = new Locale("pt", "BR");
+        valor.addTextChangedListener(new MoneyTextWatcher(valor, mLocale));
 
         return builder.create();
     }
+
 }

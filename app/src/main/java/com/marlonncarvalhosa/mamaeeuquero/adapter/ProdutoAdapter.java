@@ -66,8 +66,10 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ViewHold
             linearLayout.setClickable(true);
             linearLayout.setFocusableInTouchMode(true);
             calendar = Calendar.getInstance();
+
         }
     }
+
     public void atualiza(List<Produto> produtos){
         this.produtos=produtos;
         this.notifyDataSetChanged();
@@ -89,7 +91,7 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ViewHold
         holder.textViewPreco.setText(produto.getPreco());
         holder.data.setText(produto.getDataInicial());
         holder.calendar.set(Calendar.DAY_OF_MONTH,produto.getDia());
-        holder.calendar.set(Calendar.HOUR,produto.getHora());
+        holder.calendar.set(Calendar.HOUR_OF_DAY, produto.getHora());
         holder.calendar.set(Calendar.MINUTE,produto.getMinuto());
 
         holder.textViewCountTimer.getContext();
