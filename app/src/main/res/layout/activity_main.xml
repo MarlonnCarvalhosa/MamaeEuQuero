@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container"
+    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     tools:context="com.marlonncarvalhosa.mamaeeuquero.Views.MainActivity">
 
     <android.support.v7.widget.Toolbar
+
         android:id="@+id/toolbarTopo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -18,31 +20,22 @@
     </android.support.v7.widget.Toolbar>
 
     <FrameLayout
+
         android:id="@+id/fragmentPrincipal"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="56dp"
-        android:layout_below="@id/toolbarTopo"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
     </FrameLayout>
 
     <android.support.design.widget.BottomNavigationView
+
         android:id="@+id/navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="0dp"
-        android:layout_marginStart="0dp"
         android:background="@color/colorPrimaryDark"
         app:itemTextColor="@color/white"
         app:itemIconTint="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
         app:menu="@menu/navigation" />
 
-</RelativeLayout>
+</LinearLayout>

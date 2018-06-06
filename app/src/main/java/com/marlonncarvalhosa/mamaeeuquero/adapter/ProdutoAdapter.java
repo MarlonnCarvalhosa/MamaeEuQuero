@@ -108,6 +108,7 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ViewHold
         }catch (Exception e){
             e.printStackTrace();
         }
+
         Calendar proximoDia = Calendar.getInstance();
         proximoDia.setTimeInMillis(holder.calendar.getTimeInMillis());
         proximoDia.add(Calendar.DAY_OF_MONTH, 1);
@@ -123,7 +124,9 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ViewHold
             }
 
             public void onFinish() {
+
                 holder.textViewCountTimer.setText("Tempo expirado!");
+
             }
         }.start();
 
@@ -146,41 +149,28 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ViewHold
         return minutes * SECONDS_IN_A_MINUTE;
     }
 
-    public static int secondsDiff(Date earlierDate, Date laterDate )
-    {
+    public static int secondsDiff(Date earlierDate, Date laterDate ) {
         if( earlierDate == null || laterDate == null ) return 0;
 
         return (int)((laterDate.getTime()/SECOND_MILLIS) - (earlierDate.getTime()/SECOND_MILLIS));
     }
 
-    /**
-     * Get the minutes difference
-     */
-    public static int minutesDiff( Date earlierDate, Date laterDate )
-    {
+    public static int minutesDiff( Date earlierDate, Date laterDate ) {
         if( earlierDate == null || laterDate == null ) return 0;
 
         return (int)((laterDate.getTime()/MINUTE_MILLIS) - (earlierDate.getTime()/MINUTE_MILLIS));
     }
 
-    /**
-     * Get the hours difference
-     */
-    public static int hoursDiff( Date earlierDate, Date laterDate )
-    {
+    public static int hoursDiff( Date earlierDate, Date laterDate ) {
         if( earlierDate == null || laterDate == null ) return 0;
 
         return (int)((laterDate.getTime()/HOUR_MILLIS) - (earlierDate.getTime()/HOUR_MILLIS));
     }
 
-
-
     @Override
-    public int getItemCount()
-    {
+    public int getItemCount() {
 
         return produtos.size();
     }
-
 
 }
