@@ -2,26 +2,46 @@ package com.marlonncarvalhosa.mamaeeuquero.fragments;
 
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.github.rtoshiro.util.format.SimpleMaskFormatter;
 import com.github.rtoshiro.util.format.text.MaskTextWatcher;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.marlonncarvalhosa.mamaeeuquero.DAO.DataBaseDAO;
 import com.marlonncarvalhosa.mamaeeuquero.R;
+import com.marlonncarvalhosa.mamaeeuquero.model.Produto;
+import com.marlonncarvalhosa.mamaeeuquero.model.Usuario;
+import com.marlonncarvalhosa.mamaeeuquero.utils.FragmentoUtils;
+
+import java.util.concurrent.Executor;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class CadastroFragment extends Fragment {
+public class  CadastroFragment extends Fragment {
 
     private EditText datanNascimento;
+    private EditText nomeUsuario;
     private EditText telefone;
-
+    private EditText cadastro_email;
+    private EditText senha1,senha2;
+    private Button registrar;
+    FirebaseAuth auth;
+    DatabaseReference databaseUsuario;
     public CadastroFragment() {
         // Required empty public constructor
     }
@@ -31,17 +51,109 @@ public class CadastroFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
-        View view= inflater.inflate(R.layout.fragment_cadastro, container, false);
+        View view = inflater.inflate(R.layout.fragment_cadastro, container, false);
+        auth = FirebaseAuth.getInstance();
+        listaid(view);
 
-        datanNascimento = (EditText) view.findViewById(R.id.editText_cadastro_data_nascimento);
-        telefone = (EditText) view.findViewById(R.id.editText_cadastro_numero_celular);
 
-        SimpleMaskFormatter data = new SimpleMaskFormatter("NN/NN/NNNN");
-        MaskTextWatcher data1 = new MaskTextWatcher(datanNascimento, data);
-        datanNascimento.addTextChangedListener(data1);
 
         return view;
     }
 
+    private void listaid(View view) {
+        nomeUsuario=view.findViewById(R.id.editText_cadastro_nome);
+        datanNascimento =view.findViewById(R.id.editText_cadastro_data_nascimento);
+        telefone =view.findViewById(R.id.editText_cadastro_numero_celular);
+        cadastro_email=view.findViewById(R.id.editText_cadastro_email);
+        senha1=view.findViewById(R.id.editText_cadastro_senha);
+        senha2=view.findViewById(R.id.editText_cadastro_confirmar_senha);
+        registrar=view.findViewById(R.id.cadastrar);
+        
+
+        
+        SimpleMaskFormatter data = new SimpleMaskFormatter("NN/NN/NNNN");
+        MaskTextWatcher data1 = new MaskTextWatcher(datanNascimento, data);
+        datanNascimento.addTextChangedListener(data1);
+
+        registrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cadastrologar();
+            }
+        });
+
+
+    }
+
+    private void cadastrologar() {
+
+        final String nome = nomeUsuario.getText().toString().trim();
+        final String nascimento = datanNascimento.getText().toString().trim();
+        final String numero = telefone.getText().toString().trim();
+        final String email = cadastro_email.getText().toString().trim();
+        final String senha = senha1.getText().toString().trim();
+
+
+        if (TextUtils.isEmpty(nome)) {
+            nomeUsuario.setError("Obrigatorio");
+
+
+            return;
+        }
+        if (TextUtils.isEmpty(nascimento)) {
+            datanNascimento.setError("Obrigatorio");
+
+
+            return;
+        }
+        if (TextUtils.isEmpty(numero)) {
+            telefone.setError("Obrigatorio");
+
+
+            return;
+        }
+        if (TextUtils.isEmpty(email)) {
+            cadastro_email.setError("Obrigatorio");
+
+
+            return;
+        }
+
+        if (senha.length() < 6) {
+            senha1.setError("Obrigatorio");
+            return;
+        }
+
+
+        registerUser(nome,nascimento,numero,email,senha);
+
+    }
+    private void registerUser(final String nome ,final String data,final String numero,final String email,final String password) {
+
+        auth.createUserWithEmailAndPassword(email,password)
+                .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                            String token = user.getUid();
+                            Usuario usuario = new Usuario();
+                            usuario.setId(token);
+                            usuario.setNomeUsuario(nome);
+                            usuario.setDataNascimento(data);
+                            usuario.setNumeroCelular(numero);
+                            usuario.setEmail(email);
+                            usuario.setSenha(password);
+
+                            new DataBaseDAO().instancia_usuario(usuario);
+                            FragmentoUtils.replace(getActivity(), new InicioFragment());
+
+                        } else {
+
+
+                        }
+                    }
+
+                });
+}
 }

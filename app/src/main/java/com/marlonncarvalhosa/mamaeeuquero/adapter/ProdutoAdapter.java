@@ -133,12 +133,13 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ViewHold
     }
     private static String timeConversion(int totalSeconds) {
         int hours = totalSeconds / MINUTES_IN_AN_HOUR / SECONDS_IN_A_MINUTE;
+        String auxseconds = "";
         int minutes = (totalSeconds - (hoursToSeconds(hours)))
                 / SECONDS_IN_A_MINUTE;
         int seconds = totalSeconds
                 - ((hoursToSeconds(hours)) + (minutesToSeconds(minutes)));
 
-        return hours + "h " + minutes + "m " + seconds + "s";
+        return hours + "h " + minutes + "m " ;
     }
 
     private static int hoursToSeconds(int hours) {

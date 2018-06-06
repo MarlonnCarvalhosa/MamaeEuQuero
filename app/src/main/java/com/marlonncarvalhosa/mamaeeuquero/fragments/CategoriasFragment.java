@@ -74,7 +74,7 @@ public class CategoriasFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 setTextViewText("Acessórios");
-                FragmentoUtils.replace(getActivity(), new ProdutoCategoriaFragment());
+
 
 
 
@@ -89,7 +89,7 @@ public class CategoriasFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 setTextViewText("Brinquedos");
-                FragmentoUtils.replace(getActivity(), new ProdutoCategoriaFragment());
+
 
             }
         });
@@ -102,7 +102,7 @@ public class CategoriasFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 setTextViewText("Calçados");
-                FragmentoUtils.replace(getActivity(), new ProdutoCategoriaFragment());
+
 
             }
         });

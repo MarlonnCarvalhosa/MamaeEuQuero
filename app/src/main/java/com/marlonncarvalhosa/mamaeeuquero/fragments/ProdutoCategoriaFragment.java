@@ -61,7 +61,7 @@ public class ProdutoCategoriaFragment extends Fragment {
         Bundle args = getArguments();
         if(args!= null){
         categoria = args.getString("key");
-           
+
         }
         bundle=getArguments();
         idCampo(view);
