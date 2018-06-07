@@ -16,6 +16,7 @@ public class DataBaseDAO {
         DatabaseReference reference = ConfiguraçõesFirebase.getFirebase();
         reference.child(ConstantsUtils.BANCO_PRODUTOS).child(String.valueOf(produto.getId())).setValue(produto);
         }
+
     public   void instancia_usuario(Usuario usuario){
         usuario.setId(ConfiguraçõesFirebase.getFirebase().push().getKey());
         Log.v("teste save",usuario.getId()+usuario.getNomeUsuario());

@@ -95,32 +95,35 @@ public class  CadastroFragment extends Fragment {
 
 
         if (TextUtils.isEmpty(nome)) {
-            nomeUsuario.setError("Obrigatorio");
+            nomeUsuario.setError("Campo Obrigatório");
 
 
             return;
         }
+
         if (TextUtils.isEmpty(nascimento)) {
-            datanNascimento.setError("Obrigatorio");
+            datanNascimento.setError("Campo Obrigatório");
 
 
             return;
         }
+
         if (TextUtils.isEmpty(numero)) {
-            telefone.setError("Obrigatorio");
+            telefone.setError("Campo Obrigatório");
 
 
             return;
         }
+
         if (TextUtils.isEmpty(email)) {
-            cadastro_email.setError("Obrigatorio");
+            cadastro_email.setError("Campo Obrigatório");
 
 
             return;
         }
 
         if (senha.length() < 6) {
-            senha1.setError("Obrigatorio");
+            senha1.setError("Campo Obrigatório");
             return;
         }
 
@@ -128,6 +131,7 @@ public class  CadastroFragment extends Fragment {
         registerUser(nome,nascimento,numero,email,senha);
 
     }
+
     private void registerUser(final String nome ,final String data,final String numero,final String email,final String password) {
 
         auth.createUserWithEmailAndPassword(email,password)

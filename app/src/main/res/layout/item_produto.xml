@@ -70,9 +70,15 @@
 
                     </android.support.v7.widget.CardView>
 
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:src="@drawable/ic_action_relogio"/>
+
                     <TextView
                         android:id="@+id/tempo"
-                        android:layout_marginLeft="25dp"
+                        android:layout_marginLeft="5dp"
                         android:textStyle="bold"
                         android:layout_marginTop="5dp"
                         android:textSize="15sp"

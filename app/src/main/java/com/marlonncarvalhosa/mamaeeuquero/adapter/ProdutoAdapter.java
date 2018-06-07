@@ -139,7 +139,7 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ViewHold
         int seconds = totalSeconds
                 - ((hoursToSeconds(hours)) + (minutesToSeconds(minutes)));
 
-        return hours + "h " + minutes + "m " ;
+        return hours + "h " + minutes + "m " + seconds + "s" ;
     }
 
     private static int hoursToSeconds(int hours) {
