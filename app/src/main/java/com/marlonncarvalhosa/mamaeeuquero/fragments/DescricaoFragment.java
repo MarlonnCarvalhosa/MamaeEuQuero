@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.marlonncarvalhosa.mamaeeuquero.Views.FullScreenImage;
 import com.marlonncarvalhosa.mamaeeuquero.R;
+import com.marlonncarvalhosa.mamaeeuquero.Views.ImagensActivity;
 import com.marlonncarvalhosa.mamaeeuquero.model.Produto;
 import com.marlonncarvalhosa.mamaeeuquero.utils.ConstantsUtils;
 import com.marlonncarvalhosa.mamaeeuquero.utils.FragmentoUtils;
@@ -51,7 +53,8 @@ public class DescricaoFragment extends Fragment{
         initView(view);
         imgFull(view);
 
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Detalhes do Produto");
+
+        getActivity().setTitle("Detalhes do Produto");
 
     return view;
     }
@@ -61,9 +64,7 @@ public class DescricaoFragment extends Fragment{
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(getActivity(), FullScreenImage.class);
-                intent.putExtra(URL_IMAGEM,produto.getImageUrl());
-                startActivity(intent);
+                getActivity().startActivity(new Intent(ImagensActivity.newIntent(getActivity(), produto)));
 
             }
         });
@@ -102,7 +103,7 @@ public class DescricaoFragment extends Fragment{
                 }
             });
 
-            String url = produto.getImageUrl();
+            String url = produto.getImagem1().getUrl();
 
             try {
                 Glide.with(getActivity())
@@ -136,6 +137,31 @@ public class DescricaoFragment extends Fragment{
             FragmentoUtils.replace(getActivity(), new LoginFragment());
         }
 
+    }
+
+    //Evento de clique de voltar para fragmento anterior <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        if(getView() == null){
+            return;
+        }
+
+        getView().setFocusableInTouchMode(true);
+        getView().requestFocus();
+        getView().setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+
+                if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK){
+
+                    FragmentoUtils.replace(getActivity(), new InicioFragment());
+                    return true;
+                }
+                return false;
+            }
+        });
     }
 }
 

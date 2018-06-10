@@ -104,7 +104,7 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ViewHold
             }
         });
         try {
-            Glide.with(activity).load(produto.getImageUrl()).apply(RequestOptions.circleCropTransform()).into(holder.imageView);
+            Glide.with(activity).load(produto.getImagem1().getUrl()).apply(RequestOptions.circleCropTransform()).into(holder.imageView);
         }catch (Exception e){
             e.printStackTrace();
         }

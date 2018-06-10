@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.marlonncarvalhosa.mamaeeuquero">
+
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -25,8 +26,15 @@
         <activity android:name=".Views.CadastroActivity" />
         <activity
             android:name=".Views.MainActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_main" />
-        <activity android:name=".Views.FullScreenImage"></activity>
+        <activity android:name=".Views.FullScreenImage" />
+        <activity android:name="com.soundcloud.android.crop.CropImageActivity" />
+        <activity
+            android:theme="@style/AppTheme.NoActionBar."
+            android:name=".Views.ImagensActivity">
+
+        </activity>
     </application>
 
 </manifest>

@@ -1,28 +1,24 @@
 package com.marlonncarvalhosa.mamaeeuquero.fragments;
 
 
-
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
-import android.text.Layout;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.TextView;
-import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -33,21 +29,19 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.marlonncarvalhosa.mamaeeuquero.DAO.DataBaseDAO;
 import com.marlonncarvalhosa.mamaeeuquero.R;
-import com.marlonncarvalhosa.mamaeeuquero.Views.MainActivity;
 import com.marlonncarvalhosa.mamaeeuquero.model.Produto;
 import com.marlonncarvalhosa.mamaeeuquero.utils.FragmentoUtils;
-import com.marlonncarvalhosa.mamaeeuquero.utils.Lance_Dialog;
 import com.marlonncarvalhosa.mamaeeuquero.utils.MoneyTextWatcher;
-import com.squareup.picasso.Picasso;
-import android.support.v7.app.AlertDialog;
+import com.soundcloud.android.crop.Crop;
 
-import java.sql.Date;
+import android.support.v7.app.AlertDialog;
+import android.widget.Toast;
+
+import java.io.File;
 import java.text.SimpleDateFormat;
-import java.time.DateTimeException;
 import java.util.Calendar;
 import java.util.Locale;
 import java.util.UUID;
-import java.util.concurrent.TimeUnit;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -57,26 +51,23 @@ import static android.app.Activity.RESULT_OK;
 public class LeiloarFragment extends Fragment {
 
     private EditText edit_produto, edit_cidade, edit_preco, edit_descricao;
-    private Button leiloar;
+
     private Spinner categoria;
-    private Button addImgButton;
-    private ImageView miniImagem;
+    private Produto produto = new Produto();
+    private ImageView image1, image2, image3;
     private String data;
     String horario;
-    int hora , minuto, dia;
+    int hora, minuto, dia;
     private FirebaseAuth auth;
+    private int imgI = 0;
 
-    private Uri filePath;
 
-    private Uri mImageUri;
-
-    private ImageView imageView;
 
     //teste
     FirebaseStorage storage;
     StorageReference storageReference;
 
-    private final int PICK_IMAGE_REQUEST = 71;
+    private boolean pikaChamativa = false;
 
     public LeiloarFragment() {
     }
@@ -90,13 +81,15 @@ public class LeiloarFragment extends Fragment {
 
         auth = FirebaseAuth.getInstance();
         verificaAuth();
+        setHasOptionsMenu(true);
         final Calendar c = Calendar.getInstance();
         hora = 0 + c.get(Calendar.HOUR_OF_DAY);
         minuto = 0 + c.get(Calendar.MINUTE);
-        dia = 0 +c.get(Calendar.DAY_OF_MONTH);
+        dia = 0 + c.get(Calendar.DAY_OF_MONTH);
         horario = (hora + ":" + minuto);
         idCampo(view);
-        btnAdicionarImg(view);
+        setaBackGround(image1, image2, image3);
+
 
         Locale mLocale = new Locale("pt", "BR");
         edit_preco.addTextChangedListener(new MoneyTextWatcher(edit_preco, mLocale));
@@ -105,15 +98,28 @@ public class LeiloarFragment extends Fragment {
 
     }
 
+    private void setaBackGround(ImageView image1, ImageView image2, ImageView image3) {
+        Glide.with(getActivity()).load(getResources().getDrawable(R.drawable.def)).into(image1);
+
+        Glide.with(getActivity()).load(getResources().getDrawable(R.drawable.def)).into(image2);
+
+        Glide.with(getActivity()).load(getResources().getDrawable(R.drawable.def)).into(image3);
+
+
+    }
+
     private void idCampo(View view) {
 
-        miniImagem = view.findViewById(R.id.mini_imagem);
-        addImgButton = view.findViewById(R.id.btnAddImg);
+        image1 = view.findViewById(R.id.image1);
+
+        image2 = view.findViewById(R.id.image2);
+        image3 = view.findViewById(R.id.image3);
+
         edit_produto = view.findViewById(R.id.edit_nomeProduto);
         edit_preco = view.findViewById(R.id.edit_preco);
         edit_cidade = view.findViewById(R.id.edit_nomecidade);
         categoria = view.findViewById(R.id.spinnerclasse);
-        leiloar = view.findViewById(R.id.button_leiloar);
+
         edit_descricao = view.findViewById(R.id.edit_DescricaoProduto);
         long date = System.currentTimeMillis();
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yy");
@@ -121,121 +127,68 @@ public class LeiloarFragment extends Fragment {
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
 
-        leiloar.setOnClickListener(new View.OnClickListener() {
 
+        image1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                uploadImage();
+                selecionarImagem(1);
 
             }
         });
+        image2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selecionarImagem(2);
+            }
+        });
+        image3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selecionarImagem(3);
+
+            }
+        });
+
 
     }
 
     private void uploadImage() {
 
-        if (mImageUri != null) {
-            final ProgressDialog progressDialog = new ProgressDialog(getContext());
-            progressDialog.setTitle("Leiloando...");
+        if(pikaChamativa){
+            final ProgressDialog progressDialog = new ProgressDialog(getActivity());
+            progressDialog.setCanceledOnTouchOutside(false);
+            progressDialog.setMessage(getActivity().getString(R.string.aguarde));
             progressDialog.show();
-            final String pathImage = "images/" + UUID.randomUUID().toString();
-            final StorageReference ref = storageReference.child(pathImage);
-            ref.putFile(mImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+            produto.setPreco(edit_preco.getText().toString());
+            produto.setNome(edit_produto.getText().toString());
+            produto.setCat(categoria.getSelectedItem().toString());
+            produto.setLocal(edit_cidade.getText().toString());
+            produto.setDescrição(edit_descricao.getText().toString());
+            produto.setDataInicial(data);
+            produto.setHorarioInicial(horario);
+            produto.setHora(hora);
+            produto.setMinuto(minuto);
+            produto.setDia(dia);
 
-
-                    taskSnapshot.getDownloadUrl();
-                    progressDialog.dismiss();
-
-
-                    AlertDialog.Builder alert = new android.support.v7.app.AlertDialog.Builder(getContext());
-
-                    alert
-                            .setTitle("Produto Leiloado ;)")
-                            .setIcon(R.drawable.ic_action_check_verde)
-                            .setMessage("Seu produto foi anunciado com sucesso!")
-                            .setCancelable(false)
-                            .setPositiveButton("Finalizar", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    FragmentoUtils.replace(getActivity(), new InicioFragment());
-                                }
-                            });
-
-                    AlertDialog alertDialog = alert.create();
-                    alertDialog.show();
-
-                    Uri imageUrl = taskSnapshot.getDownloadUrl();
-
-                    Produto produto = new Produto();
-                    produto.setPreco(edit_preco.getText().toString());
-                    produto.setNome(edit_produto.getText().toString());
-                    produto.setCat(categoria.getSelectedItem().toString());
-                    produto.setLocal(edit_cidade.getText().toString());
-                    produto.setDescrição(edit_descricao.getText().toString());
-                    produto.setImageUrl(imageUrl.toString());
-                    produto.setPathImagem(pathImage);
-                    produto.setDataInicial(data);
-                    produto.setHorarioInicial(horario);
-                    produto.setHora(hora);
-                    produto.setMinuto(minuto);
-                    produto.setDia(dia);
-
-                    new DataBaseDAO().instancia_produto(produto);
-
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    progressDialog.dismiss();
-
-                }
-
-            }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
-                    double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot
-                            .getTotalByteCount());
-                    progressDialog.setMessage("Carregando Imagem " + (int) progress + "%");
-                }
-            });
+                new DataBaseDAO().uploadDados(getActivity(), image1, image2, image3, produto, progressDialog);
+        }else {
+            Toast.makeText(getActivity(), "Insira pelo menos uma imagem relacionada ao produto!!!", Toast.LENGTH_SHORT).show();
         }
-    }
-
-    public void btnAdicionarImg(View view) {
-
-        addImgButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                abrirImagem();
-
-            }
-        });
 
     }
 
-    private void abrirImagem() {
 
-        Intent intent = new Intent();
-        intent.setType("image/*");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(intent, PICK_IMAGE_REQUEST);
 
-    }
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
+    public void onActivityResult(int requestCode, int resultCode, Intent result) {
+        if (requestCode == Crop.REQUEST_PICK && resultCode == RESULT_OK) {
+            beginCrop(result.getData());
 
-        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK
-                && data != null && data.getData() != null) {
-            mImageUri = data.getData();
 
-            Picasso.get().load(mImageUri).into(miniImagem);
-            miniImagem.setImageURI(mImageUri);
+        } else if (requestCode == Crop.REQUEST_CROP) {
+            setImage(resultCode, result);
+
         }
 
     }
@@ -253,6 +206,68 @@ public class LeiloarFragment extends Fragment {
         if (auth.getCurrentUser() == null) {
             FragmentoUtils.replace(getActivity(), new LoginFragment());
         }
+
+    }
+
+
+    public void onPrepareOptionsMenu(Menu menu) {
+        super.onPrepareOptionsMenu(menu);
+        menu.clear();
+        getActivity().getMenuInflater().inflate(R.menu.menu_leiloar, menu);
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.enviar:
+                uploadImage();
+
+
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private void beginCrop(Uri source) {
+
+        Uri destinarion = Uri.fromFile(new File(getActivity().getCacheDir(), "croped" + String.valueOf(System.currentTimeMillis())));
+        Crop.of(source, destinarion).asSquare().start(getContext(), LeiloarFragment.this);
+
+    }
+
+    private void setImage(int resultCode, Intent result) {
+        if (resultCode == RESULT_OK) {
+                    pikaChamativa = true;
+            switch (imgI) {
+                case 1:
+                    Glide.with(getActivity()).load(Crop.getOutput(result)).into(image1);
+
+                    break;
+
+                case 2:
+                    Glide.with(getActivity()).load(Crop.getOutput(result)).into(image2);
+
+                    break;
+                case 3:
+                    Glide.with(getActivity()).load(Crop.getOutput(result)).into(image3);
+
+                    break;
+            }
+
+
+        } else if (resultCode == Crop.RESULT_ERROR) {
+            Toast.makeText(getActivity(), Crop.getError(result).getMessage(), Toast.LENGTH_LONG).show();
+
+        }
+    }
+
+    private void selecionarImagem( int i) {
+        imgI = i;
+        Crop.pickImage(getContext(), LeiloarFragment.this);
+
 
     }
 

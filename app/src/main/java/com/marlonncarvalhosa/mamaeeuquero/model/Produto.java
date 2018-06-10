@@ -4,58 +4,41 @@ import android.widget.ImageView;
 
 import java.io.Serializable;
 
-public class Produto implements Serializable{
+public class Produto implements Serializable {
     private String id;
     private String nome;
     private String cat;
     private String preco;
     private String local;
     private String descrição;
-    private String pathImagem;
-    private String imageUrl;
-    private  String dataInicial;
+    private String dataInicial;
     private String horarioInicial;
-    private  int hora;
+    private int hora;
     private int minuto;
-    private int dia ;
-
-    public String getPathImagem() {
-        return pathImagem;
-    }
-
-    public void setPathImagem(String pathImagem) {
-        this.pathImagem = pathImagem;
-    }
-
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
-
-    public Produto() {
-
-    }
+    private int dia;
+    private Imagem imagem1 = new Imagem();
+    private Imagem imagem2 = new Imagem();
+    private Imagem imagem3 = new Imagem();
 
 
-
-    public Produto(String id, String nome, String cat, String preco, String local, String descrição, String pathImagem, String imageUrl, String dataInicial, String horaInicial, int dia, int hora , int minuto) {
+    public Produto(String id, String nome, String cat, String preco, String local, String descrição, String dataInicial, String horarioInicial, int hora, int minuto, int dia, Imagem imagem1, Imagem imagem2, Imagem imagem3) {
         this.id = id;
         this.nome = nome;
         this.cat = cat;
         this.preco = preco;
         this.local = local;
         this.descrição = descrição;
-        this.pathImagem = pathImagem;
-        this.imageUrl = imageUrl;
         this.dataInicial = dataInicial;
-        this.horarioInicial = horaInicial;
-        this.dia = dia;
+        this.horarioInicial = horarioInicial;
         this.hora = hora;
         this.minuto = minuto;
+        this.dia = dia;
+        this.imagem1 = imagem1;
+        this.imagem2 = imagem2;
+        this.imagem3 = imagem3;
+    }
 
+    public Produto() {
     }
 
     public String getId() {
@@ -90,20 +73,20 @@ public class Produto implements Serializable{
         this.preco = preco;
     }
 
-    public String getDescrição() {
-        return descrição;
-    }
-
-    public void setDescrição(String descrição) {
-        this.descrição = descrição;
-    }
-
     public String getLocal() {
         return local;
     }
 
     public void setLocal(String local) {
         this.local = local;
+    }
+
+    public String getDescrição() {
+        return descrição;
+    }
+
+    public void setDescrição(String descrição) {
+        this.descrição = descrição;
     }
 
     public String getDataInicial() {
@@ -126,6 +109,10 @@ public class Produto implements Serializable{
         return hora;
     }
 
+    public void setHora(int hora) {
+        this.hora = hora;
+    }
+
     public int getMinuto() {
         return minuto;
     }
@@ -138,12 +125,31 @@ public class Produto implements Serializable{
         return dia;
     }
 
-    public void setHora(int hora) {
-        this.hora = hora;
-    }
-
     public void setDia(int dia) {
         this.dia = dia;
     }
 
+    public Imagem getImagem1() {
+        return imagem1;
+    }
+
+    public void setImagem1(Imagem imagem1) {
+        this.imagem1 = imagem1;
+    }
+
+    public Imagem getImagem2() {
+        return imagem2;
+    }
+
+    public void setImagem2(Imagem imagem2) {
+        this.imagem2 = imagem2;
+    }
+
+    public Imagem getImagem3() {
+        return imagem3;
+    }
+
+    public void setImagem3(Imagem imagem3) {
+        this.imagem3 = imagem3;
+    }
 }
