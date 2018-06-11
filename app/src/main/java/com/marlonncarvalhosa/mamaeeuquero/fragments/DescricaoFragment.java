@@ -31,7 +31,7 @@ import java.util.Locale;
 public class DescricaoFragment extends Fragment{
     public static final String URL_IMAGEM = "package com.marlonncarvalhosa.mamaeeuquero.fragments;";
     private Bundle bundle;
-    private  Produto produto;
+    private Produto produto;
     private ImageView imageView;
     private TextView nomeProduto,lanceProduto,tempoProduto,detalhesProduto;
     private Button btnLance;
@@ -83,6 +83,7 @@ public class DescricaoFragment extends Fragment{
     private void abrirDialogo() {
 
         Lance_Dialog lance_dialog = new Lance_Dialog();
+        lance_dialog.setProduto(produto);
         lance_dialog.show(getFragmentManager(), " Lance");
 
     }

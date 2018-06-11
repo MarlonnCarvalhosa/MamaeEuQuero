@@ -3,8 +3,10 @@ package com.marlonncarvalhosa.mamaeeuquero.model;
 import android.widget.ImageView;
 
 import java.io.Serializable;
+import java.util.Calendar;
 
 public class Produto implements Serializable {
+
     private String id;
     private String nome;
     private String cat;
@@ -160,5 +162,13 @@ public class Produto implements Serializable {
 
     public void setImagem3(Imagem imagem3) {
         this.imagem3 = imagem3;
+    }
+
+    public void recebeLance(String valor) {
+        this.setPreco(valor);
+        Calendar diaAtual = Calendar.getInstance();
+        setMinuto(diaAtual.get(Calendar.MINUTE));
+        setHora(diaAtual.get(Calendar.HOUR_OF_DAY));
+        setSegundos(diaAtual.get(Calendar.SECOND));
     }
 }

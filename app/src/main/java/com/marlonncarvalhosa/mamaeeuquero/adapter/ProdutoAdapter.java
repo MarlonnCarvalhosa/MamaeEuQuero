@@ -9,6 +9,7 @@ import android.support.annotation.ColorRes;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -57,13 +58,14 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ViewHold
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView textViewProduto,textViewPreco,textViewCidade,data, textViewCountTimer, titulo_lance;
-        private LinearLayout linearLayout;
         private ImageView imageView;
+        private LinearLayout clickCard;
         Calendar calendar;
 
         public ViewHolder(View itemView) {
             super(itemView);
 
+            clickCard = itemView.findViewById(R.id.linearAdapter);
             titulo_lance = itemView.findViewById(R.id.titulo_lance);
             textViewCountTimer = itemView.findViewById(R.id.tempo);
             textViewProduto = itemView.findViewById(R.id.nomeProduto);
@@ -71,9 +73,6 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ViewHold
             textViewPreco = itemView.findViewById(R.id.preco);
             imageView = itemView.findViewById(R.id.imagemProduto);
             data = itemView.findViewById(R.id.datainicio);
-            linearLayout = itemView.findViewById(R.id.linearAdapter);
-            linearLayout.setClickable(true);
-            linearLayout.setFocusableInTouchMode(true);
             calendar = Calendar.getInstance();
 
         }
@@ -106,7 +105,8 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ViewHold
         holder.calendar.set(Calendar.SECOND,produto.getSegundos());
 
         holder.textViewCountTimer.getContext();
-        holder.linearLayout.setOnClickListener(new View.OnClickListener() {
+
+        holder.clickCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -139,8 +139,8 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ViewHold
                 holder.textViewCountTimer.setText("Tempo expirado!");
                 holder.titulo_lance.setText("Arrematado por:");
                 holder.titulo_lance.setTextColor(ContextCompat.getColor(activity, R.color.verdeEscuro));
-                holder.linearLayout.setBackgroundColor(ContextCompat.getColor(activity, R.color.teste));
-                holder.linearLayout.setOnClickListener(new View.OnClickListener() {
+                holder.clickCard.setBackgroundColor(ContextCompat.getColor(activity, R.color.teste));
+                holder.clickCard.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
 
@@ -162,6 +162,7 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ViewHold
                                 alertDialog.show();
 
                     }
+
                 });
 
             }
@@ -171,7 +172,6 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ViewHold
     private static String timeConversion(int totalSeconds) {
 
         int hours = totalSeconds / MINUTES_IN_AN_HOUR / SECONDS_IN_A_MINUTE;
-        String auxseconds = "";
 
         int minutes = (totalSeconds - (hoursToSeconds(hours)))
                 / SECONDS_IN_A_MINUTE;
@@ -190,23 +190,7 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ViewHold
         return minutes * SECONDS_IN_A_MINUTE;
     }
 
-    public static int secondsDiff(Date earlierDate, Date laterDate ) {
-        if( earlierDate == null || laterDate == null ) return 0;
 
-        return (int)((laterDate.getTime()/SECOND_MILLIS) - (earlierDate.getTime()/SECOND_MILLIS));
-    }
-
-    public static int minutesDiff( Date earlierDate, Date laterDate ) {
-        if( earlierDate == null || laterDate == null ) return 0;
-
-        return (int)((laterDate.getTime()/MINUTE_MILLIS) - (earlierDate.getTime()/MINUTE_MILLIS));
-    }
-
-    public static int hoursDiff( Date earlierDate, Date laterDate ) {
-        if( earlierDate == null || laterDate == null ) return 0;
-
-        return (int)((laterDate.getTime()/HOUR_MILLIS) - (earlierDate.getTime()/HOUR_MILLIS));
-    }
 
     @Override
     public int getItemCount() {

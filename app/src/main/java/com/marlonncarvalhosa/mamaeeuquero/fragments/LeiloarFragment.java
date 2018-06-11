@@ -6,7 +6,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
@@ -17,16 +16,13 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 import com.marlonncarvalhosa.mamaeeuquero.DAO.DataBaseDAO;
 import com.marlonncarvalhosa.mamaeeuquero.R;
 import com.marlonncarvalhosa.mamaeeuquero.model.Produto;
@@ -34,14 +30,10 @@ import com.marlonncarvalhosa.mamaeeuquero.utils.FragmentoUtils;
 import com.marlonncarvalhosa.mamaeeuquero.utils.MoneyTextWatcher;
 import com.soundcloud.android.crop.Crop;
 
-import android.support.v7.app.AlertDialog;
-import android.widget.Toast;
-
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
-import java.util.UUID;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -51,7 +43,6 @@ import static android.app.Activity.RESULT_OK;
 public class LeiloarFragment extends Fragment {
 
     private EditText edit_produto, edit_cidade, edit_preco, edit_descricao;
-
     private Spinner categoria;
     private Produto produto = new Produto();
     private ImageView image1, image2, image3;
@@ -61,9 +52,6 @@ public class LeiloarFragment extends Fragment {
     private FirebaseAuth auth;
     private int imgI = 0;
 
-
-
-    //teste
     FirebaseStorage storage;
     StorageReference storageReference;
 
@@ -91,7 +79,6 @@ public class LeiloarFragment extends Fragment {
         idCampo(view);
         setaBackGround(image1, image2, image3);
 
-
         Locale mLocale = new Locale("pt", "BR");
         edit_preco.addTextChangedListener(new MoneyTextWatcher(edit_preco, mLocale));
 
@@ -118,7 +105,6 @@ public class LeiloarFragment extends Fragment {
         edit_preco = view.findViewById(R.id.edit_preco);
         edit_cidade = view.findViewById(R.id.edit_nomecidade);
         categoria = view.findViewById(R.id.spinnerclasse);
-
         edit_descricao = view.findViewById(R.id.edit_DescricaoProduto);
         long date = System.currentTimeMillis();
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yy");
@@ -145,6 +131,7 @@ public class LeiloarFragment extends Fragment {
                 selecionarImagem(3);
 
             }
+
         });
 
     }
@@ -168,7 +155,8 @@ public class LeiloarFragment extends Fragment {
             produto.setSegundos(segundos);
             produto.setDia(dia);
 
-                new DataBaseDAO().uploadDados(getActivity(), image1, image2, image3, produto, progressDialog);
+            new DataBaseDAO().uploadDados(getActivity(), image1, image2, image3, produto, progressDialog);
+
         }else {
             android.app.AlertDialog.Builder alert = new android.app.AlertDialog.Builder(getContext());
 
@@ -186,10 +174,10 @@ public class LeiloarFragment extends Fragment {
 
             android.app.AlertDialog alertDialog = alert.create();
             alertDialog.show();
+
         }
 
     }
-
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent result) {
@@ -277,7 +265,6 @@ public class LeiloarFragment extends Fragment {
     private void selecionarImagem( int i) {
         imgI = i;
         Crop.pickImage(getContext(), LeiloarFragment.this);
-
 
     }
 
