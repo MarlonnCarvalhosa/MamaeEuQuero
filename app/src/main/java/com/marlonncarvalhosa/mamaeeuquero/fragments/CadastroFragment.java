@@ -55,7 +55,13 @@ public class  CadastroFragment extends Fragment {
         auth = FirebaseAuth.getInstance();
         listaid(view);
 
+        SimpleMaskFormatter data = new SimpleMaskFormatter("NN/NN/NNNN");
+        MaskTextWatcher data1 = new MaskTextWatcher(datanNascimento, data);
+        datanNascimento.addTextChangedListener(data1);
 
+        SimpleMaskFormatter celular = new SimpleMaskFormatter("(NN) NNNNN-NNNN");
+        MaskTextWatcher cel = new MaskTextWatcher(telefone, celular);
+        telefone.addTextChangedListener(cel);
 
         return view;
     }
@@ -68,12 +74,6 @@ public class  CadastroFragment extends Fragment {
         senha1=view.findViewById(R.id.editText_cadastro_senha);
         senha2=view.findViewById(R.id.editText_cadastro_confirmar_senha);
         registrar=view.findViewById(R.id.cadastrar);
-        
-
-        
-        SimpleMaskFormatter data = new SimpleMaskFormatter("NN/NN/NNNN");
-        MaskTextWatcher data1 = new MaskTextWatcher(datanNascimento, data);
-        datanNascimento.addTextChangedListener(data1);
 
         registrar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,7 +81,6 @@ public class  CadastroFragment extends Fragment {
                 cadastrologar();
             }
         });
-
 
     }
 
@@ -154,10 +153,12 @@ public class  CadastroFragment extends Fragment {
 
                         } else {
 
-
                         }
+
                     }
 
                 });
-}
+
+    }
+
 }

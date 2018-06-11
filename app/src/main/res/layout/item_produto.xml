@@ -38,6 +38,7 @@
                     android:textSize="16sp" />
 
                 <TextView
+                    android:id="@+id/titulo_lance"
                     android:text="@string/ltimo_lance"
                     android:textStyle="bold"
                     android:layout_width="match_parent"

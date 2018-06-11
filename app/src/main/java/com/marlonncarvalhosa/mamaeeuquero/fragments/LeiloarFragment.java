@@ -57,7 +57,7 @@ public class LeiloarFragment extends Fragment {
     private ImageView image1, image2, image3;
     private String data;
     String horario;
-    int hora, minuto, dia;
+    int hora, minuto, segundos, dia;
     private FirebaseAuth auth;
     private int imgI = 0;
 
@@ -85,8 +85,9 @@ public class LeiloarFragment extends Fragment {
         final Calendar c = Calendar.getInstance();
         hora = 0 + c.get(Calendar.HOUR_OF_DAY);
         minuto = 0 + c.get(Calendar.MINUTE);
+        segundos = 0 + c.get(Calendar.SECOND);
         dia = 0 + c.get(Calendar.DAY_OF_MONTH);
-        horario = (hora + ":" + minuto);
+        horario = (hora + ":" + minuto + ":" + segundos);
         idCampo(view);
         setaBackGround(image1, image2, image3);
 
@@ -105,13 +106,11 @@ public class LeiloarFragment extends Fragment {
 
         Glide.with(getActivity()).load(getResources().getDrawable(R.drawable.def)).into(image3);
 
-
     }
 
     private void idCampo(View view) {
 
         image1 = view.findViewById(R.id.image1);
-
         image2 = view.findViewById(R.id.image2);
         image3 = view.findViewById(R.id.image3);
 
@@ -126,7 +125,6 @@ public class LeiloarFragment extends Fragment {
         data = formatter.format(date);
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
-
 
         image1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -149,7 +147,6 @@ public class LeiloarFragment extends Fragment {
             }
         });
 
-
     }
 
     private void uploadImage() {
@@ -168,16 +165,30 @@ public class LeiloarFragment extends Fragment {
             produto.setHorarioInicial(horario);
             produto.setHora(hora);
             produto.setMinuto(minuto);
+            produto.setSegundos(segundos);
             produto.setDia(dia);
 
                 new DataBaseDAO().uploadDados(getActivity(), image1, image2, image3, produto, progressDialog);
         }else {
-            Toast.makeText(getActivity(), "Insira pelo menos uma imagem relacionada ao produto!!!", Toast.LENGTH_SHORT).show();
+            android.app.AlertDialog.Builder alert = new android.app.AlertDialog.Builder(getContext());
+
+            alert
+                    .setTitle("ATENÇÃO!")
+                    .setIcon(R.drawable.ic_action_alert_red)
+                    .setMessage("Para efetuar um leilão é necessário adicionar no mínimo uma foto do produto.")
+                    .setCancelable(true)
+                    .setPositiveButton("Entendi", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                        }
+
+                    });
+
+            android.app.AlertDialog alertDialog = alert.create();
+            alertDialog.show();
         }
 
     }
-
-
 
 
     @Override
@@ -223,7 +234,6 @@ public class LeiloarFragment extends Fragment {
         switch (item.getItemId()) {
             case R.id.enviar:
                 uploadImage();
-
 
                 return true;
             default:

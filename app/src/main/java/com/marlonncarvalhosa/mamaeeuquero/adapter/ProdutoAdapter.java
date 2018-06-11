@@ -1,8 +1,14 @@
 package com.marlonncarvalhosa.mamaeeuquero.adapter;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.graphics.Color;
 import android.os.CountDownTimer;
+import android.support.annotation.ColorInt;
+import android.support.annotation.ColorRes;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.Resource;
 import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.bumptech.glide.request.RequestOptions;
 import com.marlonncarvalhosa.mamaeeuquero.R;
@@ -24,6 +31,7 @@ import com.marlonncarvalhosa.mamaeeuquero.model.Produto;
 import com.marlonncarvalhosa.mamaeeuquero.utils.FragmentoUtils;
 
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -48,7 +56,7 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ViewHold
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView textViewProduto,textViewPreco,textViewCidade,data, textViewCountTimer;;
+        private TextView textViewProduto,textViewPreco,textViewCidade,data, textViewCountTimer, titulo_lance;
         private LinearLayout linearLayout;
         private ImageView imageView;
         Calendar calendar;
@@ -56,6 +64,7 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ViewHold
         public ViewHolder(View itemView) {
             super(itemView);
 
+            titulo_lance = itemView.findViewById(R.id.titulo_lance);
             textViewCountTimer = itemView.findViewById(R.id.tempo);
             textViewProduto = itemView.findViewById(R.id.nomeProduto);
             textViewCidade = itemView.findViewById(R.id.cidade);
@@ -71,6 +80,7 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ViewHold
     }
 
     public void atualiza(List<Produto> produtos){
+        Collections.reverse(produtos);
         this.produtos=produtos;
         this.notifyDataSetChanged();
 
@@ -93,6 +103,7 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ViewHold
         holder.calendar.set(Calendar.DAY_OF_MONTH,produto.getDia());
         holder.calendar.set(Calendar.HOUR_OF_DAY, produto.getHora());
         holder.calendar.set(Calendar.MINUTE,produto.getMinuto());
+        holder.calendar.set(Calendar.SECOND,produto.getSegundos());
 
         holder.textViewCountTimer.getContext();
         holder.linearLayout.setOnClickListener(new View.OnClickListener() {
@@ -126,16 +137,45 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ViewHold
             public void onFinish() {
 
                 holder.textViewCountTimer.setText("Tempo expirado!");
+                holder.titulo_lance.setText("Arrematado por:");
+                holder.titulo_lance.setTextColor(ContextCompat.getColor(activity, R.color.verdeEscuro));
+                holder.linearLayout.setBackgroundColor(ContextCompat.getColor(activity, R.color.teste));
+                holder.linearLayout.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        AlertDialog.Builder alert = new AlertDialog.Builder(activity);
+
+                        alert
+                                .setTitle("Que pena!")
+                                .setIcon(R.drawable.bebe_chorando)
+                                .setMessage("Esse produto já foi leiloado.")
+                                .setCancelable(true)
+                                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                 @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                }
+
+                            });
+
+                                AlertDialog alertDialog = alert.create();
+                                alertDialog.show();
+
+                    }
+                });
 
             }
         }.start();
 
     }
     private static String timeConversion(int totalSeconds) {
+
         int hours = totalSeconds / MINUTES_IN_AN_HOUR / SECONDS_IN_A_MINUTE;
         String auxseconds = "";
+
         int minutes = (totalSeconds - (hoursToSeconds(hours)))
                 / SECONDS_IN_A_MINUTE;
+
         int seconds = totalSeconds
                 - ((hoursToSeconds(hours)) + (minutesToSeconds(minutes)));
 

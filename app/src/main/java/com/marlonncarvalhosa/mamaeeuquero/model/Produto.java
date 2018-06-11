@@ -15,13 +15,13 @@ public class Produto implements Serializable {
     private String horarioInicial;
     private int hora;
     private int minuto;
+    private int segundos;
     private int dia;
     private Imagem imagem1 = new Imagem();
     private Imagem imagem2 = new Imagem();
     private Imagem imagem3 = new Imagem();
 
-
-    public Produto(String id, String nome, String cat, String preco, String local, String descrição, String dataInicial, String horarioInicial, int hora, int minuto, int dia, Imagem imagem1, Imagem imagem2, Imagem imagem3) {
+    public Produto(String id, String nome, String cat, String preco, String local, String descrição, String dataInicial, String horarioInicial, int hora, int minuto, int segundos, int dia, Imagem imagem1, Imagem imagem2, Imagem imagem3) {
         this.id = id;
         this.nome = nome;
         this.cat = cat;
@@ -33,6 +33,7 @@ public class Produto implements Serializable {
         this.hora = hora;
         this.minuto = minuto;
         this.dia = dia;
+        this.segundos = segundos;
         this.imagem1 = imagem1;
         this.imagem2 = imagem2;
         this.imagem3 = imagem3;
@@ -119,6 +120,14 @@ public class Produto implements Serializable {
 
     public void setMinuto(int minuto) {
         this.minuto = minuto;
+    }
+
+    public int getSegundos() {
+        return segundos;
+    }
+
+    public void setSegundos(int segundos) {
+        this.segundos = segundos;
     }
 
     public int getDia() {

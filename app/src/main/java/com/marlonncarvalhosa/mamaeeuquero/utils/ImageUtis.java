@@ -9,8 +9,6 @@ import java.io.ByteArrayOutputStream;
 
 public class ImageUtis {
 
-
-
     public static byte[] imageViewParaBytes(ImageView imageView) {
         imageView.setDrawingCacheEnabled(true);
         Bitmap bitmap = imageView.getDrawingCache();

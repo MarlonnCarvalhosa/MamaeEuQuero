@@ -6,6 +6,7 @@ import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -45,7 +46,7 @@ public class ImagensAdapter extends PagerAdapter {
         View view = inflater.inflate(R.layout.slide,container,false);
 
         Imagem imagem = imagems.get(position);
-        LinearLayout layoutslide = view.findViewById(R.id.slidelinearlayout);
+        FrameLayout layoutslide = view.findViewById(R.id.slidelinearlayout);
         ImageView imgslide = view.findViewById(R.id.imageView);
         TextView txttitle= view.findViewById(R.id.txttitle);
 
@@ -66,6 +67,7 @@ public class ImagensAdapter extends PagerAdapter {
 
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
-        container.removeView((LinearLayout)object);
+        container.removeView((FrameLayout)object);
     }
+
 }

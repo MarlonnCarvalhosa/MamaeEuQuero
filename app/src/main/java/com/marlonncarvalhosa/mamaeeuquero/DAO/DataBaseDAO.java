@@ -1,10 +1,12 @@
 package com.marlonncarvalhosa.mamaeeuquero.DAO;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -92,9 +94,25 @@ public class DataBaseDAO {
                         if(cont==3 && imagem.getUrl()!= null){
                             uploadProduto(produto);
                             progressDialog.dismiss();
-                            Toast.makeText(activity, "Sucesso", Toast.LENGTH_SHORT).show();
-                            activity.startActivity(new Intent(activity, MainActivity.class));
-                            activity.finish();
+                            AlertDialog.Builder alert = new AlertDialog.Builder(activity);
+
+                            alert
+                                    .setTitle("Produto Leiloado ;)")
+                                    .setIcon(R.drawable.ic_action_check_verde)
+                                    .setMessage("Seu produto foi anunciado com sucesso!")
+                                    .setCancelable(false)
+                                    .setPositiveButton("Finalizar", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            activity.startActivity(new Intent(activity, MainActivity.class));
+                                        }
+
+                                    });
+
+                            AlertDialog alertDialog = alert.create();
+                            alertDialog.show();
+
+
                         }
                     }
                 }).addOnFailureListener(new OnFailureListener() {

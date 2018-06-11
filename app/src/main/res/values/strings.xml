@@ -254,7 +254,7 @@
     <string name="pre_o_inicial">Preço Inicial</string>
     <string name="pre_o_inicial_r">Preço Inicial R$</string>
     <string name="nome_da_cidade">Nome da Cidade</string>
-    <string name="aguarde">Aguarde ..</string>
+    <string name="aguarde">Aguarde...</string>
 
     <array name="spinerTipoProduto">
         <item>Acessórios</item>
