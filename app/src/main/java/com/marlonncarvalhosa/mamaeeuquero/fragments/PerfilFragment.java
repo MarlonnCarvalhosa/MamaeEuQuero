@@ -22,6 +22,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.marlonncarvalhosa.mamaeeuquero.R;
 import com.marlonncarvalhosa.mamaeeuquero.Views.CadastroActivity;
 import com.marlonncarvalhosa.mamaeeuquero.Views.LoginActivity;
@@ -50,6 +52,14 @@ public class PerfilFragment extends Fragment {
         ((AppCompatActivity) getActivity()).getSupportActionBar().show();
 
         auth = FirebaseAuth.getInstance();
+      
+        metodobotoes(view);
+
+        return view;
+    }
+
+
+    public void  metodobotoes (View view){
         desconectar=view.findViewById(R.id.desconectar);
         desconectar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,8 +69,6 @@ public class PerfilFragment extends Fragment {
 
             }
         });
-        return view;
     }
-
 
 }

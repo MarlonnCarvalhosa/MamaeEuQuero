@@ -148,6 +148,7 @@ public class LeiloarFragment extends Fragment {
             produto.setCat(categoria.getSelectedItem().toString());
             produto.setLocal(edit_cidade.getText().toString());
             produto.setDescrição(edit_descricao.getText().toString());
+            produto.setLancedocomprador("ainda nao possui lances");
             produto.setDataInicial(data);
             produto.setHorarioInicial(horario);
             produto.setHora(hora);

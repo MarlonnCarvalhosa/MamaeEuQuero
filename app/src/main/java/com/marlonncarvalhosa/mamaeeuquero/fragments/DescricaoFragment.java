@@ -33,7 +33,7 @@ public class DescricaoFragment extends Fragment{
     private Bundle bundle;
     private Produto produto;
     private ImageView imageView;
-    private TextView nomeProduto,lanceProduto,tempoProduto,detalhesProduto;
+    private TextView nomeProduto,lanceProduto,tempoProduto,detalhesProduto,iddocomprador;
     private Button btnLance;
     private FirebaseAuth auth;
 
@@ -75,6 +75,7 @@ public class DescricaoFragment extends Fragment{
         nomeProduto = view.findViewById(R.id.TextProduto);
         lanceProduto = view.findViewById(R.id.TextValor);
         tempoProduto = view.findViewById(R.id.TextTempo);
+        iddocomprador=view.findViewById(R.id.iddocomprador);
         detalhesProduto = view.findViewById(R.id.textDetalhes);
         imageView = view.findViewById(R.id.imageProduto);
         btnLance = view.findViewById(R.id.btn_lance);
@@ -97,6 +98,7 @@ public class DescricaoFragment extends Fragment{
             lanceProduto.setText(produto.getPreco());
             tempoProduto.setText(produto.getDataInicial());
             detalhesProduto.setText(produto.getDescrição());
+            iddocomprador.setText(produto.getLancedocomprador());
             btnLance.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

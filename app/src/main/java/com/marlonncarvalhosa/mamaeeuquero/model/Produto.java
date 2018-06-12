@@ -15,6 +15,7 @@ public class Produto implements Serializable {
     private String descrição;
     private String dataInicial;
     private String horarioInicial;
+    private String lancedocomprador;
     private int hora;
     private int minuto;
     private int segundos;
@@ -23,7 +24,7 @@ public class Produto implements Serializable {
     private Imagem imagem2 = new Imagem();
     private Imagem imagem3 = new Imagem();
 
-    public Produto(String id, String nome, String cat, String preco, String local, String descrição, String dataInicial, String horarioInicial, int hora, int minuto, int segundos, int dia, Imagem imagem1, Imagem imagem2, Imagem imagem3) {
+    public Produto(String id, String nome, String cat, String preco, String local, String descrição, String dataInicial, String horarioInicial, int hora, int minuto, int segundos, int dia, Imagem imagem1, Imagem imagem2, Imagem imagem3, String lancedocomprador) {
         this.id = id;
         this.nome = nome;
         this.cat = cat;
@@ -39,6 +40,7 @@ public class Produto implements Serializable {
         this.imagem1 = imagem1;
         this.imagem2 = imagem2;
         this.imagem3 = imagem3;
+        this.lancedocomprador= lancedocomprador;
     }
 
     public Produto() {
@@ -164,11 +166,20 @@ public class Produto implements Serializable {
         this.imagem3 = imagem3;
     }
 
-    public void recebeLance(String valor) {
+    public void recebeLance(String valor,String lancedocomprador ) {
         this.setPreco(valor);
+        this.setLancedocomprador(lancedocomprador);
         Calendar diaAtual = Calendar.getInstance();
         setMinuto(diaAtual.get(Calendar.MINUTE));
         setHora(diaAtual.get(Calendar.HOUR_OF_DAY));
         setSegundos(diaAtual.get(Calendar.SECOND));
+    }
+
+    public String getLancedocomprador() {
+        return lancedocomprador;
+    }
+
+    public void setLancedocomprador(String lancedocomprador) {
+        this.lancedocomprador = lancedocomprador;
     }
 }
