@@ -1,33 +1,24 @@
 package com.marlonncarvalhosa.mamaeeuquero.fragments;
 
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.ProgressBar;
-import android.widget.TextView;
+import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+import com.marlonncarvalhosa.mamaeeuquero.DAO.DataBaseDAO;
 import com.marlonncarvalhosa.mamaeeuquero.R;
-import com.marlonncarvalhosa.mamaeeuquero.Views.CadastroActivity;
-import com.marlonncarvalhosa.mamaeeuquero.Views.LoginActivity;
-import com.marlonncarvalhosa.mamaeeuquero.Views.MainActivity;
+import com.marlonncarvalhosa.mamaeeuquero.model.Usuario;
 import com.marlonncarvalhosa.mamaeeuquero.utils.FragmentoUtils;
 
 /**
@@ -36,8 +27,8 @@ import com.marlonncarvalhosa.mamaeeuquero.utils.FragmentoUtils;
 public class PerfilFragment extends Fragment {
     private FirebaseAuth auth;
     private Button desconectar;
-
-
+    private Query queryPerfil;
+    private FirebaseUser usuario = FirebaseAuth.getInstance().getCurrentUser() ;
 
     public PerfilFragment() {
         // Required empty public constructor
@@ -54,7 +45,7 @@ public class PerfilFragment extends Fragment {
         auth = FirebaseAuth.getInstance();
       
         metodobotoes(view);
-
+        getUsuario(usuario.getUid());
         return view;
     }
 
@@ -69,6 +60,36 @@ public class PerfilFragment extends Fragment {
 
             }
         });
+    }
+
+    private void getUsuario(String uId){
+        queryPerfil = DataBaseDAO.getQuerryUsuario(uId);
+        queryPerfil.keepSynced(true);
+        queryPerfil.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                try{
+                    Usuario usuario = dataSnapshot.getValue(Usuario.class);
+                    exibir(usuario);
+
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+
+          
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+    private void exibir(Usuario usuario) {
+
+        Toast.makeText(getActivity(), usuario.getNomeUsuario()+"\n"+ usuario.getEmail(), Toast.LENGTH_SHORT).show();
+
     }
 
 }

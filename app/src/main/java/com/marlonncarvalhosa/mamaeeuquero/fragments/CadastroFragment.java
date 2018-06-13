@@ -4,14 +4,12 @@ package com.marlonncarvalhosa.mamaeeuquero.fragments;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.github.rtoshiro.util.format.SimpleMaskFormatter;
 import com.github.rtoshiro.util.format.text.MaskTextWatcher;
@@ -23,11 +21,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.marlonncarvalhosa.mamaeeuquero.DAO.DataBaseDAO;
 import com.marlonncarvalhosa.mamaeeuquero.R;
-import com.marlonncarvalhosa.mamaeeuquero.model.Produto;
 import com.marlonncarvalhosa.mamaeeuquero.model.Usuario;
 import com.marlonncarvalhosa.mamaeeuquero.utils.FragmentoUtils;
-
-import java.util.concurrent.Executor;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -148,7 +143,7 @@ public class  CadastroFragment extends Fragment {
                             usuario.setEmail(email);
                             usuario.setSenha(password);
 
-                            new DataBaseDAO().instancia_usuario(usuario);
+                            new DataBaseDAO().saveUsuario(usuario);
                             FragmentoUtils.replace(getActivity(), new InicioFragment());
 
                         } else {

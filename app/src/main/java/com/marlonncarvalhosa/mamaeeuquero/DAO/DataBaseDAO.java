@@ -14,6 +14,8 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageMetadata;
 import com.google.firebase.storage.StorageReference;
@@ -34,9 +36,7 @@ public class DataBaseDAO {
     private boolean sucesso = true;
     private int cont = 0;
 
-    public void instancia_usuario(Usuario usuario) {
-        usuario.setId(ConfiguraçõesFirebase.getFirebase().push().getKey());
-        Log.v("teste save", usuario.getId() + usuario.getNomeUsuario());
+    public void saveUsuario(Usuario usuario) {
         DatabaseReference reference = ConfiguraçõesFirebase.getFirebase();
         reference.child(ConstantsUtils.BANCO_USUARIO).child(String.valueOf(usuario.getId())).setValue(usuario);
     }
@@ -132,6 +132,12 @@ public class DataBaseDAO {
 
         return sucesso;
     }
+    public static Query getQuerryUsuario(String uId) {
+        return FirebaseDatabase.getInstance().getReference(ConstantsUtils.BANCO_USUARIO).child(uId);
+    }
+
+
+
 
 
 }

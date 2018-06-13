@@ -1,6 +1,8 @@
 package com.marlonncarvalhosa.mamaeeuquero.model;
 
-public class Usuario {
+import java.io.Serializable;
+
+public class Usuario implements Serializable {
     private String id;
     private String nomeUsuario;
     private String dataNascimento;
