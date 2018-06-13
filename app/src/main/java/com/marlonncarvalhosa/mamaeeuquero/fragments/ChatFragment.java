@@ -21,6 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.marlonncarvalhosa.mamaeeuquero.BancoDeDados;
 import com.marlonncarvalhosa.mamaeeuquero.R;
 import com.marlonncarvalhosa.mamaeeuquero.model.Mensagem;
+import com.marlonncarvalhosa.mamaeeuquero.model.Usuario;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -97,6 +98,7 @@ public class ChatFragment extends Fragment {
 
                 if(!texto.isEmpty()){
                     Mensagem mensagem = new Mensagem();
+                    Usuario usuario = new Usuario();
                     mensagem.setId(BancoDeDados.getInstance().getId(getActivity()));
                     mensagem.setTexto(texto);
                     reference.push().setValue(mensagem);

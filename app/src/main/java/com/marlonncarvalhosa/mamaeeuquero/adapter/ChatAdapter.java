@@ -8,12 +8,14 @@ import android.widget.TextView;
 
 import com.marlonncarvalhosa.mamaeeuquero.R;
 import com.marlonncarvalhosa.mamaeeuquero.model.Mensagem;
+import com.marlonncarvalhosa.mamaeeuquero.model.Usuario;
 
 import java.util.ArrayList;
 
 public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder>{
 
     private ArrayList<Mensagem> mensagens;
+    private ArrayList<Usuario> usuarios;
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -37,10 +39,12 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder>{
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         private TextView textViewMensagem;
+        private TextView nome;
 
         public ViewHolder(View itemView) {
             super(itemView);
 
+            nome = itemView.findViewById(R.id.nomeChat);
             textViewMensagem = itemView.findViewById(R.id.text_view_mensagem);
         }
     }
