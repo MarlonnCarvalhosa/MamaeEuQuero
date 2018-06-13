@@ -11,11 +11,11 @@ import com.marlonncarvalhosa.mamaeeuquero.model.Mensagem;
 import com.marlonncarvalhosa.mamaeeuquero.model.Usuario;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder>{
 
-    private ArrayList<Mensagem> mensagens;
-    private ArrayList<Usuario> usuarios;
+  private List<Mensagem> mensagens;
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -29,6 +29,8 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder>{
         Mensagem mensagem = mensagens.get(position);
 
         holder.textViewMensagem.setText(mensagem.getTexto());
+        holder.textViewNome.setText(mensagem.getNome());
+
     }
 
     @Override
@@ -39,12 +41,12 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder>{
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         private TextView textViewMensagem;
-        private TextView nome;
+        private TextView textViewNome;
 
         public ViewHolder(View itemView) {
             super(itemView);
 
-            nome = itemView.findViewById(R.id.nomeChat);
+            textViewNome = itemView.findViewById(R.id.nomeChat);
             textViewMensagem = itemView.findViewById(R.id.text_view_mensagem);
         }
     }
