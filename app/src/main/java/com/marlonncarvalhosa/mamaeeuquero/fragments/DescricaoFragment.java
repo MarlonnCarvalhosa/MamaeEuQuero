@@ -94,7 +94,7 @@ public class DescricaoFragment extends Fragment{
         bundle = getArguments();
         if(bundle!= null){
             produto = (Produto) bundle.getSerializable(ConstantsUtils.PRODUTO);
-            nomeProduto.setText(""+produto.getNome());
+            nomeProduto.setText("" + produto.getNome());
             lanceProduto.setText(produto.getPreco());
             tempoProduto.setText(produto.getDataInicial());
             detalhesProduto.setText(produto.getDescrição());

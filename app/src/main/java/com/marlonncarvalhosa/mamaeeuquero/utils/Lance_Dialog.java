@@ -31,7 +31,7 @@ public class Lance_Dialog extends AppCompatDialogFragment {
         LayoutInflater inflater = getActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.lance_layout, null);
         auth = FirebaseAuth.getInstance();
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
 
         builder.setView(view)
@@ -46,7 +46,7 @@ public class Lance_Dialog extends AppCompatDialogFragment {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
-                        produto.recebeLance(valor.getText().toString(),lancedocomprador );
+                        produto.recebeLance(valor.getText().toString(),lancedocomprador, user.getUid() );
                         ConfiguraçõesFirebase.getProdutos().getRef().child(produto.getId()).setValue(produto);
 
                         

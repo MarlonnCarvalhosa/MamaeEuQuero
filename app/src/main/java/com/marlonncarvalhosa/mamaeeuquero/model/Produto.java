@@ -40,7 +40,7 @@ public class Produto implements Serializable {
         this.imagem1 = imagem1;
         this.imagem2 = imagem2;
         this.imagem3 = imagem3;
-        this.lancedocomprador= lancedocomprador;
+        this.lancedocomprador = lancedocomprador;
     }
 
     public Produto() {
@@ -166,9 +166,9 @@ public class Produto implements Serializable {
         this.imagem3 = imagem3;
     }
 
-    public void recebeLance(String valor,String lancedocomprador ) {
+    public void recebeLance(String valor,String lancedocomprador, String id ) {
         this.setPreco(valor);
-        this.setLancedocomprador(lancedocomprador);
+        this.setLancedocomprador(id);
         Calendar diaAtual = Calendar.getInstance();
         setMinuto(diaAtual.get(Calendar.MINUTE));
         setHora(diaAtual.get(Calendar.HOUR_OF_DAY));

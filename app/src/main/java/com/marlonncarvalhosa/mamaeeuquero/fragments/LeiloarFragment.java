@@ -42,7 +42,7 @@ import static android.app.Activity.RESULT_OK;
  */
 public class LeiloarFragment extends Fragment {
 
-    private EditText edit_produto, edit_cidade, edit_preco, edit_descricao;
+    private EditText edit_produto, edit_cidade, edit_preco, edit_descricao, lanceComprador;
     private Spinner categoria;
     private Produto produto = new Produto();
     private ImageView image1, image2, image3;
@@ -148,7 +148,7 @@ public class LeiloarFragment extends Fragment {
             produto.setCat(categoria.getSelectedItem().toString());
             produto.setLocal(edit_cidade.getText().toString());
             produto.setDescrição(edit_descricao.getText().toString());
-            produto.setLancedocomprador("ainda nao possui lances");
+            produto.setLancedocomprador(" ");
             produto.setDataInicial(data);
             produto.setHorarioInicial(horario);
             produto.setHora(hora);
