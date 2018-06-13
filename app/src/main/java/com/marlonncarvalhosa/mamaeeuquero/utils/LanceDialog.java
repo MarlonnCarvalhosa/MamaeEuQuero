@@ -12,12 +12,11 @@ import android.widget.EditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.marlonncarvalhosa.mamaeeuquero.R;
-import com.marlonncarvalhosa.mamaeeuquero.fragments.LoginFragment;
 import com.marlonncarvalhosa.mamaeeuquero.model.Produto;
 
 import java.util.Locale;
 
-public class Lance_Dialog extends AppCompatDialogFragment {
+public class LanceDialog extends AppCompatDialogFragment {
 
     private EditText valor;
     private Produto produto;
@@ -49,8 +48,21 @@ public class Lance_Dialog extends AppCompatDialogFragment {
                         produto.recebeLance(valor.getText().toString(),lancedocomprador, user.getUid() );
                         ConfiguraçõesFirebase.getProdutos().getRef().child(produto.getId()).setValue(produto);
 
-                        
+                        android.app.AlertDialog.Builder alert = new android.app.AlertDialog.Builder(getContext());
 
+                        alert
+                                .setTitle("Lance Efetuado!")
+                                .setMessage(" ")
+                                .setCancelable(true)
+                                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+
+                                    }
+                                });
+
+                        android.app.AlertDialog alertDialog = alert.create();
+                        alertDialog.show();
                     }
                 });
 

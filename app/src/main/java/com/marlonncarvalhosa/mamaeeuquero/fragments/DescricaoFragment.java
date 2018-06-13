@@ -4,7 +4,6 @@ package com.marlonncarvalhosa.mamaeeuquero.fragments;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,16 +15,12 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.marlonncarvalhosa.mamaeeuquero.Views.FullScreenImage;
 import com.marlonncarvalhosa.mamaeeuquero.R;
 import com.marlonncarvalhosa.mamaeeuquero.Views.ImagensActivity;
 import com.marlonncarvalhosa.mamaeeuquero.model.Produto;
 import com.marlonncarvalhosa.mamaeeuquero.utils.ConstantsUtils;
 import com.marlonncarvalhosa.mamaeeuquero.utils.FragmentoUtils;
-import com.marlonncarvalhosa.mamaeeuquero.utils.Lance_Dialog;
-import com.marlonncarvalhosa.mamaeeuquero.utils.MoneyTextWatcher;
-
-import java.util.Locale;
+import com.marlonncarvalhosa.mamaeeuquero.utils.LanceDialog;
 
 
 public class DescricaoFragment extends Fragment{
@@ -83,7 +78,7 @@ public class DescricaoFragment extends Fragment{
 
     private void abrirDialogo() {
 
-        Lance_Dialog lance_dialog = new Lance_Dialog();
+        LanceDialog lance_dialog = new LanceDialog();
         lance_dialog.setProduto(produto);
         lance_dialog.show(getFragmentManager(), " Lance");
 

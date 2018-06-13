@@ -255,6 +255,8 @@
     <string name="pre_o_inicial_r">Preço Inicial R$</string>
     <string name="nome_da_cidade">Nome da Cidade</string>
     <string name="aguarde">Aguarde...</string>
+    <string name="shared_config">sharedConfig</string>
+    <string name="id">id</string>
 
     <array name="spinerTipoProduto">
         <item>Acessórios</item>
@@ -265,5 +267,11 @@
         <item>Móveis</item>
         <item>Roupas</item>
     </array>
+
+
+    <string-array name="escola">
+        <item>Mamãe Eu Quero</item>
+
+    </string-array>
 
 </resources>
