@@ -80,14 +80,14 @@ public class DataBaseDAO {
         }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                // taskSnapshot.getMetadata() contains file metadata such as size, content-type, and download URL.
+
 
 
                 StorageReference storageRef = storage.getReference();
                 storageRef.child(path).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri uri) {
-                        // Got the download URL for 'users/me/profile.png'
+
                         imagem.setUrl(String.valueOf(uri));
                         cont++;
 
@@ -118,7 +118,7 @@ public class DataBaseDAO {
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception exception) {
-                        // Handle any errors
+
                     }
                 });
 
