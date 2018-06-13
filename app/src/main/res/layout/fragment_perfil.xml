@@ -7,9 +7,13 @@
     tools:context=".fragments.PerfilFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="match_parent">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:gravity="center_horizontal|center_vertical"
         android:textColor="#000000"
         android:textSize="100sp"
@@ -20,6 +24,14 @@
         android:id="@+id/desconectar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="desconect" />
+        android:text="Desconectar" />
+
+    <Button
+        android:layout_gravity="center"
+        android:id="@+id/meusleiloes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Meus Leiloes" />
+    </LinearLayout>
 
 </FrameLayout>

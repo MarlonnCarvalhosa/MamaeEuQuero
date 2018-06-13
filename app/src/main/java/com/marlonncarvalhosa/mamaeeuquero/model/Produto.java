@@ -1,13 +1,12 @@
 package com.marlonncarvalhosa.mamaeeuquero.model;
 
-import android.widget.ImageView;
-
 import java.io.Serializable;
 import java.util.Calendar;
 
 public class Produto implements Serializable {
 
     private String id;
+    private String iddovendedor;
     private String nome;
     private String cat;
     private String preco;
@@ -24,8 +23,9 @@ public class Produto implements Serializable {
     private Imagem imagem2 = new Imagem();
     private Imagem imagem3 = new Imagem();
 
-    public Produto(String id, String nome, String cat, String preco, String local, String descrição, String dataInicial, String horarioInicial, int hora, int minuto, int segundos, int dia, Imagem imagem1, Imagem imagem2, Imagem imagem3, String lancedocomprador) {
+    public Produto(String id,String iddovendedor, String nome, String cat, String preco, String local, String descrição, String dataInicial, String horarioInicial, int hora, int minuto, int segundos, int dia, Imagem imagem1, Imagem imagem2, Imagem imagem3, String lancedocomprador) {
         this.id = id;
+        this.iddovendedor=iddovendedor;
         this.nome = nome;
         this.cat = cat;
         this.preco = preco;
@@ -165,6 +165,13 @@ public class Produto implements Serializable {
     public void setImagem3(Imagem imagem3) {
         this.imagem3 = imagem3;
     }
+    public String getIddovendedor() {
+        return iddovendedor;
+    }
+
+    public void setIddovendedor(String iddovendedor) {
+        this.iddovendedor = iddovendedor;
+    }
 
     public void recebeLance(String valor,String lancedocomprador, String id ) {
         this.setPreco(valor);
@@ -182,4 +189,6 @@ public class Produto implements Serializable {
     public void setLancedocomprador(String lancedocomprador) {
         this.lancedocomprador = lancedocomprador;
     }
+
+
 }

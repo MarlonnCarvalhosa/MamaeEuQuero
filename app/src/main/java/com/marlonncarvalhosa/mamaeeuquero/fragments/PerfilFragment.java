@@ -26,8 +26,9 @@ import com.marlonncarvalhosa.mamaeeuquero.utils.FragmentoUtils;
  */
 public class PerfilFragment extends Fragment {
     private FirebaseAuth auth;
-    private Button desconectar;
+    private Button desconectar,leiloes;
     private Query queryPerfil;
+    private String idusuario;
     private FirebaseUser usuario = FirebaseAuth.getInstance().getCurrentUser() ;
 
     public PerfilFragment() {
@@ -43,6 +44,13 @@ public class PerfilFragment extends Fragment {
         ((AppCompatActivity) getActivity()).getSupportActionBar().show();
 
         auth = FirebaseAuth.getInstance();
+        if (auth.getCurrentUser() != null) {
+
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            idusuario=user.getUid();
+
+
+        }
       
         metodobotoes(view);
         getUsuario(usuario.getUid());
@@ -52,6 +60,7 @@ public class PerfilFragment extends Fragment {
 
     public void  metodobotoes (View view){
         desconectar=view.findViewById(R.id.desconectar);
+        leiloes=view.findViewById(R.id.meusleiloes);
         desconectar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,6 +69,19 @@ public class PerfilFragment extends Fragment {
 
             }
         });
+        leiloes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle args = new Bundle();
+                args.putString("ID",idusuario);
+
+                ProdutoCategoriaFragment produtoCategoriaFragment= new ProdutoCategoriaFragment();
+                produtoCategoriaFragment.setArguments(args);
+                FragmentoUtils.replace(getActivity(),produtoCategoriaFragment);
+
+            }
+        });
+
     }
 
     private void getUsuario(String uId){

@@ -7,14 +7,12 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -44,6 +42,7 @@ public class ProdutoCategoriaFragment extends Fragment {
     private ImageView imagemProduto;
     private Uri mImageUri;
     private String categoria;
+    private String iddocomprador;
     private Bundle bundle;
 
 
@@ -61,6 +60,7 @@ public class ProdutoCategoriaFragment extends Fragment {
         Bundle args = getArguments();
         if(args!= null){
         categoria = args.getString("key");
+        iddocomprador=args.getString("ID");
 
         }
         bundle=getArguments();
@@ -102,10 +102,18 @@ public class ProdutoCategoriaFragment extends Fragment {
                     produtos.clear();
                     for(DataSnapshot snapshot : dataSnapshot.getChildren()){
                         Produto produto = snapshot.getValue(Produto.class);
+                        if (categoria!=null){
                         if (categoria.equals(produto.getCat())){
                             produtos.add(produto);
+                            }}
 
-                        }
+                            if (iddocomprador!=null){
+                                if (iddocomprador.equals(produto.getIddovendedor())){
+                                    produtos.add(produto);
+                                }}
+
+
+
 
 
 

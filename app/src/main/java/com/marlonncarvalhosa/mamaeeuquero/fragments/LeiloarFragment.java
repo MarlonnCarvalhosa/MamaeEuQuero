@@ -46,7 +46,7 @@ public class LeiloarFragment extends Fragment {
     private Spinner categoria;
     private Produto produto = new Produto();
     private ImageView image1, image2, image3;
-    private String data;
+    private String iddovendedor,data;
     String horario;
     int hora, minuto, segundos, dia;
     private FirebaseAuth auth;
@@ -148,6 +148,7 @@ public class LeiloarFragment extends Fragment {
             produto.setCat(categoria.getSelectedItem().toString());
             produto.setLocal(edit_cidade.getText().toString());
             produto.setDescrição(edit_descricao.getText().toString());
+            produto.setIddovendedor(iddovendedor);
             produto.setLancedocomprador(" ");
             produto.setDataInicial(data);
             produto.setHorarioInicial(horario);
@@ -198,7 +199,7 @@ public class LeiloarFragment extends Fragment {
         if (auth.getCurrentUser() != null) {
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
             if (user != null) {
-
+                iddovendedor=user.getUid();
             }
 
         }
