@@ -52,8 +52,8 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ViewHold
     int seconds , minutes;
 
     public ProdutoAdapter(FragmentActivity activity, List<Produto> produtos){
-        this.activity=activity;
-        this.produtos=produtos;
+        this.activity = activity;
+        this.produtos = produtos;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

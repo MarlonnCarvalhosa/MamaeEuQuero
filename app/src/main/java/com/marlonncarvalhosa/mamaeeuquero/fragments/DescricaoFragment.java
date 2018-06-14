@@ -70,7 +70,6 @@ public class DescricaoFragment extends Fragment{
         nomeProduto = view.findViewById(R.id.TextProduto);
         lanceProduto = view.findViewById(R.id.TextValor);
         tempoProduto = view.findViewById(R.id.TextTempo);
-        iddocomprador=view.findViewById(R.id.iddocomprador);
         detalhesProduto = view.findViewById(R.id.textDetalhes);
         imageView = view.findViewById(R.id.imageProduto);
         btnLance = view.findViewById(R.id.btn_lance);

@@ -11,6 +11,7 @@ import com.marlonncarvalhosa.mamaeeuquero.model.Mensagem;
 import com.marlonncarvalhosa.mamaeeuquero.model.Usuario;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder>{

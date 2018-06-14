@@ -21,7 +21,7 @@
     <dimen name="card_title_margin_top">24dp</dimen>
     <dimen name="card_title_margin">16dp</dimen>
     <dimen name="card_subtitle_margin">16dp</dimen>
-    <dimen name="card_button_margin">8dp</dimen>
+    <dimen name="card_button_margin">10dp</dimen>
 
     <dimen name="zero_horizontal_margin">0dp</dimen>
 
