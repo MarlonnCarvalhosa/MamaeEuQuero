@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -26,7 +27,8 @@ import com.marlonncarvalhosa.mamaeeuquero.utils.FragmentoUtils;
  */
 public class PerfilFragment extends Fragment {
     private FirebaseAuth auth;
-    private Button desconectar,leiloes;
+    private Button desconectar, leiloes, carrinho, chat;
+    private TextView pessoa, celular;
     private Query queryPerfil;
     private String idusuario;
     private FirebaseUser usuario = FirebaseAuth.getInstance().getCurrentUser() ;
@@ -51,6 +53,9 @@ public class PerfilFragment extends Fragment {
 
 
         }
+
+        pessoa = (TextView) view.findViewById(R.id.pessoaPerfil);
+        celular = (TextView) view.findViewById(R.id.celPerfil);
       
         metodobotoes(view);
         getUsuario(usuario.getUid());
@@ -61,6 +66,9 @@ public class PerfilFragment extends Fragment {
     public void  metodobotoes (View view){
         desconectar=view.findViewById(R.id.desconectar);
         leiloes=view.findViewById(R.id.meusleiloes);
+        carrinho = view.findViewById(R.id.carrinhoPerfil);
+        chat = view.findViewById(R.id.perfilChat);
+
         desconectar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,6 +87,30 @@ public class PerfilFragment extends Fragment {
                 produtoCategoriaFragment.setArguments(args);
                 FragmentoUtils.replace(getActivity(),produtoCategoriaFragment);
 
+            }
+        });
+
+        carrinho.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bundle args = new Bundle();
+                args.putString("ID", idusuario);
+
+                CarrinhoFragment carrinhoFragment = new CarrinhoFragment();
+                carrinhoFragment.setArguments(args);
+                FragmentoUtils.replace(getActivity(), carrinhoFragment);
+            }
+        });
+
+        chat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bundle args = new Bundle();
+                args.putString("ID", idusuario);
+
+                ChatFragment chatFragment = new ChatFragment();
+                chatFragment.setArguments(args);
+                FragmentoUtils.replace(getActivity(), chatFragment);
             }
         });
 
@@ -110,7 +142,15 @@ public class PerfilFragment extends Fragment {
     }
     private void exibir(Usuario usuario) {
 
-        Toast.makeText(getActivity(), usuario.getNomeUsuario()+"\n"+ usuario.getEmail(), Toast.LENGTH_SHORT).show();
+        FirebaseUser user = auth.getCurrentUser();
+        if (user != null) {
+            if (user.getDisplayName() != null) {
+                pessoa.setText(usuario.getNomeUsuario());
+            }
+            if (user.getPhoneNumber() != null){
+                celular.setText(usuario.getNumeroCelular());
+            }
+        }
 
     }
 
