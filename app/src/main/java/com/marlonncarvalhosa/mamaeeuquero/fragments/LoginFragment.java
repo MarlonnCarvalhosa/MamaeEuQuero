@@ -57,10 +57,17 @@ public class LoginFragment extends Fragment
     }
 
     private void idCampo(View view) {
+        progressBar = view.findViewById(R.id.progressbar);
         email = view.findViewById(R.id.editText_email);
         senha = view.findViewById(R.id.editText_senha);
         recuperar = view.findViewById(R.id.redefinir);
-        progressBar = view.findViewById(R.id.progressbar);
+        recuperar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentoUtils.replace(getActivity(), new RedefinirFragment() );
+            }
+        });
+
         login = view.findViewById(R.id.logar);
         login.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -83,7 +83,7 @@ public class InicioFragment extends Fragment {
 
     private void preencherLista() {
         produtos = new ArrayList<>();
-        databaseProdutos = ConfiguraçõesFirebase.getProdutos();
+        databaseProdutos = ConfiguraçõesFirebase.getProdutos().orderByValue();
         databaseProdutos.keepSynced(true);
         databaseProdutos.addValueEventListener(new ValueEventListener() {
             @Override
