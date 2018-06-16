@@ -28,7 +28,7 @@ public class RedefinirFragment extends Fragment {
     ProgressDialog progressDialog;
     Button btn_reset;
 
-    public    RedefinirFragment(){}
+    public RedefinirFragment(){}
 
     @Nullable
     @Override
@@ -74,10 +74,11 @@ public class RedefinirFragment extends Fragment {
                             email.setText("");
                             return;
                         }
+
                     }
                 });
-    }
 
+    }
 
 }
 

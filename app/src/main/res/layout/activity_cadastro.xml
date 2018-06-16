@@ -90,7 +90,6 @@
                 android:textColor="#6cd6B2"
                 android:textColorHint="#6cd6B2" />
 
-
             <EditText
                 android:layout_width="395dp"
                 android:layout_height="wrap_content"

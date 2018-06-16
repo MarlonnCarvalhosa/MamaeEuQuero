@@ -127,7 +127,7 @@ public class DescricaoFragment extends Fragment{
         if (auth.getCurrentUser() != null) {
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
             if (user != null) {
-                if (user.getUid()==produto.getIddovendedor()){
+                if (user.getUid() == produto.getIddovendedor()){
                     Toast.makeText(getContext(),"voce nao pode dar uma lance em um produto que voce leiloou",Toast.LENGTH_LONG).show();
 
                     return;

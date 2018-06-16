@@ -2,15 +2,21 @@ package com.marlonncarvalhosa.mamaeeuquero.fragments;
 
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -28,7 +34,7 @@ import com.marlonncarvalhosa.mamaeeuquero.utils.FragmentoUtils;
 public class PerfilFragment extends Fragment {
     private FirebaseAuth auth;
     private Button desconectar, leiloes, carrinho, chat;
-    private TextView pessoa, celular;
+    private TextView pessoa, celular, email, resetar;
     private Query queryPerfil;
     private String idusuario;
     private FirebaseUser usuario = FirebaseAuth.getInstance().getCurrentUser() ;
@@ -51,32 +57,89 @@ public class PerfilFragment extends Fragment {
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
             idusuario=user.getUid();
 
-
         }
 
+        resetar = (TextView) view.findViewById(R.id.resetar);
+        resetar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String strEmail = usuario.getEmail().toString().trim();
+
+                if (TextUtils.isEmpty(strEmail)) {
+                    email.setError("Obrigatorio");
+                    return;
+                }
+                redefinir(strEmail);
+            }
+        });
+
+
+        setHasOptionsMenu(true);
         pessoa = (TextView) view.findViewById(R.id.pessoaPerfil);
         celular = (TextView) view.findViewById(R.id.celPerfil);
+        email = (TextView) view.findViewById(R.id.emailPerfil);
+
       
         metodobotoes(view);
         getUsuario(usuario.getUid());
         return view;
+
     }
 
 
-    public void  metodobotoes (View view){
-        desconectar=view.findViewById(R.id.desconectar);
-        leiloes=view.findViewById(R.id.meusleiloes);
-        carrinho = view.findViewById(R.id.carrinhoPerfil);
-        chat = view.findViewById(R.id.perfilChat);
 
-        desconectar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+    private void redefinir(String strEmail) {
+
+
+        auth.sendPasswordResetEmail(strEmail)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+
+                        if (task.isSuccessful()) {
+                            email.setText("");
+                            FragmentoUtils.replace(getActivity(), new LoginFragment() );
+                            Toast.makeText(getContext(),"o email de redifinição foi enviado",Toast.LENGTH_LONG).show();
+
+                        } else {
+                            Toast.makeText(getContext(),"Email não Cadastrado",Toast.LENGTH_LONG).show();
+                            email.setText("");
+                            return;
+                        }
+
+                    }
+                });
+
+    }
+
+    public void onPrepareOptionsMenu(Menu menu) {
+        super.onPrepareOptionsMenu(menu);
+        menu.clear();
+        getActivity().getMenuInflater().inflate(R.menu.menu_desconectar, menu);
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.desconectarPerfil:
+                desconectarPerfil();
+
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    public void desconectarPerfil() {
                 auth.signOut();
                 FragmentoUtils.replace(getActivity(), new LoginFragment());
 
-            }
-        });
+    }
+
+    public void  metodobotoes (View view){
+        leiloes=view.findViewById(R.id.meusleiloes);
         leiloes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -88,30 +151,7 @@ public class PerfilFragment extends Fragment {
                 FragmentoUtils.replace(getActivity(),produtoCategoriaFragment);
 
             }
-        });
 
-        carrinho.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Bundle args = new Bundle();
-                args.putString("ID", idusuario);
-
-                CarrinhoFragment carrinhoFragment = new CarrinhoFragment();
-                carrinhoFragment.setArguments(args);
-                FragmentoUtils.replace(getActivity(), carrinhoFragment);
-            }
-        });
-
-        chat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Bundle args = new Bundle();
-                args.putString("ID", idusuario);
-
-                ChatFragment chatFragment = new ChatFragment();
-                chatFragment.setArguments(args);
-                FragmentoUtils.replace(getActivity(), chatFragment);
-            }
         });
 
     }
@@ -131,15 +171,15 @@ public class PerfilFragment extends Fragment {
                 }
             }
 
-          
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
             }
+
         });
 
     }
+
     private void exibir(Usuario usuario) {
 
         FirebaseUser user = auth.getCurrentUser();
@@ -150,6 +190,10 @@ public class PerfilFragment extends Fragment {
             if (user.getPhoneNumber() != null){
                 celular.setText(usuario.getNumeroCelular());
             }
+            if (user.getEmail() != null ) {
+                email.setText(usuario.getEmail());
+            }
+
         }
 
     }

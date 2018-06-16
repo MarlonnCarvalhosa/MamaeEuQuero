@@ -63,8 +63,6 @@ public class LanceDialog extends AppCompatDialogFragment {
                     public void onClick(DialogInterface dialog, int which) {
                         getUsuario(user.getUid());
 
-
-
                     }
                 });
 
@@ -75,6 +73,7 @@ public class LanceDialog extends AppCompatDialogFragment {
 
         return builder.create();
     }
+
     private void getUsuario(String uId){
         queryPerfil = DataBaseDAO.getQuerryUsuario(uId);
         queryPerfil.keepSynced(true);
@@ -94,17 +93,14 @@ public class LanceDialog extends AppCompatDialogFragment {
                 }
             }
 
-
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
             }
+
         });
 
     }
-
-
 
     public void setProduto(Produto produto) {
         this.produto = produto;
