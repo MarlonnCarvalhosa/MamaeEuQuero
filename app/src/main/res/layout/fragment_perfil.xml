@@ -37,8 +37,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Nome Pessoa"
+                android:textStyle="bold"
                 android:textAlignment="center"
-                android:textSize="18sp" />
+                android:textSize="23dp" />
 
             <TextView
                 android:id="@+id/celPerfil"
@@ -64,32 +65,6 @@
                 android:layout_marginTop="5dp"
                 android:background="@color/colorPrimaryDark"
                 android:text="Meus Leilões"
-                android:textColor="#ffffff"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-            <Button
-                android:id="@+id/carrinhoPerfil"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="15dp"
-                android:background="@color/colorPrimaryDark"
-                android:text="Meu Carrinho"
-                android:textColor="#ffffff"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-            <Button
-                android:id="@+id/perfilChat"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="15dp"
-                android:background="@color/colorPrimaryDark"
-                android:text="chat"
                 android:textColor="#ffffff"
                 android:textSize="18sp"
                 android:textStyle="bold" />
