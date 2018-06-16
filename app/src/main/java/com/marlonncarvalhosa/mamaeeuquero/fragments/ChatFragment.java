@@ -45,7 +45,7 @@ public class ChatFragment extends Fragment {
     private Usuario user;
     private Query queryPerfil;
     public Usuario usuario = new Usuario();
-    private FirebaseUser usuarioFirebase = FirebaseAuth.getInstance().getCurrentUser() ;
+    private FirebaseAuth usuarioFirebase = FirebaseAuth.getInstance();
 
     public ChatFragment() {
         // Required empty public constructor

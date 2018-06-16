@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
@@ -92,7 +93,7 @@ public class DescricaoFragment extends Fragment{
             lanceProduto.setText(produto.getPreco());
             tempoProduto.setText(produto.getDataInicial());
             detalhesProduto.setText(produto.getDescrição());
-            iddocomprador.setText(produto.getLancedocomprador());
+          //  iddocomprador.setText(produto.getLancedocomprador());
             btnLance.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -126,6 +127,11 @@ public class DescricaoFragment extends Fragment{
         if (auth.getCurrentUser() != null) {
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
             if (user != null) {
+                if (user.getUid()==produto.getIddovendedor()){
+                    Toast.makeText(getContext(),"voce nao pode dar uma lance em um produto que voce leiloou",Toast.LENGTH_LONG).show();
+
+                    return;
+                }
                 abrirDialogo();
             }
 

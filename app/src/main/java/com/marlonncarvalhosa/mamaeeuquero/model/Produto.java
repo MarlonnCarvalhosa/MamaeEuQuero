@@ -15,6 +15,7 @@ public class Produto implements Serializable {
     private String dataInicial;
     private String horarioInicial;
     private String lancedocomprador;
+    private String nomedocomprador;
     private int hora;
     private int minuto;
     private int segundos;
@@ -23,7 +24,7 @@ public class Produto implements Serializable {
     private Imagem imagem2 = new Imagem();
     private Imagem imagem3 = new Imagem();
 
-    public Produto(String id,String iddovendedor, String nome, String cat, String preco, String local, String descrição, String dataInicial, String horarioInicial, int hora, int minuto, int segundos, int dia, Imagem imagem1, Imagem imagem2, Imagem imagem3, String lancedocomprador) {
+    public Produto(String id,String iddovendedor, String nome, String cat, String preco, String local, String descrição, String dataInicial, String horarioInicial, int hora, int minuto, int segundos, int dia, Imagem imagem1, Imagem imagem2, Imagem imagem3, String lancedocomprador,String nomedocomprador) {
         this.id = id;
         this.iddovendedor=iddovendedor;
         this.nome = nome;
@@ -41,6 +42,7 @@ public class Produto implements Serializable {
         this.imagem2 = imagem2;
         this.imagem3 = imagem3;
         this.lancedocomprador = lancedocomprador;
+        this.nomedocomprador=nomedocomprador;
     }
 
     public Produto() {
@@ -173,9 +175,10 @@ public class Produto implements Serializable {
         this.iddovendedor = iddovendedor;
     }
 
-    public void recebeLance(String valor,String lancedocomprador, String id ) {
+    public void recebeLance(String valor,String lancedocomprador, String nomedocomprador,String id ) {
         this.setPreco(valor);
         this.setLancedocomprador(id);
+        this.setNomedocomprador(nomedocomprador);
         Calendar diaAtual = Calendar.getInstance();
         setMinuto(diaAtual.get(Calendar.MINUTE));
         setHora(diaAtual.get(Calendar.HOUR_OF_DAY));
@@ -191,4 +194,11 @@ public class Produto implements Serializable {
     }
 
 
+    public String getNomedocomprador() {
+        return nomedocomprador;
+    }
+
+    public void setNomedocomprador(String nomedocomprador) {
+        this.nomedocomprador = nomedocomprador;
+    }
 }

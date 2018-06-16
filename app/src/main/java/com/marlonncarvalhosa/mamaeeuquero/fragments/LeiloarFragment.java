@@ -149,7 +149,8 @@ public class LeiloarFragment extends Fragment {
             produto.setLocal(edit_cidade.getText().toString());
             produto.setDescrição(edit_descricao.getText().toString());
             produto.setIddovendedor(iddovendedor);
-            produto.setLancedocomprador(" ");
+            produto.setLancedocomprador("");
+            produto.setNomedocomprador(" ");
             produto.setDataInicial(data);
             produto.setHorarioInicial(horario);
             produto.setHora(hora);
