@@ -82,7 +82,7 @@ public class LanceDialog extends AppCompatDialogFragment {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 try{
                     Usuario usuario = dataSnapshot.getValue(Usuario.class);
-                    produto.recebeLance(valor.getText().toString(),lancedocomprador,usuario.getNomeUsuario() ,usuario.getId() );
+                    produto.recebeLance(valor.getText().toString().replace("R$", ""),lancedocomprador,usuario.getNomeUsuario() ,usuario.getId() );
                     ConfiguraçõesFirebase.getProdutos().getRef().child(produto.getId()).setValue(produto);
 
                     Toast.makeText(getActivity(), "Lance efetuado com sucesso!", Toast.LENGTH_SHORT).show();

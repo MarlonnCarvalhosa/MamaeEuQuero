@@ -200,7 +200,7 @@ public class LeiloarFragment extends Fragment {
         if (auth.getCurrentUser() != null) {
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
             if (user != null) {
-                iddovendedor=user.getUid();
+                iddovendedor = user.getUid();
             }
 
         }

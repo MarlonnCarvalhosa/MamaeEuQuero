@@ -1,6 +1,7 @@
 package com.marlonncarvalhosa.mamaeeuquero.fragments;
 
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -19,6 +20,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.marlonncarvalhosa.mamaeeuquero.R;
 import com.marlonncarvalhosa.mamaeeuquero.Views.ImagensActivity;
 import com.marlonncarvalhosa.mamaeeuquero.model.Produto;
+import com.marlonncarvalhosa.mamaeeuquero.model.Usuario;
 import com.marlonncarvalhosa.mamaeeuquero.utils.ConstantsUtils;
 import com.marlonncarvalhosa.mamaeeuquero.utils.FragmentoUtils;
 import com.marlonncarvalhosa.mamaeeuquero.utils.LanceDialog;
@@ -32,6 +34,7 @@ public class DescricaoFragment extends Fragment{
     private TextView nomeProduto,lanceProduto,tempoProduto,detalhesProduto,iddocomprador;
     private Button btnLance;
     private FirebaseAuth auth;
+    private Usuario usuario = new Usuario();
 
 
     public DescricaoFragment() {
@@ -84,8 +87,7 @@ public class DescricaoFragment extends Fragment{
 
     }
 
-
-    private void initView(View view) {
+    private void initView(final View view) {
         bundle = getArguments();
         if(bundle!= null){
             produto = (Produto) bundle.getSerializable(ConstantsUtils.PRODUTO);
@@ -127,15 +129,59 @@ public class DescricaoFragment extends Fragment{
         if (auth.getCurrentUser() != null) {
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
             if (user != null) {
-                if (user.getUid() == produto.getIddovendedor()){
-                    Toast.makeText(getContext(),"voce nao pode dar uma lance em um produto que voce leiloou",Toast.LENGTH_LONG).show();
+                if (user.getUid().equals(produto.getIddovendedor())){
+
+                    if (produto.getLancedocomprador().equals("")) {
+
+                        android.app.AlertDialog.Builder alert = new android.app.AlertDialog.Builder(getContext());
+
+                        alert
+                                .setTitle("ATENÇÃO!")
+                                .setIcon(R.drawable.ic_action_alert_red)
+                                .setMessage("Produto ainda não possui um lance")
+                                .setCancelable(true)
+                                .setPositiveButton("Entendi", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                    }
+
+                                });
+
+                        android.app.AlertDialog alertDialog = alert.create();
+                        alertDialog.show();
+
+                    }else {
+
+                        android.app.AlertDialog.Builder alert = new android.app.AlertDialog.Builder(getContext());
+
+                        alert
+                                .setTitle("ATENÇÃO!")
+                                .setIcon(R.drawable.ic_action_alert_red)
+                                .setMessage("Produto sendo arrematado por " + produto.getNomedocomprador() + " no valor de R$ " + produto.getPreco())
+                                .setCancelable(true)
+                                .setPositiveButton("Entendi", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                    }
+
+                                });
+
+                        android.app.AlertDialog alertDialog = alert.create();
+                        alertDialog.show();
+
+                    }
 
                     return;
+
+                }else {
+                    abrirDialogo();
+
                 }
-                abrirDialogo();
+
             }
 
         }
+
         if (auth.getCurrentUser() == null){
             FragmentoUtils.replace(getActivity(), new LoginFragment());
         }
@@ -162,10 +208,15 @@ public class DescricaoFragment extends Fragment{
                     FragmentoUtils.replace(getActivity(), new InicioFragment());
                     return true;
                 }
+
                 return false;
+
             }
+
         });
+
     }
+
 }
 
 
