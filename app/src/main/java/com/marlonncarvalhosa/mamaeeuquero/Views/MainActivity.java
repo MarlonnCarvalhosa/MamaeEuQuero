@@ -12,6 +12,7 @@ import android.widget.Button;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.marlonncarvalhosa.mamaeeuquero.R;
+import com.marlonncarvalhosa.mamaeeuquero.fragments.CarrinhoFragment;
 import com.marlonncarvalhosa.mamaeeuquero.fragments.CategoriasFragment;
 import com.marlonncarvalhosa.mamaeeuquero.fragments.ChatFragment;
 import com.marlonncarvalhosa.mamaeeuquero.fragments.InicioFragment;
@@ -53,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
 
                     return true;
                 case R.id.navigation_carrinho:
-                    FragmentoUtils.replace(MainActivity.this, new ChatFragment());
+                    FragmentoUtils.replace(MainActivity.this, new CarrinhoFragment());
                     toolbar = (Toolbar) findViewById(R.id.toolbarTopo);
                     setSupportActionBar(toolbar);
                     getSupportActionBar().setTitle("Meu Carrinho");

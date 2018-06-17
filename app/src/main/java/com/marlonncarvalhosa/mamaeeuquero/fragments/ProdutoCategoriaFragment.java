@@ -86,6 +86,7 @@ public class ProdutoCategoriaFragment extends Fragment {
             Picasso.get().load(mImageUri).into(imagemProduto);
             imagemProduto.setImageURI(mImageUri);
         }
+
     }
 
     private void preencherLista() {
@@ -111,11 +112,6 @@ public class ProdutoCategoriaFragment extends Fragment {
                                 if (iddocomprador.equals(produto.getIddovendedor())){
                                     produtos.add(produto);
                                 }}
-
-
-
-
-
 
                     }
                     adapter.atualiza(produtos);
@@ -146,7 +142,6 @@ public class ProdutoCategoriaFragment extends Fragment {
         recyclerView.setAdapter(adapter);
 
     }
-
 
 }
 

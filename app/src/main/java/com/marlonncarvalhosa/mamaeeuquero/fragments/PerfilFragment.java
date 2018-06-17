@@ -33,8 +33,8 @@ import com.marlonncarvalhosa.mamaeeuquero.utils.FragmentoUtils;
  */
 public class PerfilFragment extends Fragment {
     private FirebaseAuth auth;
-    private Button desconectar, leiloes, carrinho, chat;
-    private TextView pessoa, celular, email, resetar;
+    private Button desconectar, carrinho, chat;
+    private TextView pessoa, celular, email, resetar, leiloes;
     private Query queryPerfil;
     private String idusuario;
     private FirebaseUser usuario = FirebaseAuth.getInstance().getCurrentUser() ;
@@ -73,23 +73,18 @@ public class PerfilFragment extends Fragment {
             }
         });
 
-
         setHasOptionsMenu(true);
         pessoa = (TextView) view.findViewById(R.id.pessoaPerfil);
         celular = (TextView) view.findViewById(R.id.celPerfil);
         email = (TextView) view.findViewById(R.id.emailPerfil);
 
-      
         metodobotoes(view);
         getUsuario(usuario.getUid());
         return view;
 
     }
 
-
-
     private void redefinir(String strEmail) {
-
 
         auth.sendPasswordResetEmail(strEmail)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -139,7 +134,7 @@ public class PerfilFragment extends Fragment {
     }
 
     public void  metodobotoes (View view){
-        leiloes=view.findViewById(R.id.meusleiloes);
+        leiloes = view.findViewById(R.id.meusleiloes);
         leiloes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

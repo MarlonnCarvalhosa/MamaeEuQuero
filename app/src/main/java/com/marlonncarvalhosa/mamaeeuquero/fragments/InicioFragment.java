@@ -1,6 +1,7 @@
 package com.marlonncarvalhosa.mamaeeuquero.fragments;
 
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -19,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.Query;
@@ -27,6 +29,9 @@ import com.marlonncarvalhosa.mamaeeuquero.R;
 import com.marlonncarvalhosa.mamaeeuquero.adapter.ProdutoAdapter;
 import com.marlonncarvalhosa.mamaeeuquero.model.Produto;
 import com.marlonncarvalhosa.mamaeeuquero.utils.ConfiguraçõesFirebase;
+import com.marlonncarvalhosa.mamaeeuquero.utils.FragmentoUtils;
+import com.marlonncarvalhosa.mamaeeuquero.utils.InstaDialog;
+import com.marlonncarvalhosa.mamaeeuquero.utils.LanceDialog;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -125,6 +130,33 @@ public class InicioFragment extends Fragment {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
+
+    }
+
+    public void onPrepareOptionsMenu(Menu menu) {
+        super.onPrepareOptionsMenu(menu);
+        menu.clear();
+        getActivity().getMenuInflater().inflate(R.menu.menu_logo, menu);
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.logomarca:
+                insta();
+
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    public void insta() {
+
+        InstaDialog instaDialog = new InstaDialog();
+        instaDialog.show(getFragmentManager(), " Lance");
 
     }
 
