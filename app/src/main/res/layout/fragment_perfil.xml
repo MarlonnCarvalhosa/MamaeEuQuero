@@ -78,17 +78,6 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/resetar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:layout_marginLeft="20dp"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:textColor="@color/verdeEscuro"
-                android:text="Redefina sua senha"/>
-
-            <TextView
                 android:id="@+id/meusleiloes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

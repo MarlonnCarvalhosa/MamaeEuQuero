@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
                     FragmentoUtils.replace(MainActivity.this, new ConversasFragment());
                     toolbar = (Toolbar) findViewById(R.id.toolbarTopo);
                     setSupportActionBar(toolbar);
-                    getSupportActionBar().setTitle("Meu Carrinho");
+                    getSupportActionBar().setTitle("Conversas");
 
                     return true;
                 case R.id.navigation_perfil:

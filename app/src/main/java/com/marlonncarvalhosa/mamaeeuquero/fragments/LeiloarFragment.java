@@ -143,7 +143,7 @@ public class LeiloarFragment extends Fragment {
             progressDialog.setCanceledOnTouchOutside(false);
             progressDialog.setMessage(getActivity().getString(R.string.aguarde));
             progressDialog.show();
-            produto.setPreco(edit_preco.getText().toString().replace("R$", ""));
+            produto.setPreco(edit_preco.getText().toString().replace("R$", "").replace(",", "."));
             produto.setNome(edit_produto.getText().toString());
             produto.setCat(categoria.getSelectedItem().toString());
             produto.setLocal(edit_cidade.getText().toString());

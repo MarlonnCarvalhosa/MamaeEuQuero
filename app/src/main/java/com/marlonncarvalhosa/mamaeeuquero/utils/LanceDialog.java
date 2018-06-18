@@ -42,7 +42,7 @@ public class LanceDialog extends AppCompatDialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
         LayoutInflater inflater = getActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.lance_layout, null);
@@ -61,7 +61,20 @@ public class LanceDialog extends AppCompatDialogFragment {
                 .setPositiveButton("Dar Lance", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        getUsuario(user.getUid());
+
+                        float novolance = Float.valueOf(valor.getText().toString().replace("R$", "").replace(",", ".")).floatValue();
+
+                        float lanceatual=Float.valueOf(produto.getPreco()).floatValue();
+
+                        if (novolance>lanceatual){
+
+                            getUsuario(user.getUid());
+
+                        }
+                        else {
+
+                            Toast.makeText(getActivity(), "valor inserido e menor que o lance de R$:"+lanceatual, Toast.LENGTH_SHORT).show();}
+
 
                     }
                 });

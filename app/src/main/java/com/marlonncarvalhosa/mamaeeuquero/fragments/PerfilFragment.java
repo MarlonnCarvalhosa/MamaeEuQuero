@@ -33,8 +33,7 @@ import com.marlonncarvalhosa.mamaeeuquero.utils.FragmentoUtils;
  */
 public class PerfilFragment extends Fragment {
     private FirebaseAuth auth;
-    private Button desconectar, carrinho, chat;
-    private TextView pessoa, celular, email, resetar, leiloes;
+    private TextView pessoa, celular, email, leiloes;
     private Query queryPerfil;
     private String idusuario;
     private FirebaseUser usuario = FirebaseAuth.getInstance().getCurrentUser() ;
@@ -60,20 +59,6 @@ public class PerfilFragment extends Fragment {
         }
         getUsuario(usuario.getUid());
 
-        resetar = view.findViewById(R.id.resetar);
-        resetar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String strEmail = usuario.getEmail().toString().trim();
-
-                if (TextUtils.isEmpty(strEmail)) {
-                    email.setError("Obrigatorio");
-                    return;
-                }
-                redefinir(strEmail);
-            }
-        });
-
         setHasOptionsMenu(true);
         pessoa = view.findViewById(R.id.pessoaPerfil);
         celular = view.findViewById(R.id.celPerfil);
@@ -82,29 +67,6 @@ public class PerfilFragment extends Fragment {
         metodobotoes(view);
 
         return view;
-
-    }
-
-    private void redefinir(String strEmail) {
-
-        auth.sendPasswordResetEmail(strEmail)
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-
-                        if (task.isSuccessful()) {
-                            email.setText("");
-                            FragmentoUtils.replace(getActivity(), new LoginFragment() );
-                            Toast.makeText(getContext(),"o email de redifinição foi enviado",Toast.LENGTH_LONG).show();
-
-                        } else {
-                            Toast.makeText(getContext(),"Email não Cadastrado",Toast.LENGTH_LONG).show();
-                            email.setText("");
-                            return;
-                        }
-
-                    }
-                });
 
     }
 

@@ -19,6 +19,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.marlonncarvalhosa.mamaeeuquero.R;
 import com.marlonncarvalhosa.mamaeeuquero.fragments.DescricaoFragment;
 import com.marlonncarvalhosa.mamaeeuquero.model.Produto;
+import com.marlonncarvalhosa.mamaeeuquero.model.Usuario;
 import com.marlonncarvalhosa.mamaeeuquero.utils.FragmentoUtils;
 
 import java.util.Calendar;
@@ -28,6 +29,7 @@ import java.util.List;
 public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ViewHolder> {
     private FragmentActivity activity;
     private List<Produto> produtos;
+    private Usuario usuario = new Usuario();
 
     public final static long SECOND_MILLIS = 1000;
     public final static long MINUTE_MILLIS = SECOND_MILLIS*60;
@@ -137,7 +139,7 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ViewHold
                         alert
                                 .setTitle("Que pena!")
                                 .setIcon(R.drawable.bebe_chorando)
-                                .setMessage("Esse produto já foi leiloado.")
+                                .setMessage("Esse produto já foi arrematado por " + produto.getNomedocomprador())
                                 .setCancelable(true)
                                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                  @Override
@@ -154,9 +156,11 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ViewHold
                 });
 
             }
+
         }.start();
 
     }
+
     private static String timeConversion(int totalSeconds) {
 
         int hours = totalSeconds / MINUTES_IN_AN_HOUR / SECONDS_IN_A_MINUTE;

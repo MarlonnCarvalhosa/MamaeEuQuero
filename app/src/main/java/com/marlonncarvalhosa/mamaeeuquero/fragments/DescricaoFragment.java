@@ -112,7 +112,6 @@ public class DescricaoFragment extends Fragment {
                             FragmentoUtils.replace(getActivity(), MensagensFragment.newInstace(conversa, 0));
                         }
 
-
                     } else {
                         Toast.makeText(getActivity(), "Logado!", Toast.LENGTH_SHORT).show();
 
@@ -182,10 +181,7 @@ public class DescricaoFragment extends Fragment {
                 e.printStackTrace();
             }
 
-
-
         }
-
 
     }
 
@@ -202,15 +198,12 @@ public class DescricaoFragment extends Fragment {
                         Conversa conversa = snapshot.getValue(Conversa.class);
                         conversas.add(conversa);
 
-
                     }
-
 
                 } catch (Exception e) {
                     e.printStackTrace();
 
                 }
-
 
             }
 
@@ -220,9 +213,7 @@ public class DescricaoFragment extends Fragment {
             }
         });
 
-
     }
-
 
     public DescricaoFragment newInstance(Produto produto) {
         DescricaoFragment descricaoFragment = new DescricaoFragment();
