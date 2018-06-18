@@ -1,7 +1,8 @@
 package com.marlonncarvalhosa.mamaeeuquero.utils;
 
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.app.Dialog;
-import android.app.Fragment;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -65,7 +66,7 @@ public class LanceDialog extends AppCompatDialogFragment {
                     public void onClick(DialogInterface dialog, int which) {
 
                         if (TextUtils.isEmpty(valor.getText())){
-                            Toast.makeText(getActivity(), "voce nao inseriu nenhum valor ", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), "Insira um valor ", Toast.LENGTH_LONG).show();
                         return;
                         }
 
@@ -75,14 +76,30 @@ public class LanceDialog extends AppCompatDialogFragment {
 
                         float lanceatual = Float.valueOf(produto.getPreco()).floatValue();;
 
-                        if (novolance>lanceatual){
+                        if (novolance > lanceatual){
 
                             getUsuario(user.getUid());
 
                         }
                         else {
 
-                            Toast.makeText(getActivity(), "valor inserido e menor que o lance de R$:"+lanceatual, Toast.LENGTH_SHORT).show();}
+                            android.app.AlertDialog.Builder alert = new android.app.AlertDialog.Builder(getContext());
+
+                            alert
+                                    .setTitle("ATENÇÃO!")
+                                    .setIcon(R.drawable.ic_action_alert_red)
+                                    .setMessage("Valor menor que o lance atual.")
+                                    .setCancelable(true)
+                                    .setPositiveButton("Entendi", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                        }
+
+                                    });
+
+                            android.app.AlertDialog alertDialog = alert.create();
+                            alertDialog.show();
+                        }
 
 
                     }
@@ -107,9 +124,24 @@ public class LanceDialog extends AppCompatDialogFragment {
                     produto.recebeLance(valor.getText().toString().replace("R$", "").replace(",", "."),lancedocomprador,usuario.getNomeUsuario() ,usuario.getId() );
                     ConfiguraçõesFirebase.getProdutos().getRef().child(produto.getId()).setValue(produto);
 
-                    Toast.makeText(getActivity(), "Lance efetuado com sucesso!", Toast.LENGTH_SHORT).show();
-                    FragmentoUtils.replace(getActivity(), new InicioFragment());
+                    android.app.AlertDialog.Builder alert = new android.app.AlertDialog.Builder(getContext());
 
+                    alert
+                            .setTitle("Parabéns!")
+                            .setIcon(R.drawable.ic_action_check_verde)
+                            .setMessage("Lance efetuado com sucesso.")
+                            .setCancelable(true)
+                            .setPositiveButton("Entendi", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                }
+
+                            });
+
+                    android.app.AlertDialog alertDialog = alert.create();
+                    alertDialog.show();
+
+                    FragmentoUtils.replace(getActivity(), new InicioFragment());
 
                 }catch (Exception e){
                     e.printStackTrace();

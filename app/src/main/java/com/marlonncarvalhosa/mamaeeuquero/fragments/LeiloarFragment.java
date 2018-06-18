@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -78,6 +79,7 @@ public class LeiloarFragment extends Fragment {
         horario = (hora + ":" + minuto + ":" + segundos);
         idCampo(view);
         setaBackGround(image1, image2, image3);
+        cadastrologar();
 
         Locale mLocale = new Locale("pt", "BR");
         edit_preco.addTextChangedListener(new MoneyTextWatcher(edit_preco, mLocale));
@@ -268,6 +270,44 @@ public class LeiloarFragment extends Fragment {
     private void selecionarImagem( int i) {
         imgI = i;
         Crop.pickImage(getContext(), LeiloarFragment.this);
+
+    }
+
+    private void cadastrologar() {
+
+        final String nome = edit_produto.getText().toString().trim();
+        final String descricao = edit_descricao.getText().toString().trim();
+        final String cidade = edit_cidade.getText().toString().trim();
+        final String preco = edit_preco.getText().toString().trim();
+
+
+        if (TextUtils.isEmpty(nome)) {
+            edit_produto.setError("Campo Obrigatório");
+
+
+            return;
+        }
+
+        if (TextUtils.isEmpty(descricao)) {
+            edit_descricao.setError("Campo Obrigatório");
+
+
+            return;
+        }
+
+        if (TextUtils.isEmpty(cidade)) {
+            edit_cidade.setError("Campo Obrigatório");
+
+
+            return;
+        }
+
+        if (TextUtils.isEmpty(preco)) {
+            edit_preco.setError("Campo Obrigatório");
+
+
+            return;
+        }
 
     }
 

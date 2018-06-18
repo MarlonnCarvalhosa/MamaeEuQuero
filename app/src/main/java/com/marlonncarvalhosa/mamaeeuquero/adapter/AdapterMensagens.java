@@ -2,6 +2,8 @@ package com.marlonncarvalhosa.mamaeeuquero.adapter;
 
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Gravity;
@@ -24,6 +26,7 @@ public class AdapterMensagens extends RecyclerView.Adapter<AdapterMensagens.View
     private List<Mensagem> mensagems ;
     private FragmentActivity activity;
     private LinearLayout linearLayout;
+    private CardView cardMens;
     private String idusuario;
 
 
@@ -46,9 +49,11 @@ public class AdapterMensagens extends RecyclerView.Adapter<AdapterMensagens.View
     public void onBindViewHolder(@NonNull AdapterMensagens.ViewHolder holder, int position) {
         Mensagem mensagem = mensagems.get(position);
         Log.v("teste",mensagem.getUsuario().getId()+"==="+idusuario);
-        if (""+mensagem.getUsuario().getId()==""+idusuario){
-
-            }
+        if ((mensagem.getUsuario().getId()).equals(idusuario)){
+            linearLayout.setGravity(Gravity.RIGHT);
+        }else {
+            cardMens.setCardBackgroundColor(ContextCompat.getColor(activity, R.color.gray));
+        }
 
         holder.textViewMsg.setText(mensagem.getTexto());
         holder.textViewNome.setText(mensagem.getUsuario().getNomeUsuario());
@@ -71,7 +76,8 @@ public class AdapterMensagens extends RecyclerView.Adapter<AdapterMensagens.View
 
         public ViewHolder(View itemView) {
             super(itemView);
-            linearLayout=itemView.findViewById(R.id.linearmensagens);
+            cardMens = itemView.findViewById(R.id.cardMens);
+            linearLayout = itemView.findViewById(R.id.linearmensagens);
             textViewMsg = itemView.findViewById(R.id.textTexto);
             textViewNome = itemView.findViewById(R.id.textNome);
         }
