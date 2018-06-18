@@ -1,6 +1,8 @@
 package com.marlonncarvalhosa.mamaeeuquero.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Usuario implements Serializable {
     private String id;
@@ -9,17 +11,19 @@ public class Usuario implements Serializable {
     private String numeroCelular;
     private String email;
     private String senha;
+    private List<Conversa> conversas= new ArrayList<>();
+
 
     public Usuario(){}
 
-    public Usuario (String id,String nomeUsuario,String dataNascimento,String numeroCelular,String email,String senha){
-       this.id=id;
-       this.nomeUsuario=nomeUsuario;
-       this.dataNascimento=dataNascimento;
-       this.numeroCelular=numeroCelular;
-       this.email=email;
-       this.senha=senha;
-
+    public Usuario(String id, String nomeUsuario, String dataNascimento, String numeroCelular, String email, String senha, List<Conversa> conversas) {
+        this.id = id;
+        this.nomeUsuario = nomeUsuario;
+        this.dataNascimento = dataNascimento;
+        this.numeroCelular = numeroCelular;
+        this.email = email;
+        this.senha = senha;
+        this.conversas = conversas;
     }
 
     public String getId() {
@@ -68,5 +72,14 @@ public class Usuario implements Serializable {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+
+    public List<Conversa> getConversas() {
+        return conversas;
+    }
+
+    public void setConversas(List<Conversa> conversas) {
+        this.conversas = conversas;
     }
 }

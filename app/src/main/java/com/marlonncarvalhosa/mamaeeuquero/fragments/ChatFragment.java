@@ -58,78 +58,12 @@ public class ChatFragment extends Fragment {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_chat, container, false);
         getUsuario();
-        initView(view);
+
 
 
         return view;
     }
 
-    private void initView(View view) {
-
-        listViewChat = view.findViewById(R.id.list_view_chat);
-        spinnerEscola = view.findViewById(R.id.spinner_escola);
-        editTextMensagem = view.findViewById(R.id.edit_mensagem);
-        imageViewEnviar = view.findViewById(R.id.image_enviar);
-
-        final FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-        spinnerEscola.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                reference = firebaseDatabase.getReference().child("chat").child(((String) spinnerEscola.getSelectedItem()));
-
-
-                FirebaseListOptions<Mensagem> options = new FirebaseListOptions.Builder<Mensagem>()
-                        .setQuery(reference, Mensagem.class)
-                        .setLayout(R.layout.adapter_chat)
-                        .build();
-
-                adapter = new FirebaseListAdapter<Mensagem>(options) {
-
-                    @Override
-                    protected void populateView(View v, Mensagem model, int position) {
-                        TextView textViewNome = v.findViewById(R.id.nomeChat);
-                        TextView textView = v.findViewById(R.id.text_view_mensagem);
-                        textView.setText(model.getTexto());
-                        textViewNome.setText(model.getNome());
-
-                    }
-                };
-                listViewChat.setAdapter(adapter);
-                adapter.startListening();
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
-
-        imageViewEnviar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(usuario!= null){
-                      String texto = editTextMensagem.getText().toString();
-
-                if(!texto.isEmpty()){
-                    Mensagem mensagem = new Mensagem();
-                    mensagem.setId(BancoDeDados.getInstance().getId(getActivity()));
-                    mensagem.setTexto(texto);
-                    mensagem.setId(ConfiguraçõesFirebase.getFirebase().push().getKey());
-                    mensagem.setuIdUsuario(usuario.getId());
-                    mensagem.setNome(usuario.getNomeUsuario());
-                    reference.push().setValue(mensagem);
-                    editTextMensagem.setText("");
-                }
-                }else {
-
-                    Toast.makeText(getActivity(), "Login requerido!", Toast.LENGTH_SHORT).show();
-
-                }
-
-            }
-        });
-    }
 
 
     private void getUsuario(){

@@ -23,7 +23,7 @@
                                           <PersistentState>
                                             <option name="values">
                                               <map>
-                                                <entry key="url" value="jar:file:/home/marlonncarvalhosa/Downloads/android-studio/plugins/android/lib/android.jar!/images/material_design_icons/communication/ic_vpn_key_black_24dp.xml" />
+                                                <entry key="url" value="jar:file:/opt/android-studio/plugins/android/lib/android.jar!/images/material_design_icons/communication/ic_chat_black_24dp.xml" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -33,9 +33,8 @@
                                   </option>
                                   <option name="values">
                                     <map>
-                                      <entry key="outputName" value="ic_action_senha" />
-                                      <entry key="theme" value="CUSTOM" />
-                                      <entry key="themeColor" value="9ae1c9" />
+                                      <entry key="outputName" value="ic_action_msg" />
+                                      <entry key="theme" value="HOLO_DARK" />
                                     </map>
                                   </option>
                                 </PersistentState>

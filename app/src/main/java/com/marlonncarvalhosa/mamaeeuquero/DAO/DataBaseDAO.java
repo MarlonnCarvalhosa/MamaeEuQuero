@@ -13,16 +13,21 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageMetadata;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.marlonncarvalhosa.mamaeeuquero.R;
 import com.marlonncarvalhosa.mamaeeuquero.Views.MainActivity;
+import com.marlonncarvalhosa.mamaeeuquero.model.Conversa;
 import com.marlonncarvalhosa.mamaeeuquero.model.Imagem;
+import com.marlonncarvalhosa.mamaeeuquero.model.Mensagem;
 import com.marlonncarvalhosa.mamaeeuquero.model.Produto;
 import com.marlonncarvalhosa.mamaeeuquero.model.Usuario;
 import com.marlonncarvalhosa.mamaeeuquero.utils.ConfiguraçõesFirebase;
@@ -32,9 +37,11 @@ import com.marlonncarvalhosa.mamaeeuquero.utils.ImageUtis;
 import java.util.UUID;
 
 public class DataBaseDAO {
+
     private FirebaseStorage storage = FirebaseStorage.getInstance();
     private boolean sucesso = true;
     private int cont = 0;
+
 
     public void saveUsuario(Usuario usuario) {
         DatabaseReference reference = ConfiguraçõesFirebase.getFirebase();
@@ -137,7 +144,35 @@ public class DataBaseDAO {
     }
 
 
+    public void updateSimpleInfoUser(Usuario usuario) {
+        DatabaseReference reference = ConfiguraçõesFirebase.getFirebase();
+        reference.child(ConstantsUtils.BANCO_USUARIO).child(String.valueOf(usuario.getId())).setValue(usuario);
+    }
+
+    public void newConversa(Conversa conversa) {
+        DatabaseReference reference = ConfiguraçõesFirebase.getFirebase();
+        reference.child(ConstantsUtils.BANCO_CONVERSA).child(String.valueOf(conversa.getId())).setValue(conversa);
+    }
+
+    public static Query getConversas(String uid) {
+        return FirebaseDatabase.getInstance().getReference(ConstantsUtils.BANCO_USUARIO).child(uid+"/conversas");
+
+    }
+
+    public void enviarMensagem(Mensagem mensagem, Conversa conversa) {
+        DatabaseReference reference = ConfiguraçõesFirebase.getFirebase();
+        reference.child(ConstantsUtils.BANCO_CONVERSA).child(conversa.getId()).child(ConstantsUtils.MENSAGENS).child(mensagem.getId()).setValue(mensagem);
 
 
+    }
 
+    public static Query getConversa() {
+        return FirebaseDatabase.getInstance().getReference(ConstantsUtils.BANCO_CONVERSA);
+    }
+
+    public static Query getMensagens(Conversa conversa) {
+        Log.v("CONVERSA", conversa.getId());
+        return FirebaseDatabase.getInstance().getReference(ConstantsUtils.BANCO_CONVERSA).child(conversa.getId()).child("mensagens");
+
+    }
 }

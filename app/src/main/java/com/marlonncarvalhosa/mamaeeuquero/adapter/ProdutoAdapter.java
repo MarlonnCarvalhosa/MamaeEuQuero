@@ -2,40 +2,28 @@ package com.marlonncarvalhosa.mamaeeuquero.adapter;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.graphics.Color;
 import android.os.CountDownTimer;
-import android.support.annotation.ColorInt;
-import android.support.annotation.ColorRes;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.Resource;
-import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.bumptech.glide.request.RequestOptions;
 import com.marlonncarvalhosa.mamaeeuquero.R;
-import com.marlonncarvalhosa.mamaeeuquero.Views.MainActivity;
 import com.marlonncarvalhosa.mamaeeuquero.fragments.DescricaoFragment;
-import com.marlonncarvalhosa.mamaeeuquero.fragments.InicioFragment;
 import com.marlonncarvalhosa.mamaeeuquero.model.Produto;
 import com.marlonncarvalhosa.mamaeeuquero.utils.FragmentoUtils;
 
 import java.util.Calendar;
 import java.util.Collections;
-import java.util.Date;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ViewHolder> {
     private FragmentActivity activity;
@@ -110,7 +98,7 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ViewHold
             @Override
             public void onClick(View v) {
 
-                FragmentoUtils.replace(activity, new DescricaoFragment().newIntance(produto));
+                FragmentoUtils.replace(activity, new DescricaoFragment().newInstance(produto));
 
             }
         });

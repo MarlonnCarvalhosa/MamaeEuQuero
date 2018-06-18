@@ -3,8 +3,10 @@ package com.marlonncarvalhosa.mamaeeuquero.fragments;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,24 +19,39 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+import com.marlonncarvalhosa.mamaeeuquero.DAO.DataBaseDAO;
 import com.marlonncarvalhosa.mamaeeuquero.R;
 import com.marlonncarvalhosa.mamaeeuquero.Views.ImagensActivity;
+import com.marlonncarvalhosa.mamaeeuquero.model.Conversa;
 import com.marlonncarvalhosa.mamaeeuquero.model.Produto;
 import com.marlonncarvalhosa.mamaeeuquero.model.Usuario;
+import com.marlonncarvalhosa.mamaeeuquero.utils.ConfiguraçõesFirebase;
 import com.marlonncarvalhosa.mamaeeuquero.utils.ConstantsUtils;
 import com.marlonncarvalhosa.mamaeeuquero.utils.FragmentoUtils;
 import com.marlonncarvalhosa.mamaeeuquero.utils.LanceDialog;
 
+import java.util.ArrayList;
+import java.util.List;
 
-public class DescricaoFragment extends Fragment{
+
+public class DescricaoFragment extends Fragment {
     public static final String URL_IMAGEM = "package com.marlonncarvalhosa.mamaeeuquero.fragments;";
     private Bundle bundle;
     private Produto produto;
     private ImageView imageView;
-    private TextView nomeProduto,lanceProduto,tempoProduto,detalhesProduto,iddocomprador;
-    private Button btnLance;
+    private TextView nomeProduto, lanceProduto, tempoProduto, detalhesProduto, iddocomprador;
+    private Button btnLance, btnMsg;
     private FirebaseAuth auth;
-    private Usuario usuario = new Usuario();
+
+    private List<Conversa> conversas = new ArrayList<>();
+    private Query databaseConversas;
+    private FirebaseUser currentFirebaseUser;
+
 
 
     public DescricaoFragment() {
@@ -46,16 +63,64 @@ public class DescricaoFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view= inflater.inflate(R.layout.fragment_descricao, container, false);
+        View view = inflater.inflate(R.layout.fragment_descricao, container, false);
         auth = FirebaseAuth.getInstance();
         idCampo(view);
         initView(view);
+        currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser() ;
+        getConversa(produto);
         imgFull(view);
 
 
         getActivity().setTitle("Detalhes do Produto");
+        btnMsg.setOnClickListener(new View.OnClickListener() {
+            public Conversa conversa;
 
-    return view;
+            @Override
+            public void onClick(View v) {
+                if (auth.getCurrentUser() != null) {
+                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                    if (user != null) {
+                       /* if (conversa != null) {
+                            FragmentoUtils.replace(getActivity(), MensagensFragment.newInstace(conversa));
+                            Log.v("CONVERSA", conversa.getId());
+                        } else {
+
+
+                        }*/
+                        boolean exist = false;
+
+                        for (Conversa conversa:conversas) {
+                            if (conversa.getProduto().getId().equals(produto.getId()) && conversa.getIdComprador().equals(currentFirebaseUser.getUid())){
+                                this.conversa = conversa;
+                                exist= true;
+                                break;
+                            }
+                        }
+
+
+                        if(exist){
+                            Log.v("CONVERSA", conversa.getId());
+                            FragmentoUtils.replace(getActivity(), MensagensFragment.newInstace(conversa, 0));
+                        }else {
+                            Conversa conversa = new Conversa();
+                            conversa.setId(ConfiguraçõesFirebase.getFirebase().push().getKey());
+                            conversa.setIdComprador(user.getUid());
+                            conversa.setIdVendedor(produto.getIddovendedor());
+                            conversa.setProduto(produto);
+                            Log.v("CONVERSA", conversa.getId());
+                            FragmentoUtils.replace(getActivity(), MensagensFragment.newInstace(conversa, 0));
+                        }
+
+
+                    } else {
+                        Toast.makeText(getActivity(), "Logado!", Toast.LENGTH_SHORT).show();
+
+                    }
+                }
+            }
+        });
+        return view;
     }
 
     public void imgFull(View view) {
@@ -77,6 +142,7 @@ public class DescricaoFragment extends Fragment{
         detalhesProduto = view.findViewById(R.id.textDetalhes);
         imageView = view.findViewById(R.id.imageProduto);
         btnLance = view.findViewById(R.id.btn_lance);
+        btnMsg = view.findViewById(R.id.btn_enviar_msg);
     }
 
     private void abrirDialogo() {
@@ -85,17 +151,20 @@ public class DescricaoFragment extends Fragment{
         lance_dialog.setProduto(produto);
         lance_dialog.show(getFragmentManager(), " Lance");
 
+
     }
 
     private void initView(final View view) {
+
         bundle = getArguments();
-        if(bundle!= null){
+        if (bundle != null) {
             produto = (Produto) bundle.getSerializable(ConstantsUtils.PRODUTO);
+
             nomeProduto.setText("" + produto.getNome());
             lanceProduto.setText(produto.getPreco());
             tempoProduto.setText(produto.getDataInicial());
             detalhesProduto.setText(produto.getDescrição());
-          //  iddocomprador.setText(produto.getLancedocomprador());
+            //  iddocomprador.setText(produto.getLancedocomprador());
             btnLance.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -109,16 +178,54 @@ public class DescricaoFragment extends Fragment{
                 Glide.with(getActivity())
                         .load(url)
                         .into(imageView);
-            }catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
 
+
+
         }
+
 
     }
 
-    public DescricaoFragment newIntance(Produto produto) {
-        DescricaoFragment  descricaoFragment = new DescricaoFragment();
+    private void getConversa(Produto produto) {
+
+        databaseConversas = DataBaseDAO.getConversa();
+        databaseConversas.keepSynced(true);
+        databaseConversas.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                try {
+                    conversas.clear();
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        Conversa conversa = snapshot.getValue(Conversa.class);
+                        conversas.add(conversa);
+
+
+                    }
+
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+
+                }
+
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
+    }
+
+
+    public DescricaoFragment newInstance(Produto produto) {
+        DescricaoFragment descricaoFragment = new DescricaoFragment();
         Bundle bundle = new Bundle();
         bundle.putSerializable(ConstantsUtils.PRODUTO, produto);
         descricaoFragment.setArguments(bundle);
@@ -129,7 +236,7 @@ public class DescricaoFragment extends Fragment{
         if (auth.getCurrentUser() != null) {
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
             if (user != null) {
-                if (user.getUid().equals(produto.getIddovendedor())){
+                if (user.getUid().equals(produto.getIddovendedor())) {
 
                     if (produto.getLancedocomprador().equals("")) {
 
@@ -150,7 +257,7 @@ public class DescricaoFragment extends Fragment{
                         android.app.AlertDialog alertDialog = alert.create();
                         alertDialog.show();
 
-                    }else {
+                    } else {
 
                         android.app.AlertDialog.Builder alert = new android.app.AlertDialog.Builder(getContext());
 
@@ -173,7 +280,7 @@ public class DescricaoFragment extends Fragment{
 
                     return;
 
-                }else {
+                } else {
                     abrirDialogo();
 
                 }
@@ -182,7 +289,7 @@ public class DescricaoFragment extends Fragment{
 
         }
 
-        if (auth.getCurrentUser() == null){
+        if (auth.getCurrentUser() == null) {
             FragmentoUtils.replace(getActivity(), new LoginFragment());
         }
 
@@ -193,7 +300,7 @@ public class DescricaoFragment extends Fragment{
     public void onResume() {
         super.onResume();
 
-        if(getView() == null){
+        if (getView() == null) {
             return;
         }
 
@@ -203,7 +310,7 @@ public class DescricaoFragment extends Fragment{
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
 
-                if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK){
+                if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
 
                     FragmentoUtils.replace(getActivity(), new InicioFragment());
                     return true;
@@ -216,6 +323,7 @@ public class DescricaoFragment extends Fragment{
         });
 
     }
+
 
 }
 

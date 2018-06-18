@@ -258,6 +258,7 @@
     <string name="shared_config">sharedConfig</string>
     <string name="id">id</string>
     <string name="esqueceu_a_senha">Esqueceu a senha ?</string>
+    <string name="conversas">Conversas</string>
 
     <array name="spinerTipoProduto">
         <item>Acessórios</item>

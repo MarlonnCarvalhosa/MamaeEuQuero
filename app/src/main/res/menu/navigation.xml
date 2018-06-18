@@ -18,9 +18,9 @@
         android:title="@string/leiloar"/>
 
     <item
-        android:id="@+id/navigation_carrinho"
-        android:icon="@drawable/ic_action_carrinho_white"
-        android:title="@string/carrinho"/>
+        android:id="@+id/navigation_conversas"
+        android:icon="@drawable/ic_action_msg"
+        android:title="@string/conversas"/>
 
     <item
         android:id="@+id/navigation_perfil"

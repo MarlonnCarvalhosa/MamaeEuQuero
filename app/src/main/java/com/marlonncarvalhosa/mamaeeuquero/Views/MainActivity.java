@@ -12,9 +12,8 @@ import android.widget.Button;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.marlonncarvalhosa.mamaeeuquero.R;
-import com.marlonncarvalhosa.mamaeeuquero.fragments.CarrinhoFragment;
+import com.marlonncarvalhosa.mamaeeuquero.fragments.ConversasFragment;
 import com.marlonncarvalhosa.mamaeeuquero.fragments.CategoriasFragment;
-import com.marlonncarvalhosa.mamaeeuquero.fragments.ChatFragment;
 import com.marlonncarvalhosa.mamaeeuquero.fragments.InicioFragment;
 import com.marlonncarvalhosa.mamaeeuquero.fragments.LeiloarFragment;
 import com.marlonncarvalhosa.mamaeeuquero.fragments.LoginFragment;
@@ -53,8 +52,8 @@ public class MainActivity extends AppCompatActivity {
                     getSupportActionBar().setTitle("Leiloar");
 
                     return true;
-                case R.id.navigation_carrinho:
-                    FragmentoUtils.replace(MainActivity.this, new CarrinhoFragment());
+                case R.id.navigation_conversas:
+                    FragmentoUtils.replace(MainActivity.this, new ConversasFragment());
                     toolbar = (Toolbar) findViewById(R.id.toolbarTopo);
                     setSupportActionBar(toolbar);
                     getSupportActionBar().setTitle("Meu Carrinho");

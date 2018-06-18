@@ -58,8 +58,9 @@ public class PerfilFragment extends Fragment {
             idusuario=user.getUid();
 
         }
+        getUsuario(usuario.getUid());
 
-        resetar = (TextView) view.findViewById(R.id.resetar);
+        resetar = view.findViewById(R.id.resetar);
         resetar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -74,12 +75,12 @@ public class PerfilFragment extends Fragment {
         });
 
         setHasOptionsMenu(true);
-        pessoa = (TextView) view.findViewById(R.id.pessoaPerfil);
-        celular = (TextView) view.findViewById(R.id.celPerfil);
-        email = (TextView) view.findViewById(R.id.emailPerfil);
+        pessoa = view.findViewById(R.id.pessoaPerfil);
+        celular = view.findViewById(R.id.celPerfil);
+        email = view.findViewById(R.id.emailPerfil);
 
         metodobotoes(view);
-        getUsuario(usuario.getUid());
+
         return view;
 
     }
