@@ -52,9 +52,9 @@ public class ImagensAdapter extends PagerAdapter {
 
 
         if(position!=imagems.size()-1){
-            txttitle.setText("Próxima >");
+            txttitle.setText("Próxima Imagem >");
         }else {
-            txttitle.setText("< Anterior");
+            txttitle.setText("< Imagem Anterior");
         }
 
         layoutslide.setBackgroundColor(Color.rgb(55,55,55));

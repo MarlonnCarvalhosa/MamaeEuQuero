@@ -131,9 +131,14 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ViewHold
                 holder.titulo_lance.setTextColor(ContextCompat.getColor(activity, R.color.verdeEscuro));
                 holder.clickCard.setBackgroundColor(ContextCompat.getColor(activity, R.color.teste));
 
-                if (usuario.getId().equals(produto.getIddovendedor() + produto.getLancedocomprador())) {
+                if (usuario.getId().equals(produto.getIddovendedor())) {
 
-                }else {
+                    return;
+                }
+                if (usuario.getId().equals(produto.getLancedocomprador())) {
+
+                    return;
+                } else {
 
                     holder.clickCard.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -159,6 +164,7 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ViewHold
                         }
 
                     });
+
                 }
 
             }

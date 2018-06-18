@@ -85,7 +85,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_marginTop="5dp"
                     android:gravity="center"
-                    android:text="Tempo Restante"
+                    android:text="Arrematando"
                     android:textColor="@color/black"
                     android:textStyle="bold" />
 
