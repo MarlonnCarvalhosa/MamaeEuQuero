@@ -51,6 +51,8 @@ public class MensagensFragment extends Fragment {
     private AdapterMensagens adapter;
     private List<Mensagem >mensagems ;
     private Query queryMensagens;
+    private FirebaseAuth auth;
+    private String idusuario;
     private int back;
 
 
@@ -74,6 +76,8 @@ public class MensagensFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_mensagens, container, false);
 
          currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser() ;
+         auth=FirebaseAuth.getInstance();
+         idusuario=auth.getUid();
         initView(view);
         getMensagens();
 
@@ -246,7 +250,7 @@ public class MensagensFragment extends Fragment {
 
             }
         });
-        adapter = new AdapterMensagens(mensagems,getActivity()) ;
+        adapter = new AdapterMensagens(mensagems,getActivity(),idusuario) ;
         recyclerView.setAdapter(adapter);
 
 
@@ -279,4 +283,7 @@ public class MensagensFragment extends Fragment {
             }
         });
     }
-}
+
+        }
+
+

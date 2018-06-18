@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.marlonncarvalhosa.mamaeeuquero.R;
@@ -34,7 +35,8 @@ public class AdapterConversas extends RecyclerView.Adapter<AdapterConversas.View
     public void onBindViewHolder(@NonNull AdapterConversas.ViewHolder holder, int position) {
             final Conversa conversa = conversas.get(position);
             holder.textViewProduto.setText(conversa.getProduto().getNome());
-            holder.textViewUsuario.setText("Inf: "+conversa.getProduto().getDescrição());
+            holder.textViewUsuario.setText("abrir conversa");
+
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -60,10 +62,12 @@ public class AdapterConversas extends RecyclerView.Adapter<AdapterConversas.View
         private TextView textViewProduto;
         private TextView textViewUsuario;
 
+
         public ViewHolder(View itemView) {
             super(itemView);
             textViewProduto= itemView.findViewById(R.id.textProduto);
             textViewUsuario = itemView.findViewById(R.id.textUsuario);
+
         }
     }
 }

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatDialogFragment;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
@@ -25,6 +26,7 @@ import com.marlonncarvalhosa.mamaeeuquero.Views.MainActivity;
 import com.marlonncarvalhosa.mamaeeuquero.Views.SplashScreenActivity;
 import com.marlonncarvalhosa.mamaeeuquero.fragments.DescricaoFragment;
 import com.marlonncarvalhosa.mamaeeuquero.fragments.InicioFragment;
+import com.marlonncarvalhosa.mamaeeuquero.fragments.PerfilFragment;
 import com.marlonncarvalhosa.mamaeeuquero.model.Produto;
 import com.marlonncarvalhosa.mamaeeuquero.model.Usuario;
 
@@ -62,9 +64,16 @@ public class LanceDialog extends AppCompatDialogFragment {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
-                        float novolance = Float.valueOf(valor.getText().toString().replace("R$", "").replace(",", ".")).floatValue();
+                        if (TextUtils.isEmpty(valor.getText())){
+                            Toast.makeText(getActivity(), "voce nao inseriu nenhum valor ", Toast.LENGTH_SHORT).show();
+                        return;
+                        }
 
-                        float lanceatual=Float.valueOf(produto.getPreco()).floatValue();
+
+                        float novolance = Float.valueOf(valor.getText().toString().replace("R$", "")
+                                .replace(",", "."));
+
+                        float lanceatual = Float.valueOf(produto.getPreco()).floatValue();;
 
                         if (novolance>lanceatual){
 
@@ -95,10 +104,11 @@ public class LanceDialog extends AppCompatDialogFragment {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 try{
                     Usuario usuario = dataSnapshot.getValue(Usuario.class);
-                    produto.recebeLance(valor.getText().toString().replace("R$", ""),lancedocomprador,usuario.getNomeUsuario() ,usuario.getId() );
+                    produto.recebeLance(valor.getText().toString().replace("R$", "").replace(",", "."),lancedocomprador,usuario.getNomeUsuario() ,usuario.getId() );
                     ConfiguraçõesFirebase.getProdutos().getRef().child(produto.getId()).setValue(produto);
 
                     Toast.makeText(getActivity(), "Lance efetuado com sucesso!", Toast.LENGTH_SHORT).show();
+                    FragmentoUtils.replace(getActivity(), new InicioFragment());
 
 
                 }catch (Exception e){
