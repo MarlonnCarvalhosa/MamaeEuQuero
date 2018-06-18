@@ -73,14 +73,35 @@ public class DescricaoFragment extends Fragment {
 
 
         getActivity().setTitle("Detalhes do Produto");
-        btnMsg.setOnClickListener(new View.OnClickListener() {
-            public Conversa conversa;
+            btnMsg.setOnClickListener(new View.OnClickListener() {
+                public Conversa conversa;
 
-            @Override
-            public void onClick(View v) {
-                if (auth.getCurrentUser() != null) {
-                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                    if (user != null) {
+                @Override
+                public void onClick(View v) {
+                    if (currentFirebaseUser.getUid().equals(produto.getIddovendedor())) {
+
+                        android.app.AlertDialog.Builder alert = new android.app.AlertDialog.Builder(getContext());
+
+                        alert
+                                .setTitle("ATENÇÃO!")
+                                .setIcon(R.drawable.ic_action_alert_red)
+                                .setMessage("Não pode abrir uma conversa com você mesmo.")
+                                .setCancelable(true)
+                                .setPositiveButton("Entendi", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                    }
+
+                                });
+
+                        android.app.AlertDialog alertDialog = alert.create();
+                        alertDialog.show();
+
+                    }else {
+
+                        if (auth.getCurrentUser() != null) {
+                            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                            if (user != null) {
                        /* if (conversa != null) {
                             FragmentoUtils.replace(getActivity(), MensagensFragment.newInstace(conversa));
                             Log.v("CONVERSA", conversa.getId());
@@ -88,37 +109,39 @@ public class DescricaoFragment extends Fragment {
 
 
                         }*/
-                        boolean exist = false;
+                                boolean exist = false;
 
-                        for (Conversa conversa:conversas) {
-                            if (conversa.getProduto().getId().equals(produto.getId()) && conversa.getIdComprador().equals(currentFirebaseUser.getUid())){
-                                this.conversa = conversa;
-                                exist= true;
-                                break;
+                                for (Conversa conversa : conversas) {
+                                    if (conversa.getProduto().getId().equals(produto.getId()) && conversa.getIdComprador().equals(currentFirebaseUser.getUid())) {
+                                        this.conversa = conversa;
+                                        exist = true;
+                                        break;
+                                    }
+                                }
+
+
+                                if (exist) {
+                                    Log.v("CONVERSA", conversa.getId());
+                                    FragmentoUtils.replace(getActivity(), MensagensFragment.newInstace(conversa, 0));
+                                } else {
+                                    Conversa conversa = new Conversa();
+                                    conversa.setId(ConfiguraçõesFirebase.getFirebase().push().getKey());
+                                    conversa.setIdComprador(user.getUid());
+                                    conversa.setIdVendedor(produto.getIddovendedor());
+                                    conversa.setProduto(produto);
+                                    Log.v("CONVERSA", conversa.getId());
+                                    FragmentoUtils.replace(getActivity(), MensagensFragment.newInstace(conversa, 0));
+                                }
+
+                            } else {
+                                Toast.makeText(getActivity(), "Logado!", Toast.LENGTH_SHORT).show();
+
                             }
                         }
-
-
-                        if(exist){
-                            Log.v("CONVERSA", conversa.getId());
-                            FragmentoUtils.replace(getActivity(), MensagensFragment.newInstace(conversa, 0));
-                        }else {
-                            Conversa conversa = new Conversa();
-                            conversa.setId(ConfiguraçõesFirebase.getFirebase().push().getKey());
-                            conversa.setIdComprador(user.getUid());
-                            conversa.setIdVendedor(produto.getIddovendedor());
-                            conversa.setProduto(produto);
-                            Log.v("CONVERSA", conversa.getId());
-                            FragmentoUtils.replace(getActivity(), MensagensFragment.newInstace(conversa, 0));
-                        }
-
-                    } else {
-                        Toast.makeText(getActivity(), "Logado!", Toast.LENGTH_SHORT).show();
-
                     }
                 }
-            }
-        });
+            });
+
         return view;
     }
 

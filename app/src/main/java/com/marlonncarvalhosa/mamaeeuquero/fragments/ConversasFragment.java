@@ -23,6 +23,7 @@ import com.marlonncarvalhosa.mamaeeuquero.R;
 import com.marlonncarvalhosa.mamaeeuquero.adapter.AdapterConversas;
 import com.marlonncarvalhosa.mamaeeuquero.model.Conversa;
 import com.marlonncarvalhosa.mamaeeuquero.model.Usuario;
+import com.marlonncarvalhosa.mamaeeuquero.utils.FragmentoUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,7 +45,6 @@ public class ConversasFragment extends Fragment {
         // Required empty public constructor
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -52,6 +52,7 @@ public class ConversasFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_conversas, container, false);
 
         auth = FirebaseAuth.getInstance();
+
         if (auth.getCurrentUser() != null) {
 
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -60,8 +61,6 @@ public class ConversasFragment extends Fragment {
         }
 
         initView(view);
-
-
 
         return view;
 
@@ -116,8 +115,5 @@ public class ConversasFragment extends Fragment {
 
 
     }
-
-
-
 
 }

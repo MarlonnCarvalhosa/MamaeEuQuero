@@ -133,8 +133,6 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ViewHold
 
                 if (usuario.getId().equals(produto.getIddovendedor() + produto.getLancedocomprador())) {
 
-
-
                 }else {
 
                     holder.clickCard.setOnClickListener(new View.OnClickListener() {

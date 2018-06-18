@@ -122,7 +122,6 @@ public class LanceDialog extends AppCompatDialogFragment {
                 try{
                     Usuario usuario = dataSnapshot.getValue(Usuario.class);
                     produto.recebeLance(valor.getText().toString().replace("R$", "").replace(",", "."),lancedocomprador,usuario.getNomeUsuario() ,usuario.getId() );
-                    ConfiguraçõesFirebase.getProdutos().getRef().child(produto.getId()).setValue(produto);
 
                     android.app.AlertDialog.Builder alert = new android.app.AlertDialog.Builder(getContext());
 
@@ -142,6 +141,9 @@ public class LanceDialog extends AppCompatDialogFragment {
                     alertDialog.show();
 
                     FragmentoUtils.replace(getActivity(), new InicioFragment());
+
+                    ConfiguraçõesFirebase.getProdutos().getRef().child(produto.getId()).setValue(produto);
+
 
                 }catch (Exception e){
                     e.printStackTrace();
