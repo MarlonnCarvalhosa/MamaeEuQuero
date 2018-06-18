@@ -99,8 +99,8 @@ public class LanceDialog extends AppCompatDialogFragment {
 
                             android.app.AlertDialog alertDialog = alert.create();
                             alertDialog.show();
-                        }
 
+                        }
 
                     }
                 });

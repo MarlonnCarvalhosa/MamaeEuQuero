@@ -130,30 +130,38 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ViewHold
                 holder.titulo_lance.setText("Arrematado por:");
                 holder.titulo_lance.setTextColor(ContextCompat.getColor(activity, R.color.verdeEscuro));
                 holder.clickCard.setBackgroundColor(ContextCompat.getColor(activity, R.color.teste));
-                holder.clickCard.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
 
-                        AlertDialog.Builder alert = new AlertDialog.Builder(activity);
+                if (usuario.getId().equals(produto.getIddovendedor() + produto.getLancedocomprador())) {
 
-                        alert
-                                .setTitle("Que pena!")
-                                .setIcon(R.drawable.bebe_chorando)
-                                .setMessage("Esse produto já foi arrematado por " + produto.getNomedocomprador())
-                                .setCancelable(true)
-                                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                                 @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                }
 
-                            });
 
-                                AlertDialog alertDialog = alert.create();
-                                alertDialog.show();
+                }else {
 
-                    }
+                    holder.clickCard.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
 
-                });
+                            AlertDialog.Builder alert = new AlertDialog.Builder(activity);
+
+                            alert
+                                    .setTitle("Que pena!")
+                                    .setIcon(R.drawable.bebe_chorando)
+                                    .setMessage("Esse produto já foi arrematado por " + produto.getNomedocomprador())
+                                    .setCancelable(true)
+                                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                        }
+
+                                    });
+
+                            AlertDialog alertDialog = alert.create();
+                            alertDialog.show();
+
+                        }
+
+                    });
+                }
 
             }
 

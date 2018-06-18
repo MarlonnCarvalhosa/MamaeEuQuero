@@ -16,7 +16,6 @@
 
         <TextView
             android:textSize="13sp"
-            android:text="Matheus"
             android:id="@+id/textNome"
             android:layout_marginLeft="8dp"
             android:layout_width="match_parent"
@@ -27,12 +26,10 @@
             app:cardUseCompatPadding="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:cardCornerRadius="@dimen/card_button_margin"
-            android:backgroundTint="@color/verdeClaro">
+            app:cardCornerRadius="@dimen/card_button_margin">
 
             <TextView
                 android:layout_margin="5dp"
-                android:text="Teuiagsdlfhuadslfhbadslhfasdhfashdkfkhasdfhadsfhasdfhbadsfasdfadsfhadsfhadsfhvhasdhvfadshmf"
                 android:id="@+id/textTexto"
                 android:textStyle="italic"
                 android:layout_width="match_parent"

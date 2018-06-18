@@ -35,7 +35,9 @@ public class ConversasFragment extends Fragment {
     private AdapterConversas adapter;
     private List<Conversa> conversas;
     private Query databaseConversas;
-    private Usuario usuario;
+    private FirebaseAuth auth;
+    private String idusuario;
+    private FirebaseUser usuario = FirebaseAuth.getInstance().getCurrentUser() ;
 
 
     public ConversasFragment() {
@@ -48,6 +50,14 @@ public class ConversasFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_conversas, container, false);
+
+        auth = FirebaseAuth.getInstance();
+        if (auth.getCurrentUser() != null) {
+
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            idusuario=user.getUid();
+
+        }
 
         initView(view);
 

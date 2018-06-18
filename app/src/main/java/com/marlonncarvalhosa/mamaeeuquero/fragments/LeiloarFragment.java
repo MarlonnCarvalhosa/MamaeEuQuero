@@ -79,7 +79,7 @@ public class LeiloarFragment extends Fragment {
         horario = (hora + ":" + minuto + ":" + segundos);
         idCampo(view);
         setaBackGround(image1, image2, image3);
-        cadastrologar();
+
 
         Locale mLocale = new Locale("pt", "BR");
         edit_preco.addTextChangedListener(new MoneyTextWatcher(edit_preco, mLocale));
@@ -226,7 +226,8 @@ public class LeiloarFragment extends Fragment {
 
         switch (item.getItemId()) {
             case R.id.enviar:
-                uploadImage();
+
+                cadastrologar();
 
                 return true;
             default:
@@ -243,7 +244,7 @@ public class LeiloarFragment extends Fragment {
 
     private void setImage(int resultCode, Intent result) {
         if (resultCode == RESULT_OK) {
-                    pikaChamativa = true;
+            pikaChamativa = true;
             switch (imgI) {
                 case 1:
                     Glide.with(getActivity()).load(Crop.getOutput(result)).into(image1);
@@ -308,6 +309,8 @@ public class LeiloarFragment extends Fragment {
 
             return;
         }
+        uploadImage();
+
 
     }
 

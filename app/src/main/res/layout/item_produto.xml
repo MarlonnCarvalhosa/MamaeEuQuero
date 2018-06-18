@@ -75,7 +75,7 @@
                             android:layout_marginLeft="28dp"
                             android:layout_width="wrap_content"
                             android:layout_height="30dp"
-                            android:paddingTop="5.7dp"
+                            android:paddingTop="5.6dp"
                             android:textColor="@android:color/white"
                             android:textSize="14sp"
                             android:textStyle="bold" />

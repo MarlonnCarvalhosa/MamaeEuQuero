@@ -26,6 +26,7 @@ public class AdapterMensagens extends RecyclerView.Adapter<AdapterMensagens.View
     private List<Mensagem> mensagems ;
     private FragmentActivity activity;
     private LinearLayout linearLayout;
+    private TextView textView;
     private CardView cardMens;
     private String idusuario;
 
@@ -51,12 +52,15 @@ public class AdapterMensagens extends RecyclerView.Adapter<AdapterMensagens.View
         Log.v("teste",mensagem.getUsuario().getId()+"==="+idusuario);
         if ((mensagem.getUsuario().getId()).equals(idusuario)){
             linearLayout.setGravity(Gravity.RIGHT);
+            textView.setGravity(Gravity.RIGHT);
+            cardMens.setCardBackgroundColor(ContextCompat.getColor(activity, R.color.verdeClaro));
         }else {
-            cardMens.setCardBackgroundColor(ContextCompat.getColor(activity, R.color.gray));
+            holder.textViewNome.setText(mensagem.getUsuario().getNomeUsuario());
+
         }
 
         holder.textViewMsg.setText(mensagem.getTexto());
-        holder.textViewNome.setText(mensagem.getUsuario().getNomeUsuario());
+
     }
 
     @Override
@@ -65,9 +69,9 @@ public class AdapterMensagens extends RecyclerView.Adapter<AdapterMensagens.View
     }
 
     public void atualiza(List<Mensagem>mensagems){
-         this. mensagems= mensagems;
-         this.notifyDataSetChanged();
-         Log.v("MENSA", mensagems.size()+"");
+        this. mensagems= mensagems;
+        this.notifyDataSetChanged();
+        Log.v("MENSA", mensagems.size()+"");
 
     }
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -78,6 +82,7 @@ public class AdapterMensagens extends RecyclerView.Adapter<AdapterMensagens.View
             super(itemView);
             cardMens = itemView.findViewById(R.id.cardMens);
             linearLayout = itemView.findViewById(R.id.linearmensagens);
+            textView=itemView.findViewById(R.id.textNome);
             textViewMsg = itemView.findViewById(R.id.textTexto);
             textViewNome = itemView.findViewById(R.id.textNome);
         }

@@ -89,12 +89,13 @@ public class MensagensFragment extends Fragment {
         recyclerView= view.findViewById(R.id.recyclerMsg);
         recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
+        recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), 0));;
 
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setNestedScrollingEnabled(true);
         recyclerView.setAdapter(adapter);
         DividerItemDecoration mDivider = new DividerItemDecoration(recyclerView.getContext(),
-                DividerItemDecoration.VERTICAL
+                0
         );
         recyclerView.addItemDecoration(mDivider);
         editTextMensagem = view.findViewById(R.id.editTextMensagem);
@@ -111,10 +112,7 @@ public class MensagensFragment extends Fragment {
 
             //verifica se a conversa ja exite
 
-
-
         }
-
 
         buttonEnviar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -132,7 +130,6 @@ public class MensagensFragment extends Fragment {
 
 
                     }
-                    Toast.makeText(getActivity(), ""+existente+"", Toast.LENGTH_SHORT).show();
                     if (!existente) {
                         comprador.getConversas().add(conversa);
                         vendedor.getConversas().add(conversa);
@@ -146,23 +143,14 @@ public class MensagensFragment extends Fragment {
                     }
 
                     enviarMensagem(mensagem);
-                    Toast.makeText(getActivity(), ""+conversa.getId(), Toast.LENGTH_SHORT).show();
                 }else {
                     Toast.makeText(getActivity(), "Digite algo!", Toast.LENGTH_SHORT).show();
 
                 }
 
-
-
-
-
-
-
-
-
-
             }
         });
+
     }
 
     private void enviarMensagem(String msg) {
@@ -201,6 +189,7 @@ public class MensagensFragment extends Fragment {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+
             }
 
             @Override
@@ -253,8 +242,8 @@ public class MensagensFragment extends Fragment {
         adapter = new AdapterMensagens(mensagems,getActivity(),idusuario) ;
         recyclerView.setAdapter(adapter);
 
-
     }
+
     @Override
     public void onResume() {
         super.onResume();

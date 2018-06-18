@@ -317,8 +317,3 @@ public class DescricaoFragment extends Fragment {
 
 
 }
-
-
-
-
-
