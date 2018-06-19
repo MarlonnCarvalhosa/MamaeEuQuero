@@ -53,10 +53,16 @@ public class MainActivity extends AppCompatActivity {
 
                     return true;
                 case R.id.navigation_conversas:
-                    FragmentoUtils.replace(MainActivity.this, new ConversasFragment());
-                    toolbar = (Toolbar) findViewById(R.id.toolbarTopo);
-                    setSupportActionBar(toolbar);
-                    getSupportActionBar().setTitle("Conversas");
+                    if (auth.getCurrentUser() != null) {
+                        FragmentoUtils.replace(MainActivity.this, new ConversasFragment());
+                        toolbar = (Toolbar) findViewById(R.id.toolbarTopo);
+                        setSupportActionBar(toolbar);
+                        getSupportActionBar().setTitle("Conversas");
+
+                    }else {
+                        FragmentoUtils.replace(MainActivity.this, new LoginFragment());
+                    }
+
 
                     return true;
                 case R.id.navigation_perfil:
@@ -77,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        auth=FirebaseAuth.getInstance();
 
 
         toolbar = (Toolbar) findViewById(R.id.toolbarTopo);
