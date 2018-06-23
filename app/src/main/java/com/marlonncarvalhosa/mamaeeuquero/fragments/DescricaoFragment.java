@@ -237,6 +237,7 @@ public class DescricaoFragment extends Fragment {
             public void onCancelled(DatabaseError databaseError) {
 
             }
+
         });
 
     }
@@ -298,6 +299,7 @@ public class DescricaoFragment extends Fragment {
                     return;
 
                 } else {
+
                     abrirDialogo();
 
                 }

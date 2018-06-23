@@ -23,27 +23,7 @@
           android:layout_height="wrap_content"
           android:layout_marginTop="30dp"
           android:src="@drawable/nome_logo_final"/>
-      <LinearLayout
-          android:gravity="bottom"
-          android:orientation="vertical"
-          android:layout_width="match_parent"
-          android:layout_height="match_parent">
 
-         <TextView
-             android:gravity="center"
-             android:textColor="@color/white"
-             android:id="@+id/textView"
-             android:layout_width="match_parent"
-             android:layout_height="wrap_content"
-             android:text="Desenvolvido por :" />
-         <TextView
-             android:gravity="center"
-             android:textColor="@color/white"
-             android:layout_width="match_parent"
-             android:layout_height="wrap_content"
-             android:text="Sistemas de Informação - UniRedentor" />
-
-      </LinearLayout>
    </LinearLayout>
 
 </RelativeLayout>

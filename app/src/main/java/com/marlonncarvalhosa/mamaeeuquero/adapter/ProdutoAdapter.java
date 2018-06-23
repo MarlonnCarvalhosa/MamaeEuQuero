@@ -13,9 +13,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.marlonncarvalhosa.mamaeeuquero.R;
 import com.marlonncarvalhosa.mamaeeuquero.fragments.DescricaoFragment;
 import com.marlonncarvalhosa.mamaeeuquero.model.Produto;
@@ -30,6 +33,8 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ViewHold
     private FragmentActivity activity;
     private List<Produto> produtos;
     private Usuario usuario = new Usuario();
+    private FirebaseUser currentFirebaseUser;
+    private FirebaseAuth auth;
 
     public final static long SECOND_MILLIS = 1000;
     public final static long MINUTE_MILLIS = SECOND_MILLIS*60;
@@ -54,6 +59,9 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ViewHold
 
         public ViewHolder(View itemView) {
             super(itemView);
+
+            auth = FirebaseAuth.getInstance();
+            currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser() ;
 
             clickCard = itemView.findViewById(R.id.linearAdapter);
             titulo_lance = itemView.findViewById(R.id.titulo_lance);
@@ -130,30 +138,82 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ViewHold
                 holder.titulo_lance.setText("Arrematado por:");
                 holder.titulo_lance.setTextColor(ContextCompat.getColor(activity, R.color.verdeEscuro));
                 holder.clickCard.setBackgroundColor(ContextCompat.getColor(activity, R.color.teste));
-                holder.clickCard.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
 
-                        AlertDialog.Builder alert = new AlertDialog.Builder(activity);
+                if (currentFirebaseUser.getUid().equals(produto.getIddovendedor())){
 
-                        alert
-                                .setTitle("Que pena!")
-                                .setIcon(R.drawable.bebe_chorando)
-                                .setMessage("Esse produto já foi arrematado por " + produto.getNomedocomprador())
-                                .setCancelable(true)
-                                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                    }
+                    holder.clickCard.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            FragmentoUtils.replace(activity, new DescricaoFragment().newInstance(produto));
+                        }
+                    });
 
-                                });
+                }else {
 
-                        AlertDialog alertDialog = alert.create();
-                        alertDialog.show();
+                    holder.clickCard.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
 
-                    }
+                            AlertDialog.Builder alert = new AlertDialog.Builder(activity);
 
-                });
+                            alert
+                                    .setTitle("Que pena!")
+                                    .setIcon(R.drawable.bebe_chorando)
+                                    .setMessage("Esse produto já foi arrematado por " + produto.getNomedocomprador())
+                                    .setCancelable(true)
+                                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                        }
+
+                                    });
+
+                            AlertDialog alertDialog = alert.create();
+                            alertDialog.show();
+
+                        }
+
+                    });
+
+                }
+
+                if (currentFirebaseUser.getUid().equals(produto.getLancedocomprador())){
+
+                   holder.clickCard.setOnClickListener(new View.OnClickListener() {
+                       @Override
+                       public void onClick(View v) {
+                           FragmentoUtils.replace(activity, new DescricaoFragment().newInstance(produto));
+                       }
+                   });
+
+                }else {
+
+                    holder.clickCard.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+                            AlertDialog.Builder alert = new AlertDialog.Builder(activity);
+
+                            alert
+                                    .setTitle("Que pena!")
+                                    .setIcon(R.drawable.bebe_chorando)
+                                    .setMessage("Esse produto já foi arrematado por " + produto.getNomedocomprador())
+                                    .setCancelable(true)
+                                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                        }
+
+                                    });
+
+                            AlertDialog alertDialog = alert.create();
+                            alertDialog.show();
+
+                        }
+
+                    });
+
+                }
 
             }
 

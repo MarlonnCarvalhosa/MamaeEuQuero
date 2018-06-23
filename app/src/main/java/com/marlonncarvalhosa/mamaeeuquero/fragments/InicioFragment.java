@@ -134,31 +134,4 @@ public class InicioFragment extends Fragment {
 
     }
 
-    public void onPrepareOptionsMenu(Menu menu) {
-        super.onPrepareOptionsMenu(menu);
-        menu.clear();
-        getActivity().getMenuInflater().inflate(R.menu.menu_logo, menu);
-
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        switch (item.getItemId()) {
-            case R.id.logomarca:
-                insta();
-
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
-
-    public void insta() {
-
-        InstaDialog instaDialog = new InstaDialog();
-        instaDialog.show(getFragmentManager(), " Lance");
-
-    }
-
 }
